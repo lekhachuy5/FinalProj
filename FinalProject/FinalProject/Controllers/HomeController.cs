@@ -29,5 +29,10 @@ namespace FinalProject.Controllers
         public ActionResult Manageorder(){
             return View();
         }
+
+        public ActionResult ManageCart()
+        {
+            return View();
+        }
     }
 }
