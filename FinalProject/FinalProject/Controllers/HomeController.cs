@@ -26,5 +26,8 @@ namespace FinalProject.Controllers
 
             return View();
         }
+        public ActionResult Manageorder(){
+            return View();
+        }
     }
 }
