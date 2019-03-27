@@ -492,7 +492,7 @@
     <Content Include="Content\images\works\8.jpg" />
     <Content Include="Content\images\works\9.jpg" />
     <Content Include="Content\rs-plugin\images\tiles\bgtile.jpg" />
-    <Content Include="Content\utils\beta.utils.js" />
+    <Content Include="Scripts\utils\beta.utils.js" />
     <Content Include="Content\vendors\revolution-slider\assets\arrowleft.png" />
     <Content Include="Content\vendors\revolution-slider\assets\arrowright.png" />
     <Content Include="Content\vendors\revolution-slider\assets\arrow_large_left.png" />
@@ -677,6 +677,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\notfound.cshtml" />
+    <Content Include="Views\Home\pricing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
