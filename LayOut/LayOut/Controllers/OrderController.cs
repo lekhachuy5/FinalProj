@@ -14,5 +14,13 @@ namespace LayOut.Controllers
         {
             return View();
         }
-	}
+        public ActionResult Product()
+        {
+            return View();
+        }
+        public ActionResult ShoppingCart()
+        {
+            return View();
+        }
+    }
 }
