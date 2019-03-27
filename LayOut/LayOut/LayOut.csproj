@@ -679,11 +679,12 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\notfound.cshtml" />
     <Content Include="Views\Home\pricing.cshtml" />
+    <Content Include="Views\Order\Product.cshtml" />
+    <Content Include="Views\Order\ShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Information\" />
-    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
