@@ -1,23 +1,11 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BetaDesign</title>
-    <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/Content/font-awesome.min.css">
-    <link rel="stylesheet" href="/Content/vendors/colorbox/example3/colorbox.css">
-    <link rel="stylesheet" title="style" href="/Content/style.css">
-    <link rel="stylesheet" href="/Content/animate.css">
-    <link rel="stylesheet" title="style" href="/Content/huong-style.css">
-</head>
 <body>
 
      <!-- #header -->
@@ -122,61 +110,6 @@
      <!-- #footer -->
      <!-- .copyright -->
     <!-- include js files -->
-    <script src="/Scripts/js/jquery.js"></script>
-    <script src="/Scripts/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="/Scripts/vendors/bxslider/jquery.bxslider.min.js"></script>
-    <script src="/Scripts/vendors/colorbox/jquery.colorbox-min.js"></script>
-    <script src="/Scripts/vendors/animo/Animo.js"></script>
-    <script src="/Scripts/vendors/dug/dug.js"></script>
-    <script src="/Scripts/js/scripts.min.js"></script>
-    <!--customjs-->
-    <script type="text/javascript">
-        $(function () {
-            // this will get the full URL at the address bar
-            var url = window.location.href;
-
-            // passes on every "a" tag
-            $(".main-menu a").each(function () {
-                // checks if its the same on the address bar
-                if (url == (this.href)) {
-                    $(this).closest("li").addClass("active");
-                    $(this).parents('li').addClass('parent-active');
-                }
-            });
-        });
-
-
-    </script>
-    <script>
-        jQuery(document).ready(function ($) {
-            'use strict';
-
-            // color box
-
-            //color
-            jQuery('#style-selector').animate({
-                left: '-213px'
-            });
-
-            jQuery('#style-selector a.close').click(function (e) {
-                e.preventDefault();
-                var div = jQuery('#style-selector');
-                if (div.css('left') === '-213px') {
-                    jQuery('#style-selector').animate({
-                        left: '0'
-                    });
-                    jQuery(this).removeClass('icon-angle-left');
-                    jQuery(this).addClass('icon-angle-right');
-                } else {
-                    jQuery('#style-selector').animate({
-                        left: '-213px'
-                    });
-                    jQuery(this).removeClass('icon-angle-right');
-                    jQuery(this).addClass('icon-angle-left');
-                }
-            });
-        });
-    </script>
+  
 </body>
 </html>

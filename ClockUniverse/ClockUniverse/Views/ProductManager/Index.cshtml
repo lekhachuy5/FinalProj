@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ClockUniverse.QuanLyDH>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenDH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiDH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThongTinDH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HinhAnhDH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiaTien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenDH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiDH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThongTinDH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HinhAnhDH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaTien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuong)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

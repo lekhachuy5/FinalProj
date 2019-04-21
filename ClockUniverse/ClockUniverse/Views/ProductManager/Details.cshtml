@@ -1,0 +1,67 @@
+﻿@model ClockUniverse.QuanLyDH
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QuanLyDH</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenDH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiDH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiDH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThongTinDH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThongTinDH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnhDH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HinhAnhDH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaTien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaTien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
