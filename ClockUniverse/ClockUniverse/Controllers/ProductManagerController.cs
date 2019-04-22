@@ -55,7 +55,7 @@ namespace ClockUniverse.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(quanlydh);
+            return View("Create",quanlydh);
         }
 
         // GET: /ProductManager/Edit/5
