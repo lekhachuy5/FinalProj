@@ -5,20 +5,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h3 style="text-align:center; font-weight:bold">CẬP NHẬT THÔNG TIN SẢN PHẨM</h3>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+    <style>
+       .col-md-10 {
+           width:80%;
+           border-radius:10px;
+           }
+       .btn-primary a{
+           color:white;
+       }
+       .btn-primary {
+           margin-left: 90%;
+           display: block;
+           margin-bottom: 22px;
+       }
+       
+   </style>
     <div class="form-horizontal">
-        <h4>QuanLyDH</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.ID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenDH, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TenDH, "Tên Đơn Hàng", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenDH)
                 @Html.ValidationMessageFor(model => model.TenDH)
@@ -26,7 +39,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LoaiDH, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.LoaiDH, "Loại Đơn Hàng", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LoaiDH)
                 @Html.ValidationMessageFor(model => model.LoaiDH)
@@ -34,7 +47,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ThongTinDH, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ThongTinDH, "Thông Tin Đơn Hàng", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ThongTinDH)
                 @Html.ValidationMessageFor(model => model.ThongTinDH)
@@ -42,7 +55,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HinhAnhDH, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.HinhAnhDH, "Hình Ảnh Đơn Hàng", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.HinhAnhDH)
                 @Html.ValidationMessageFor(model => model.HinhAnhDH)
@@ -50,7 +63,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GiaTien, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GiaTien, "Giá Tiền", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.GiaTien)
                 @Html.ValidationMessageFor(model => model.GiaTien)
@@ -58,7 +71,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SoLuong, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SoLuong, "Số Lượng", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SoLuong)
                 @Html.ValidationMessageFor(model => model.SoLuong)
@@ -67,12 +80,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Cập Nhật" class="btn btn-group" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <button type="button" class="btn btn-primary">@Html.ActionLink("Trở về danh sách", "Index")</button>
 </div>
