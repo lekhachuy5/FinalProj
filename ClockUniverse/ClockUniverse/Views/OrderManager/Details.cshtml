@@ -5,55 +5,70 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<style>
+    
 
-<div>
-    <h4>QLdonHang</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenDH)
-        </dt>
+    .link {
+        color: blue;
+        font-size: 20px;
+        font-family: Arial;
+    }
+</style>
+<h2>Chi tiết đơn hàng</h2>
 
-        <dd>
+<table class="table table-bordered" style="font-size:14px; font-family:Arial">
+    <tr>
+        <th>
+            Tên đồng hồ
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Đơn giá
+        </th>
+        <th>
+            Tổng tiền
+        </th>
+        <th>
+            Hình ảnh
+        </th>
+        <th>
+            Ngày đặt
+        </th>
+        <th>
+            Ngaỳ giao
+        </th>
+        </tr>
+    <tr>
+        <td>
             @Html.DisplayFor(model => model.TenDH)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SoLuong)
-        </dt>
-
-        <dd>
+        </td>
+        <td>
             @Html.DisplayFor(model => model.SoLuong)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DonGia)
-        </dt>
-
-        <dd>
+        </td>
+        <td>
             @Html.DisplayFor(model => model.DonGia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TongTien)
-        </dt>
-
-        <dd>
+        </td>
+        <td>
             @Html.DisplayFor(model => model.TongTien)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HinhAnh)
-        </dt>
-
-        <dd>
+        </td>
+        <td>
             @Html.DisplayFor(model => model.HinhAnh)
-        </dd>
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.NgayDatHang)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.NgayGiaoHang)
+        </td>
 
-    </dl>
-</div>
+
+
+
+    </tr>
+</table>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID }, new { @class="link"}) |
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "link" })
 </p>
