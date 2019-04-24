@@ -5,20 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
-
+<h2>Chỉnh Sửa</h2>
+<style>
+    h2{
+        text-align: center;
+        font-family:'Times New Roman';
+    }
+    div {
+        font-family: 'Times New Roman';
+    }
+</style>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>QLTT</h4>
+        <h4></h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.ID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FullName, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FullName,"Họ và tên", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FullName)
                 @Html.ValidationMessageFor(model => model.FullName)
@@ -26,7 +34,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SDT, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SDT,"Số điện thoại", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SDT)
                 @Html.ValidationMessageFor(model => model.SDT)
@@ -34,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DiaChi, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DiaChi,"Địa chỉ", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DiaChi)
                 @Html.ValidationMessageFor(model => model.DiaChi)
@@ -43,7 +51,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Lưu" class="btn btn-success" />
             </div>
         </div>
     </div>

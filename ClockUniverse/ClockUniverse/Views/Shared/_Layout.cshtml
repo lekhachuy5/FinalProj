@@ -17,7 +17,7 @@
     <link rel="stylesheet" title="style" href="/Content/huong-style.css">
 </head>
 <body>
-
+    @RenderSection("scripts",required: false)
     <div id="header">
         <div class="header-top">
             <div class="container">
@@ -127,8 +127,10 @@
             </div> <!-- .container -->
         </div> <!-- .header-bottom -->
     </div> <!-- #header -->
+    
     <!-- .container -->
     @RenderBody()
+
     <div id="footer" class="color-div">
         <div class="container">
             <div class="row">

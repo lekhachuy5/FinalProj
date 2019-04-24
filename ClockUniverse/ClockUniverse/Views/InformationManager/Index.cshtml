@@ -5,21 +5,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
+<h2>Danh Sách Khách Hàng</h2>
+    @Html.ActionLink("Tạo mới", "Create")
+<style>
+    h2 {
+        text-align: center;
+        font-family: 'Times New Roman';
+    }
+    tr {
+        font-family: 'Times New Roman';
+    }
+    div {
+        font-family: 'Times New Roman';
+    }
+</style>
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FullName)
+           Họ và tên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SDT)
+            Số điện thoại
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DiaChi)
+            Địa chỉ
         </th>
         <th></th>
     </tr>

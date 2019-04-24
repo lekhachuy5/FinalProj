@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ClockUniverse;
-
+using System.Data.Entity.Validation;
 namespace ClockUniverse.Controllers
 {
     public class OrderManagerController : Controller
@@ -47,16 +47,16 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,TenDH,SoLuong,DonGia,TongTien,HinhAnh")] QLdonHang qldonhang)
+        public ActionResult Create(QLdonHang model)
         {
             if (ModelState.IsValid)
             {
-                db.QLdonHangs.Add(qldonhang);
+                db.QLdonHangs.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(qldonhang);
+            return View(model);
         }
 
         // GET: /OrderManager/Edit/5
@@ -79,7 +79,7 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,TenDH,SoLuong,DonGia,TongTien,HinhAnh")] QLdonHang qldonhang)
+        public ActionResult Edit( QLdonHang qldonhang)
         {
             if (ModelState.IsValid)
             {
