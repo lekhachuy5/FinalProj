@@ -5,15 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
-
+<h2>Xóa</h2>
+<style>
+    h2 {
+        
+        font-family: 'Times New Roman';
+    }
+    div {
+        font-family: 'Times New Roman';
+    }
+    h3 {
+        
+        font-family: 'Times New Roman';
+    }
+   
+</style>
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>QLTT</h4>
+    <h4></h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FullName)
+            Họ và tên
         </dt>
 
         <dd>
@@ -21,7 +34,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SDT)
+            Số điện thoại
         </dt>
 
         <dd>
@@ -29,7 +42,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DiaChi)
+            Địa chỉ
         </dt>
 
         <dd>
@@ -42,8 +55,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Trở về", "Index")
         </div>
     }
 </div>

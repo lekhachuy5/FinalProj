@@ -5,14 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
+<h2>Chi Tiết</h2>
+<style>
+    h2{
+        text-align:center;
+        font-family:'Times New Roman';
+    }
+    dt{
+        font-family:'Times New Roman';
+    }
+    dd {
+        font-family: 'Times New Roman';
+    }
+    div {
+        font-family: 'Times New Roman';
+    }
+</style>
 <div>
-    <h4>QLTT</h4>
+    
 	<hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FullName)
+            Họ và tên
         </dt>
 
         <dd>
@@ -20,7 +34,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SDT)
+            Số điện thoại
         </dt>
 
         <dd>
@@ -28,7 +42,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DiaChi)
+            Địa chỉ
         </dt>
 
         <dd>
@@ -38,6 +52,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <div class="form-actions no-color">
+        <input type="submit" value="Chỉnh sửa" class="btn btn-warning" /> |
+        @Html.ActionLink("trở về", "Index")
+    </div>
+    
 </p>

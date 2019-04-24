@@ -10,13 +10,11 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenDH" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenDH" Type="nvarchar" MaxLength="50" />
           <Property Name="SoLuong" Type="int" Nullable="false" />
-          <Property Name="DonGia" Type="money" Nullable="false" />
-          <Property Name="TongTien" Type="money" Nullable="false" />
-          <Property Name="HinhAnh" Type="image" />
-          <Property Name="NgayDatHang" Type="datetime" Nullable="false" />
-          <Property Name="NgayGiaoHang" Type="datetime" Nullable="false" />
+          <Property Name="DonGia" Type="money" />
+          <Property Name="TongTien" Type="money" />
+          <Property Name="HinhAnh" Type="image" Nullable="false" />
         </EntityType>
         <EntityType Name="QLTT">
           <Key>
@@ -48,18 +46,21 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClockUniverseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ClockUniverseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="QLdonHangs" EntityType="ClockUniverseModel.QLdonHang" />
+          <EntitySet Name="QLTTs" EntityType="ClockUniverseModel.QLTT" />
+          <EntitySet Name="QuanLyDHs" EntityType="ClockUniverseModel.QuanLyDH" />
+        </EntityContainer>
         <EntityType Name="QLdonHang">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenDH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenDH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SoLuong" Type="Int32" Nullable="false" />
-          <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="HinhAnh" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="NgayDatHang" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="NgayGiaoHang" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="HinhAnh" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="QLTT">
           <Key>
@@ -75,18 +76,13 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenDH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LoaiDH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ThongTinDH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenDH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiDH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ThongTinDH" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="HinhAnhDH" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="GiaTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="SoLuong" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="GiaTien" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="SoLuong" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="ClockUniverseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="QLdonHangs" EntityType="Self.QLdonHang" />
-          <EntitySet Name="QLTTs" EntityType="Self.QLTT" />
-          <EntitySet Name="QuanLyDHs" EntityType="Self.QuanLyDH" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -96,37 +92,35 @@
           <EntitySetMapping Name="QLdonHangs">
             <EntityTypeMapping TypeName="ClockUniverseModel.QLdonHang">
               <MappingFragment StoreEntitySet="QLdonHang">
-                <ScalarProperty Name="NgayGiaoHang" ColumnName="NgayGiaoHang" />
-                <ScalarProperty Name="NgayDatHang" ColumnName="NgayDatHang" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="TenDH" ColumnName="TenDH" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
-                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
                 <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="TenDH" ColumnName="TenDH" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLTTs">
             <EntityTypeMapping TypeName="ClockUniverseModel.QLTT">
               <MappingFragment StoreEntitySet="QLTT">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="SDT" ColumnName="SDT" />
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QuanLyDHs">
             <EntityTypeMapping TypeName="ClockUniverseModel.QuanLyDH">
               <MappingFragment StoreEntitySet="QuanLyDH">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="TenDH" ColumnName="TenDH" />
-                <ScalarProperty Name="LoaiDH" ColumnName="LoaiDH" />
-                <ScalarProperty Name="ThongTinDH" ColumnName="ThongTinDH" />
-                <ScalarProperty Name="HinhAnhDH" ColumnName="HinhAnhDH" />
-                <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
                 <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
+                <ScalarProperty Name="HinhAnhDH" ColumnName="HinhAnhDH" />
+                <ScalarProperty Name="ThongTinDH" ColumnName="ThongTinDH" />
+                <ScalarProperty Name="LoaiDH" ColumnName="LoaiDH" />
+                <ScalarProperty Name="TenDH" ColumnName="TenDH" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
