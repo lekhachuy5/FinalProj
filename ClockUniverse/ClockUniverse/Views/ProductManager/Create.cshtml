@@ -29,6 +29,15 @@
            width: 80%;
            background-color : blue;
        }
+       
+
+       .file-path-wrapper {
+           margin-left: 231px;
+           margin-top: -45px;
+           margin-right: 47px;
+           margin-bottom: 1%;
+       }
+
 
        
 
@@ -70,7 +79,21 @@
            </div>
        </div>
 
+
        
+
+       <form class="md-form">
+           <div class="file-field">
+
+               <div class="file-path-wrapper">
+                   @*<input class="file-path validate" type="text" placeholder="Upload your file">*@
+                   <input type="file">
+               </div>
+              
+           </div>
+       </form>
+
+
 
        <div class="form-group">
            @Html.LabelFor(model => model.GiaTien, "Giá Tiền", new { @class = "control-label col-md-2" })
