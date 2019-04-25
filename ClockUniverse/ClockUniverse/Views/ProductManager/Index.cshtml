@@ -8,7 +8,7 @@
 <h2>Thông Tin Sản Phẩm</h2>
 
 <p>
-    @Html.ActionLink("Thêm Sản Phẩm", "Create")
+    @Html.ActionLink("Thêm Sản Phẩm", "Create",null,new { @class = "btn btn-primary"})
 </p>
 <table class="table">
     <thead>
@@ -57,9 +57,9 @@
                 @item.SoLuong
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID },new {@class="btn btn-warning " }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-warning " }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-warning " })
             </td>
         </tr>
     </tbody>

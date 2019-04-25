@@ -4,63 +4,74 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    table, th,td{
+        border:1px solid black;
+        border-collapse: collapse;
+    }
 
-<h2>Details</h2>
+    th,td{
+        padding: 5px;
+        text-align:left;
+    }
+
+    h2{
+        text-align:center;
+        margin-top: 4px;
+    }
+
+</style>
+<h2>Thông Tin Sản Phẩm</h2>
 
 <div>
-    <h4>QuanLyDH</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenDH)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenDH)
-        </dd>
+<dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiDH)
-        </dt>
+<table style="width:100%">
+        <tr>
+            <th>Tên Đồng Hồ</th>
+            <td>@Html.DisplayFor(model => model.TenDH)</td>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoaiDH)
-        </dd>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ThongTinDH)
-        </dt>
+        <tr>
+            <th>Loại Đồng Hồ</th>
+            <td>@Html.DisplayFor(model => model.LoaiDH)</td>
 
-        <dd>
-            @Html.DisplayFor(model => model.ThongTinDH)
-        </dd>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HinhAnhDH)
-        </dt>
+        <tr>
+            <th>Thông Tin Đồng Hồ</th>
+            <td>@Html.DisplayFor(model => model.ThongTinDH)</td>
 
-        <dd>
-            @Html.DisplayFor(model => model.HinhAnhDH)
-        </dd>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.GiaTien)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.GiaTien)
-        </dd>
+        <tr>
+            <th>Giá Tiền</th>
+            <td>@Html.DisplayFor(model => model.GiaTien)</td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SoLuong)
-        </dt>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.SoLuong)
-        </dd>
 
-    </dl>
+        <tr>
+            <th>Số Lượng</th>
+            <td>@Html.DisplayFor(model => model.SoLuong)</td>
+
+        </tr>
+
+
+        <tr>
+            <th>Hình Ảnh Đồng Hồ</th>
+            <td>@Html.DisplayFor(model => model.HinhAnhDH)</td>
+
+        </tr>
+
+    </table>
+</dl>
+
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
