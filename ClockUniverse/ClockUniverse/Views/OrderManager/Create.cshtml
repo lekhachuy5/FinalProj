@@ -11,11 +11,6 @@
 {
     @Html.AntiForgeryToken()
     <style>
-        .btn-cr {
-            text-align:center;
-            width : 50%;
-            background-color: lightblue;
-        }
         .col-md-10 {
             width: 80%;
             border-radius: 10px;
@@ -82,12 +77,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Tạo mới" class="btn-cr" />
+                <input style="margin-left:35%;margin-top:-1%" type="submit" value="Tạo mới" class="btn btn-success position-absolute" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Quay lại", "Index")
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-info" })
 </div>

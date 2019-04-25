@@ -11,23 +11,12 @@
 {
     @Html.AntiForgeryToken()
     <style>
-        .btn-save {
-            color: blue;
-            border-color:white;
-            background-color:white;
-            font-size: 20px;
-            font-family:Arial;
-            margin-left:40%;
-        }
+        
         .col-md-10 {
             width: 80%;
             border-radius: 10px;
         }
-        .link {
-            color: blue;
-            font-size: 20px;
-            font-family: Arial;
-        }
+        
     </style>
     <div class="form-horizontal">
        
@@ -79,12 +68,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Lưu" class="btn-save" />
+                <input style="margin-left:37%;font-size:20px;font-family:Arial" type="submit" value="Lưu" class="btn btn-sm btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Quay lại", "Index", null, new { @class="link"})
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-info" })
 </div>

@@ -5,15 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    
-
-    .link {
-        color: blue;
-        font-size: 20px;
-        font-family: Arial;
-    }
-</style>
 <h2>Chi tiết đơn hàng</h2>
 
 <table class="table table-bordered" style="font-size:14px; font-family:Arial">
@@ -68,7 +59,7 @@
 
     </tr>
 </table>
-<p>
-    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID }, new { @class="link"}) |
-    @Html.ActionLink("Quay lại", "Index", null, new { @class = "link" })
+<p style="margin-left:80%">
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID }, new { @class = "btn btn-sm btn-primary" }) |
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-info" })
 </p>

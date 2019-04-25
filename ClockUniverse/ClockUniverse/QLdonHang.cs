@@ -17,8 +17,10 @@ namespace ClockUniverse
         public int ID { get; set; }
         public string TenDH { get; set; }
         public int SoLuong { get; set; }
-        public Nullable<decimal> DonGia { get; set; }
-        public Nullable<decimal> TongTien { get; set; }
+        public decimal DonGia { get; set; }
+        public decimal TongTien { get; set; }
         public byte[] HinhAnh { get; set; }
+        public System.DateTime NgayDatHang { get; set; }
+        public System.DateTime NgayGiaoHang { get; set; }
     }
 }

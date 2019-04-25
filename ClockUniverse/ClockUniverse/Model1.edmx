@@ -10,11 +10,13 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenDH" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenDH" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SoLuong" Type="int" Nullable="false" />
-          <Property Name="DonGia" Type="money" />
-          <Property Name="TongTien" Type="money" />
-          <Property Name="HinhAnh" Type="image" Nullable="false" />
+          <Property Name="DonGia" Type="money" Nullable="false" />
+          <Property Name="TongTien" Type="money" Nullable="false" />
+          <Property Name="HinhAnh" Type="image" />
+          <Property Name="NgayDatHang" Type="datetime" Nullable="false" />
+          <Property Name="NgayGiaoHang" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="QLTT">
           <Key>
@@ -56,11 +58,13 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenDH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenDH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SoLuong" Type="Int32" Nullable="false" />
-          <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="HinhAnh" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="HinhAnh" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NgayDatHang" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NgayGiaoHang" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="QLTT">
           <Key>
@@ -92,6 +96,8 @@
           <EntitySetMapping Name="QLdonHangs">
             <EntityTypeMapping TypeName="ClockUniverseModel.QLdonHang">
               <MappingFragment StoreEntitySet="QLdonHang">
+                <ScalarProperty Name="NgayGiaoHang" ColumnName="NgayGiaoHang" />
+                <ScalarProperty Name="NgayDatHang" ColumnName="NgayDatHang" />
                 <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
                 <ScalarProperty Name="TongTien" ColumnName="TongTien" />
                 <ScalarProperty Name="DonGia" ColumnName="DonGia" />
