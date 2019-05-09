@@ -5,6 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .img {
+        border: none;
+        max-width: 100%;
+        width: 100px;
+        height: 100px;
+    }
+
+</style>
+
 <h2>Thông Tin Sản Phẩm</h2>
 
 <p>
@@ -48,10 +58,14 @@
                 @item.ThongTinDH
             </td>
             <td>
-                @item.HinhAnhDH
+                <div class="img">
+                    <img src="@Url.Action("Image", new { id = item.ID }) " />
+                </div>
+                
+                
             </td>
             <td>
-                @item.GiaTien.ToString("N0")
+                @item.GiaTien.ToString("N0") VND
             </td>
             <td>
                 @item.SoLuong

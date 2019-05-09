@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ClockUniverse;
-
+using System.Transactions;
 namespace ClockUniverse.Controllers
 {
     public class ProductManagerController : Controller
@@ -46,16 +46,28 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,TenDH,LoaiDH,ThongTinDH,HinhAnhDH,GiaTien,SoLuong")] QuanLyDH quanlydh)
+        public ActionResult Create(QuanLyDH model)
         {
+            ValidateClock(model);
             if (ModelState.IsValid)
             {
-                db.QuanLyDHs.Add(quanlydh);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var scope = new TransactionScope())
+                {
+
+                    // add model to database
+                    db.QuanLyDHs.Add(model);
+                    db.SaveChanges();
+                    // save file to app_data
+                    var path = Server.MapPath("~/App_Data");
+                    path = System.IO.Path.Combine(path, model.ID.ToString());
+                    Request.Files["Image"].SaveAs(path);
+                    // all done successfully
+                    scope.Complete();
+                    return RedirectToAction("Index");
+                }
             }
 
-            return View("Create",quanlydh);
+            return View("Create", model);
         }
 
         // GET: /ProductManager/Edit/5
@@ -88,6 +100,19 @@ namespace ClockUniverse.Controllers
             }
             return View(quanlydh);
         }
+
+        public ActionResult Image(string id)
+        {
+            var path = Server.MapPath("~/App_Data");
+            path = System.IO.Path.Combine(path, id);
+            return File(path, "image/jpg/*");
+        }
+        private void ValidateClock(QuanLyDH model)
+        {
+            if (model.GiaTien <= 0)
+                ModelState.AddModelError("GiaTien", Resource1.priceLess0);
+        }
+
 
         // GET: /ProductManager/Delete/5
         public ActionResult Delete(int? id)
