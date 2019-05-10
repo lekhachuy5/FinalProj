@@ -12,12 +12,24 @@ namespace ClockUniverse.Controllers
 {
     public class InformationManagerController : Controller
     {
-        private ClockUniverseEntities db = new ClockUniverseEntities();
+        private CsK23T3bEntities db = new CsK23T3bEntities();
 
         // GET: /InformationManager/
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            return View(db.QLTTs.ToList());
+            var model = db.Contacts.ToList();
+            var cont = from o in db.Contacts select o;
+            if (String.IsNullOrEmpty(searchTerm))
+            {
+
+                return HttpNotFound();
+            }
+            else
+            {
+                cont = db.Contacts.Where(o => o.Contact_ID.ToString().Contains(searchTerm));
+            }
+            ViewBag.SearchTerm = searchTerm;
+            return View(cont.ToList());
         }
 
         // GET: /InformationManager/Details/5
@@ -27,12 +39,12 @@ namespace ClockUniverse.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            QLTT qltt = db.QLTTs.Find(id);
-            if (qltt == null)
+            Contact contact = db.Contacts.Find(id);
+            if (contact == null)
             {
                 return HttpNotFound();
             }
-            return View(qltt);
+            return View(contact);
         }
 
         // GET: /InformationManager/Create
@@ -46,16 +58,16 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,FullName,SDT,DiaChi")] QLTT qltt)
+        public ActionResult Create([Bind(Include="Contact_ID,Customer_Name,Phone,Email,Address,Status")] Contact contact)
         {
             if (ModelState.IsValid)
             {
-                db.QLTTs.Add(qltt);
+                db.Contacts.Add(contact);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(qltt);
+            return View(contact);
         }
 
         // GET: /InformationManager/Edit/5
@@ -65,12 +77,12 @@ namespace ClockUniverse.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            QLTT qltt = db.QLTTs.Find(id);
-            if (qltt == null)
+            Contact contact = db.Contacts.Find(id);
+            if (contact == null)
             {
                 return HttpNotFound();
             }
-            return View(qltt);
+            return View(contact);
         }
 
         // POST: /InformationManager/Edit/5
@@ -78,15 +90,15 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,FullName,SDT,DiaChi")] QLTT qltt)
+        public ActionResult Edit([Bind(Include="Contact_ID,Customer_Name,Phone,Email,Address,Status")] Contact contact)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(qltt).State = EntityState.Modified;
+                db.Entry(contact).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(qltt);
+            return View(contact);
         }
 
         // GET: /InformationManager/Delete/5
@@ -96,12 +108,12 @@ namespace ClockUniverse.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            QLTT qltt = db.QLTTs.Find(id);
-            if (qltt == null)
+            Contact contact = db.Contacts.Find(id);
+            if (contact == null)
             {
                 return HttpNotFound();
             }
-            return View(qltt);
+            return View(contact);
         }
 
         // POST: /InformationManager/Delete/5
@@ -109,8 +121,8 @@ namespace ClockUniverse.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            QLTT qltt = db.QLTTs.Find(id);
-            db.QLTTs.Remove(qltt);
+            Contact contact = db.Contacts.Find(id);
+            db.Contacts.Remove(contact);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

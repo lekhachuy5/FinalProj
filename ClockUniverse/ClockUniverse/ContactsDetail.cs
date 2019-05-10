@@ -12,15 +12,15 @@ namespace ClockUniverse
     using System;
     using System.Collections.Generic;
     
-    public partial class QLdonHang
+    public partial class ContactsDetail
     {
-        public int ID { get; set; }
-        public string TenDH { get; set; }
-        public int SoLuong { get; set; }
-        public decimal DonGia { get; set; }
-        public decimal TongTien { get; set; }
-        public byte[] HinhAnh { get; set; }
-        public System.DateTime NgayDatHang { get; set; }
-        public System.DateTime NgayGiaoHang { get; set; }
+        public int Feedback_ID { get; set; }
+        public int Contact_ID { get; set; }
+        public int Employee_ID { get; set; }
+        public string Title { get; set; }
+        public string Feedback_Detail { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+    
+        public virtual Contact Contact { get; set; }
     }
 }

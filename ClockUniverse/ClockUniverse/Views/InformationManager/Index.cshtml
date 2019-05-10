@@ -1,35 +1,40 @@
-﻿@model IEnumerable<ClockUniverse.QLTT>
+﻿@model IEnumerable<ClockUniverse.Contact>
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutManage.cshtml";
 }
 
-<h2>Danh Sách Khách Hàng</h2>
-    @Html.ActionLink("Tạo mới", "Create")
-<style>
-    h2 {
-        text-align: center;
-        font-family: 'Times New Roman';
-    }
-    tr {
-        font-family: 'Times New Roman';
-    }
-    div {
-        font-family: 'Times New Roman';
-    }
-</style>
+<h2>QUẢN LÝ LIÊN HỆ</h2>
+@using (Html.BeginForm("Index", "InformationManager", FormMethod.Get, new { @class = "navbar-form navbar-right", role = "search", id = "search-form" }))
+{
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Nhập id liên hệ" name="SearchTerm" value="@ViewBag.SearchTerm" id="search-box">
+        <button type="submit" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-search"></i></button>
+    </div>
+}
+<p>
+    @Html.ActionLink("Thêm mới liên hệ", "Create")
 </p>
-<table class="table">
+<table class="table table-bordered">
     <tr>
         <th>
-           Họ và tên
+            ID
         </th>
         <th>
-            Số điện thoại
+            Họ tên Liên Hệ
+        </th>
+        <th>
+            SDT
+        </th>
+        <th>
+            Email
         </th>
         <th>
             Địa chỉ
+        </th>
+        <th>
+            Tình trạng
         </th>
         <th></th>
     </tr>
@@ -37,18 +42,27 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FullName)
+            @Html.DisplayFor(modelItem => item.Contact_ID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SDT)
+            @Html.DisplayFor(modelItem => item.Customer_Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DiaChi)
+            @Html.DisplayFor(modelItem => item.Phone)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Cập nhật", "Edit", new { id=item.Contact_ID }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.Contact_ID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.Contact_ID })
         </td>
     </tr>
 }

@@ -13,10 +13,10 @@ namespace ClockUniverse
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ClockUniverseEntities : DbContext
+    public partial class CsK23T3bEntities : DbContext
     {
-        public ClockUniverseEntities()
-            : base("name=ClockUniverseEntities")
+        public CsK23T3bEntities()
+            : base("name=CsK23T3bEntities")
         {
         }
     
@@ -25,8 +25,11 @@ namespace ClockUniverse
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<QLdonHang> QLdonHangs { get; set; }
-        public virtual DbSet<QLTT> QLTTs { get; set; }
-        public virtual DbSet<QuanLyDH> QuanLyDHs { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<ContactsDetail> ContactsDetails { get; set; }
+        public virtual DbSet<Order_Detail> Order_Detail { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<ProductTable> ProductTables { get; set; }
+        public virtual DbSet<ProductType> ProductTypes { get; set; }
     }
 }

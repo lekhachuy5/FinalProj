@@ -4,129 +4,370 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ClockUniverseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="QLdonHang">
+      <Schema Namespace="CsK23T3bModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contacts">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Contact_ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenDH" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="SoLuong" Type="int" Nullable="false" />
-          <Property Name="DonGia" Type="money" Nullable="false" />
-          <Property Name="TongTien" Type="money" Nullable="false" />
-          <Property Name="HinhAnh" Type="image" />
-          <Property Name="NgayDatHang" Type="datetime" Nullable="false" />
-          <Property Name="NgayGiaoHang" Type="datetime" Nullable="false" />
+          <Property Name="Contact_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="QLTT">
+        <EntityType Name="ContactsDetail">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Feedback_ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
-          <Property Name="SDT" Type="int" />
-          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="Feedback_ID" Type="int" Nullable="false" />
+          <Property Name="Contact_ID" Type="int" Nullable="false" />
+          <Property Name="Employee_ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Feedback_Detail" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" />
         </EntityType>
-        <EntityType Name="QuanLyDH">
+        <EntityType Name="Order_Detail">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Order_ID" />
+            <PropertyRef Name="Watch_ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenDH" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="LoaiDH" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ThongTinDH" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="HinhAnhDH" Type="image" />
-          <Property Name="GiaTien" Type="money" Nullable="false" />
-          <Property Name="SoLuong" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Order_ID" Type="int" Nullable="false" />
+          <Property Name="Watch_ID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="ClockUniverseModelStoreContainer">
-          <EntitySet Name="QLdonHang" EntityType="Self.QLdonHang" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="QLTT" EntityType="Self.QLTT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="QuanLyDH" EntityType="Self.QuanLyDH" Schema="dbo" store:Type="Tables" />
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order_Date" Type="datetime" Nullable="false" />
+          <Property Name="Delivery_Date" Type="datetime" Nullable="false" />
+          <Property Name="Customer_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Customer_Phone" Type="int" Nullable="false" />
+          <Property Name="Customer_Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deliver_Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Deliver_Status" Type="int" Nullable="false" />
+          <Property Name="Order_ChangeDate" Type="datetime" Nullable="false" />
+          <Property Name="Total_Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductTables">
+          <Key>
+            <PropertyRef Name="Watch_ID" />
+          </Key>
+          <Property Name="Watch_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Watch_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Watch_Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="WatchType_ID" Type="int" Nullable="false" />
+          <Property Name="Original_Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Selling_Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="InStock" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductTypes">
+          <Key>
+            <PropertyRef Name="ProductType_ID" />
+          </Key>
+          <Property Name="ProductType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductType_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="Contact_ID">
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="1" />
+          <End Role="ContactsDetail" Type="Self.ContactsDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="Contact_ID" />
+            </Principal>
+            <Dependent Role="ContactsDetail">
+              <PropertyRef Name="Contact_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductType_WatchType">
+          <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="1" />
+          <End Role="ProductTables" Type="Self.ProductTables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypes">
+              <PropertyRef Name="ProductType_ID" />
+            </Principal>
+            <Dependent Role="ProductTables">
+              <PropertyRef Name="WatchType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Order_ID">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Watch_ID">
+          <End Role="ProductTables" Type="Self.ProductTables" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTables">
+              <PropertyRef Name="Watch_ID" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Watch_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CsK23T3bModelStoreContainer">
+          <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactsDetail" EntityType="Self.ContactsDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTables" EntityType="Self.ProductTables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Contact_ID" Association="Self.Contact_ID">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="ContactsDetail" EntitySet="ContactsDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductType_WatchType" Association="Self.FK_ProductType_WatchType">
+            <End Role="ProductTypes" EntitySet="ProductTypes" />
+            <End Role="ProductTables" EntitySet="ProductTables" />
+          </AssociationSet>
+          <AssociationSet Name="Order_ID" Association="Self.Order_ID">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="Watch_ID" Association="Self.Watch_ID">
+            <End Role="ProductTables" EntitySet="ProductTables" />
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ClockUniverseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="ClockUniverseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="QLdonHangs" EntityType="ClockUniverseModel.QLdonHang" />
-          <EntitySet Name="QLTTs" EntityType="ClockUniverseModel.QLTT" />
-          <EntitySet Name="QuanLyDHs" EntityType="ClockUniverseModel.QuanLyDH" />
+      <Schema Namespace="CsK23T3bModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Contact_ID" />
+          </Key>
+          <Property Name="Contact_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ContactsDetails" Relationship="Self.Contact_ID" FromRole="Contacts" ToRole="ContactsDetail" />
+        </EntityType>
+        <EntityType Name="ContactsDetail">
+          <Key>
+            <PropertyRef Name="Feedback_ID" />
+          </Key>
+          <Property Name="Feedback_ID" Type="Int32" Nullable="false" />
+          <Property Name="Contact_ID" Type="Int32" Nullable="false" />
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Feedback_Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Contact" Relationship="Self.Contact_ID" FromRole="ContactsDetail" ToRole="Contacts" />
+        </EntityType>
+        <EntityType Name="Order_Detail">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+            <PropertyRef Name="Watch_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="Int32" Nullable="false" />
+          <Property Name="Watch_ID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.Order_ID" FromRole="Order_Detail" ToRole="Orders" />
+          <NavigationProperty Name="ProductTable" Relationship="Self.Watch_ID" FromRole="Order_Detail" ToRole="ProductTables" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Delivery_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Customer_Phone" Type="Int32" Nullable="false" />
+          <Property Name="Customer_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deliver_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Deliver_Status" Type="Int32" Nullable="false" />
+          <Property Name="Order_ChangeDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Total_Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Order_Detail" Relationship="Self.Order_ID" FromRole="Orders" ToRole="Order_Detail" />
+        </EntityType>
+        <EntityType Name="ProductTable">
+          <Key>
+            <PropertyRef Name="Watch_ID" />
+          </Key>
+          <Property Name="Watch_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Watch_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Watch_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WatchType_ID" Type="Int32" Nullable="false" />
+          <Property Name="Original_Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Selling_Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="InStock" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order_Detail" Relationship="Self.Watch_ID" FromRole="ProductTables" ToRole="Order_Detail" />
+          <NavigationProperty Name="ProductType" Relationship="Self.FK_ProductType_WatchType" FromRole="ProductTables" ToRole="ProductTypes" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ProductType_ID" />
+          </Key>
+          <Property Name="ProductType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductType_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProductTables" Relationship="Self.FK_ProductType_WatchType" FromRole="ProductTypes" ToRole="ProductTables" />
+        </EntityType>
+        <Association Name="Contact_ID">
+          <End Role="Contacts" Type="Self.Contact" Multiplicity="1" />
+          <End Role="ContactsDetail" Type="Self.ContactsDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="Contact_ID" />
+            </Principal>
+            <Dependent Role="ContactsDetail">
+              <PropertyRef Name="Contact_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Order_ID">
+          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Watch_ID">
+          <End Role="ProductTables" Type="Self.ProductTable" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTables">
+              <PropertyRef Name="Watch_ID" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Watch_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductType_WatchType">
+          <End Role="ProductTypes" Type="Self.ProductType" Multiplicity="1" />
+          <End Role="ProductTables" Type="Self.ProductTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypes">
+              <PropertyRef Name="ProductType_ID" />
+            </Principal>
+            <Dependent Role="ProductTables">
+              <PropertyRef Name="WatchType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CsK23T3bEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="ContactsDetails" EntityType="Self.ContactsDetail" />
+          <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="ProductTables" EntityType="Self.ProductTable" />
+          <EntitySet Name="ProductTypes" EntityType="Self.ProductType" />
+          <AssociationSet Name="Contact_ID" Association="Self.Contact_ID">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="ContactsDetail" EntitySet="ContactsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="Order_ID" Association="Self.Order_ID">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="Watch_ID" Association="Self.Watch_ID">
+            <End Role="ProductTables" EntitySet="ProductTables" />
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductType_WatchType" Association="Self.FK_ProductType_WatchType">
+            <End Role="ProductTypes" EntitySet="ProductTypes" />
+            <End Role="ProductTables" EntitySet="ProductTables" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="QLdonHang">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenDH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SoLuong" Type="Int32" Nullable="false" />
-          <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="HinhAnh" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="NgayDatHang" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="NgayGiaoHang" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="QLTT">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SDT" Type="Int32" />
-          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="QuanLyDH">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenDH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LoaiDH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ThongTinDH" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HinhAnhDH" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="GiaTien" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="SoLuong" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ClockUniverseModelStoreContainer" CdmEntityContainer="ClockUniverseEntities">
-          <EntitySetMapping Name="QLdonHangs">
-            <EntityTypeMapping TypeName="ClockUniverseModel.QLdonHang">
-              <MappingFragment StoreEntitySet="QLdonHang">
-                <ScalarProperty Name="NgayGiaoHang" ColumnName="NgayGiaoHang" />
-                <ScalarProperty Name="NgayDatHang" ColumnName="NgayDatHang" />
-                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
-                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="TenDH" ColumnName="TenDH" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+        <EntityContainerMapping StorageEntityContainer="CsK23T3bModelStoreContainer" CdmEntityContainer="CsK23T3bEntities">
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="CsK23T3bModel.Contact">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="Contact_ID" ColumnName="Contact_ID" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="QLTTs">
-            <EntityTypeMapping TypeName="ClockUniverseModel.QLTT">
-              <MappingFragment StoreEntitySet="QLTT">
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="SDT" ColumnName="SDT" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+          <EntitySetMapping Name="ContactsDetails">
+            <EntityTypeMapping TypeName="CsK23T3bModel.ContactsDetail">
+              <MappingFragment StoreEntitySet="ContactsDetail">
+                <ScalarProperty Name="Feedback_ID" ColumnName="Feedback_ID" />
+                <ScalarProperty Name="Contact_ID" ColumnName="Contact_ID" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Feedback_Detail" ColumnName="Feedback_Detail" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="QuanLyDHs">
-            <EntityTypeMapping TypeName="ClockUniverseModel.QuanLyDH">
-              <MappingFragment StoreEntitySet="QuanLyDH">
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
-                <ScalarProperty Name="HinhAnhDH" ColumnName="HinhAnhDH" />
-                <ScalarProperty Name="ThongTinDH" ColumnName="ThongTinDH" />
-                <ScalarProperty Name="LoaiDH" ColumnName="LoaiDH" />
-                <ScalarProperty Name="TenDH" ColumnName="TenDH" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+          <EntitySetMapping Name="Order_Detail">
+            <EntityTypeMapping TypeName="CsK23T3bModel.Order_Detail">
+              <MappingFragment StoreEntitySet="Order_Detail">
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Watch_ID" ColumnName="Watch_ID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="CsK23T3bModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+                <ScalarProperty Name="Delivery_Date" ColumnName="Delivery_Date" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="Customer_Phone" ColumnName="Customer_Phone" />
+                <ScalarProperty Name="Customer_Email" ColumnName="Customer_Email" />
+                <ScalarProperty Name="Deliver_Address" ColumnName="Deliver_Address" />
+                <ScalarProperty Name="Deliver_Status" ColumnName="Deliver_Status" />
+                <ScalarProperty Name="Order_ChangeDate" ColumnName="Order_ChangeDate" />
+                <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTables">
+            <EntityTypeMapping TypeName="CsK23T3bModel.ProductTable">
+              <MappingFragment StoreEntitySet="ProductTables">
+                <ScalarProperty Name="Watch_ID" ColumnName="Watch_ID" />
+                <ScalarProperty Name="Watch_Name" ColumnName="Watch_Name" />
+                <ScalarProperty Name="Watch_Description" ColumnName="Watch_Description" />
+                <ScalarProperty Name="WatchType_ID" ColumnName="WatchType_ID" />
+                <ScalarProperty Name="Original_Price" ColumnName="Original_Price" />
+                <ScalarProperty Name="Selling_Price" ColumnName="Selling_Price" />
+                <ScalarProperty Name="InStock" ColumnName="InStock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="CsK23T3bModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductTypes">
+                <ScalarProperty Name="ProductType_ID" ColumnName="ProductType_ID" />
+                <ScalarProperty Name="ProductType_Name" ColumnName="ProductType_Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

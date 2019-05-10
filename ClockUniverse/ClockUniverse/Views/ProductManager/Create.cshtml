@@ -1,121 +1,77 @@
-﻿@model ClockUniverse.QuanLyDH
+﻿@model ClockUniverse.ProductTable
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutManage.cshtml";
 }
 
-<h2>Thêm Mới Sản Phẩm</h2>
-
+<h2>Create</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-   <style>
-       .col-md-10 {
-           width:80%;
-           border-radius:10px;
-           }
-       .btn-primary a{
-           color:white;
-       }
-       .btn-primary {
-           margin-left: 90%;
-           display: block;
-           margin-bottom: 22px;
-       }
-       .btn-success {
-           width: 80%;
-           background-color : blue;
-       }
+    
+    <div class="form-horizontal">
+        <h4>ProductTable</h4>
+        <hr />
+        @Html.ValidationSummary(true)
 
-       .file-path-wrapper{
-           margin-top:-4%;
-           margin-left:17%;
-           margin-bottom:1%;
-          
-       }
+        <div class="form-group">
+            @Html.LabelFor(model => model.Watch_Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Watch_Name)
+                @Html.ValidationMessageFor(model => model.Watch_Name)
+            </div>
+        </div>
 
-   </style>
-   <div class="form-horizontal">
-       <h4></h4>
-       <hr />
-       @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Watch_Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Watch_Description)
+                @Html.ValidationMessageFor(model => model.Watch_Description)
+            </div>
+        </div>
 
-       <div class="form-group">
-           @Html.LabelFor(model => model.TenDH, "Tên Đồng Hồ", new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-               @Html.EditorFor(model => model.TenDH)
-               @Html.ValidationMessageFor(model => model.TenDH)
-           </div>
-       </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.WatchType_ID, "WatchType_ID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("WatchType_ID", String.Empty)
+                @Html.ValidationMessageFor(model => model.WatchType_ID)
+            </div>
+        </div>
 
-       <div class="form-group">
-           @Html.LabelFor(model => model.LoaiDH, "Loại Đồng Hồ", new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-               @Html.EditorFor(model => model.LoaiDH)
-               @Html.ValidationMessageFor(model => model.LoaiDH)
-           </div>
-       </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Original_Price, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Original_Price)
+                @Html.ValidationMessageFor(model => model.Original_Price)
+            </div>
+        </div>
 
-       <div class="form-group">
-           @Html.LabelFor(model => model.ThongTinDH, "Thông Tin Đồng Hồ", new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-               @Html.EditorFor(model => model.ThongTinDH)
-               @Html.ValidationMessageFor(model => model.ThongTinDH)
-           </div>
-       </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Selling_Price, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Selling_Price)
+                @Html.ValidationMessageFor(model => model.Selling_Price)
+            </div>
+        </div>
 
-       <div class="form-group">
-           @Html.LabelFor(model => model.HinhAnhDH, "Hình Ảnh Đồng Hồ", new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-               @Html.EditorFor(model => model.HinhAnhDH)
-               @Html.ValidationMessageFor(model => model.HinhAnhDH)
-           </div>
-       </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.InStock, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InStock)
+                @Html.ValidationMessageFor(model => model.InStock)
+            </div>
+        </div>
 
-
-       
-
-       <form class="md-form">
-           <div class="file-field">
-
-               <div class="file-path-wrapper">
-                   @*<input class="file-path validate" type="text" placeholder="Upload your file">*@
-                   <input type="file">
-               </div>
-              
-           </div>
-       </form>
-
-
-
-       <div class="form-group">
-           @Html.LabelFor(model => model.GiaTien, "Giá Tiền", new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-               @Html.EditorFor(model => model.GiaTien)
-               @Html.ValidationMessageFor(model => model.GiaTien)
-           </div>
-       </div>
-
-       <div class="form-group">
-           @Html.LabelFor(model => model.SoLuong, "Số Lượng", new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-               @Html.EditorFor(model => model.SoLuong)
-               @Html.ValidationMessageFor(model => model.SoLuong)
-           </div>
-       </div>
-
-       <div class="form-group">
-           <div class="col-md-offset-2 col-md-10">
-               <input type="submit" value="Thêm Sản Phẩm" class="btn btn-success" />
-           </div>
-       </div>
-   </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 }
 
 <div>
-    <button type="button" class="btn btn-primary">@Html.ActionLink("Back to List", "Index")</button>
-    
-
+    @Html.ActionLink("Back to List", "Index")
 </div>

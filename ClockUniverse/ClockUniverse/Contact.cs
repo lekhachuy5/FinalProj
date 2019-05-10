@@ -12,14 +12,20 @@ namespace ClockUniverse
     using System;
     using System.Collections.Generic;
     
-    public partial class QuanLyDH
+    public partial class Contact
     {
-        public int ID { get; set; }
-        public string TenDH { get; set; }
-        public string LoaiDH { get; set; }
-        public string ThongTinDH { get; set; }
-        public byte[] HinhAnhDH { get; set; }
-        public decimal GiaTien { get; set; }
-        public string SoLuong { get; set; }
+        public Contact()
+        {
+            this.ContactsDetails = new HashSet<ContactsDetail>();
+        }
+    
+        public int Contact_ID { get; set; }
+        public string Customer_Name { get; set; }
+        public Nullable<int> Phone { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public int Status { get; set; }
+    
+        public virtual ICollection<ContactsDetail> ContactsDetails { get; set; }
     }
 }

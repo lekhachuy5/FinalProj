@@ -1,74 +1,88 @@
-﻿@model IEnumerable<ClockUniverse.QLdonHang>
+﻿@model IEnumerable<ClockUniverse.Order>
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutManage.cshtml";
 }
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<style>
-    .link{
-        color:blue;
-    }
-    .linkcr {
-        color: blue;
-        background-color:white;
-    }
-    
-</style>
-<h2 style="text-align:center">QUẢN LÝ ĐƠN HÀNG</h2>
 
-<p style="margin-bottom:4%">
-    @Html.ActionLink("Thêm đơn hàng", "Create", null, new { @class = "btn btn-success position-absolute" })
+<h2>Index</h2>
+@using (Html.BeginForm("Index", "OrderManager", FormMethod.Get, new { @class = "navbar-form navbar-right", role = "search", id = "search-form" }))
+{
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Nhập id Đơn hàng" name="SearchTerm" value="@ViewBag.SearchTerm" id="search-box">
+        <button type="submit" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-search"></i></button>
+    </div>
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-bordered" style="font-size:14px; font-family:Arial">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Tên đồng hồ</th>
-            <th scope="col">Số lượng</th>
-            <th scope="col">Đơn giá</th>
-            <th scope="col">Tổng tiền </th>
-            <th scope="col">Hình ảnh</th>
-            <th scope="col">Ngày đặt</th>
-            <th scope="col">Ngày giao</th>
-        </tr>
-    </thead>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Order_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Delivery_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deliver_Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deliver_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order_ChangeDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total_Price)
+        </th>
+        <th></th>
+    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TenDH)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SoLuong)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DonGia)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TongTien)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HinhAnh)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NgayDatHang)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NgayGiaoHang)
-                </td>
-                <td>
-                    @Html.ActionLink("Sửa", "Edit", new { id = item.ID }, new { @class = "btn btn-sm btn-primary" }) |
-                    @Html.ActionLink("Chi tiết", "Details", new { id = item.ID }, new { @class = "btn btn-sm btn-danger" }) |
-                    @Html.ActionLink("Xóa", "Delete", new { id = item.ID }, new { @class = "btn btn-sm btn-info" })
-                </td>              
-              </tr>
-            </tbody>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Delivery_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deliver_Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deliver_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_ChangeDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total_Price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Order_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Order_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Order_ID })
+        </td>
+    </tr>
+}
 
 </table>

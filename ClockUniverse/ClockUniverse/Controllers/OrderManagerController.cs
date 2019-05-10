@@ -7,18 +7,29 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ClockUniverse;
-using System.Data.Entity.Validation;
+
 namespace ClockUniverse.Controllers
 {
     public class OrderManagerController : Controller
     {
-        private ClockUniverseEntities db = new ClockUniverseEntities();
+        private CsK23T3bEntities db = new CsK23T3bEntities();
 
         // GET: /OrderManager/
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            var model = db.QLdonHangs.ToList();
-            return View(model);
+            var model = db.Orders.ToList();
+            var od = from o in db.Orders select o;
+            if (String.IsNullOrEmpty(searchTerm))
+            {
+
+                return HttpNotFound();
+            }
+            else
+            {
+                od = db.Orders.Where(o => o.Order_ID.ToString().Contains(searchTerm));
+            }
+            ViewBag.SearchTerm = searchTerm;
+            return View(od.ToList());
         }
 
         // GET: /OrderManager/Details/5
@@ -28,12 +39,12 @@ namespace ClockUniverse.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            QLdonHang qldonhang = db.QLdonHangs.Find(id);
-            if (qldonhang == null)
+            Order order = db.Orders.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(qldonhang);
+            return View(order);
         }
 
         // GET: /OrderManager/Create
@@ -47,16 +58,18 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(QLdonHang model)
+        public ActionResult Create(Order order)
         {
             if (ModelState.IsValid)
-            {
-                db.QLdonHangs.Add(model);
+            { 
+                ProductTable pro = new ProductTable();
+                
+                db.Orders.Add(order);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(model);
+            return View(order);
         }
 
         // GET: /OrderManager/Edit/5
@@ -66,12 +79,12 @@ namespace ClockUniverse.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            QLdonHang qldonhang = db.QLdonHangs.Find(id);
-            if (qldonhang == null)
+            Order order = db.Orders.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(qldonhang);
+            return View(order);
         }
 
         // POST: /OrderManager/Edit/5
@@ -79,15 +92,15 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( QLdonHang qldonhang)
+        public ActionResult Edit([Bind(Include="Order_ID,Order_Date,Delivery_Date,Customer_Name,Customer_Phone,Customer_Email,Deliver_Address,Deliver_Status,Order_ChangeDate,Total_Price")] Order order)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(qldonhang).State = EntityState.Modified;
+                db.Entry(order).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(qldonhang);
+            return View(order);
         }
 
         // GET: /OrderManager/Delete/5
@@ -97,12 +110,12 @@ namespace ClockUniverse.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            QLdonHang qldonhang = db.QLdonHangs.Find(id);
-            if (qldonhang == null)
+            Order order = db.Orders.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(qldonhang);
+            return View(order);
         }
 
         // POST: /OrderManager/Delete/5
@@ -110,8 +123,8 @@ namespace ClockUniverse.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            QLdonHang qldonhang = db.QLdonHangs.Find(id);
-            db.QLdonHangs.Remove(qldonhang);
+            Order order = db.Orders.Find(id);
+            db.Orders.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

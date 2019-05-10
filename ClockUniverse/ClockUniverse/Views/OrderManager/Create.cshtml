@@ -1,88 +1,61 @@
-﻿@model ClockUniverse.QLdonHang
+﻿@model ClockUniverse.Order_Detail
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutManage.cshtml";
 }
 
-<h2 style="text-align:center">Thêm đơn hàng mới</h2>
+<h2>Create</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    <style>
-        .col-md-10 {
-            width: 80%;
-            border-radius: 10px;
-        }
-
-    </style>
+    
     <div class="form-horizontal">
+        <h4>Order_Detail</h4>
         <hr />
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenDH,"Tên đồng hồ", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Order_ID, "Order_ID", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TenDH)
-                @Html.ValidationMessageFor(model => model.TenDH)
+                @Html.DropDownList("Order_ID", String.Empty)
+                @Html.ValidationMessageFor(model => model.Order_ID)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SoLuong,"Số lượng", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Watch_ID, "Watch_ID", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SoLuong)
-                @Html.ValidationMessageFor(model => model.SoLuong)
+                @Html.DropDownList("Watch_ID", String.Empty)
+                @Html.ValidationMessageFor(model => model.Watch_ID)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DonGia,"Đơn giá", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Amount, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DonGia)
-                @Html.ValidationMessageFor(model => model.DonGia)
+                @Html.EditorFor(model => model.Amount)
+                @Html.ValidationMessageFor(model => model.Amount)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TongTien,"Tổng tiền", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TongTien)
-                @Html.ValidationMessageFor(model => model.TongTien)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.HinhAnh,"Hình ảnh", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HinhAnh)
-                @Html.ValidationMessageFor(model => model.HinhAnh)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.NgayDatHang,"Ngày đặt hàng", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayDatHang)
-                @Html.ValidationMessageFor(model => model.NgayDatHang)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.NgayGiaoHang,"Ngày giao hàng", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayGiaoHang)
-                @Html.ValidationMessageFor(model => model.NgayGiaoHang)
+                @Html.EditorFor(model => model.Price)
+                @Html.ValidationMessageFor(model => model.Price)
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input style="margin-left:35%;margin-top:-1%" type="submit" value="Tạo mới" class="btn btn-success position-absolute" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-info" })
+    @Html.ActionLink("Back to List", "Index")
 </div>

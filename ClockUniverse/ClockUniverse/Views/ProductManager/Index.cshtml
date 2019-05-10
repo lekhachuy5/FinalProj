@@ -1,68 +1,70 @@
-﻿@model IEnumerable<ClockUniverse.QuanLyDH>
+﻿@model IEnumerable<ClockUniverse.ProductTable>
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutManage.cshtml";
 }
 
-<h2>Thông Tin Sản Phẩm</h2>
-
+<h2>QUẢN LÝ SẢN PHẨM</h2>
+@using (Html.BeginForm("Index", "ProductManager", FormMethod.Get, new { @class = "navbar-form navbar-right", role = "search", id = "search-form" }))
+{
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Nhập id sản phẩm" name="SearchTerm" value="@ViewBag.SearchTerm" id="search-box">
+        <button type="submit" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-search"></i></button>
+    </div>
+}
 <p>
-    @Html.ActionLink("Thêm Sản Phẩm", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Watch_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Watch_Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Original_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Selling_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InStock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductType.ProductType_Name)
+        </th>
+        <th></th>
+    </tr>
 
-        <th>
-            Tên Đồng Hồ
-        </th>
-        <th>
-            Loại Đồng Hồ
-        </th>
-        <th>
-            Thông Tin Đồng Hồ
-        </th>
-        <th>
-            Hình Ảnh Đồng Hồ
-        </th>
-        <th>
-            Giá Tiền
-        </th>
-        <th>
-            Số Lượng
-        </th>
-
-    </thead>
-
-    @foreach (var item in Model)
-    {
-    <tbody>
-        <tr>
-            <td>
-                @item.TenDH
-            </td>
-            <td>
-                @item.LoaiDH
-            </td>
-            <td>
-                @item.ThongTinDH
-            </td>
-            <td>
-                @item.HinhAnhDH
-            </td>
-            <td>
-                @item.GiaTien.ToString("N0")
-            </td>
-            <td>
-                @item.SoLuong
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    </tbody>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Watch_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Watch_Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Original_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Selling_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InStock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductType.ProductType_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Watch_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Watch_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Watch_ID })
+        </td>
+    </tr>
+}
 
 </table>

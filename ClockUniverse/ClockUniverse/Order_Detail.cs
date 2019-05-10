@@ -12,11 +12,14 @@ namespace ClockUniverse
     using System;
     using System.Collections.Generic;
     
-    public partial class QLTT
+    public partial class Order_Detail
     {
-        public int ID { get; set; }
-        public string FullName { get; set; }
-        public Nullable<int> SDT { get; set; }
-        public string DiaChi { get; set; }
+        public int Order_ID { get; set; }
+        public int Watch_ID { get; set; }
+        public int Amount { get; set; }
+        public decimal Price { get; set; }
+    
+        public virtual Order Order { get; set; }
+        public virtual ProductTable ProductTable { get; set; }
     }
 }

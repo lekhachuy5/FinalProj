@@ -1,0 +1,51 @@
+﻿@model ClockUniverse.Order_Detail
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutManage.cshtml";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>Order_Detail</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Customer_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.Customer_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductTable.Watch_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductTable.Watch_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

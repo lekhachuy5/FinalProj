@@ -1,79 +1,48 @@
-﻿@model ClockUniverse.QLdonHang
+﻿@model ClockUniverse.Order_Detail
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutManage.cshtml";
 }
 
-<h2 style="text-align:center">Chỉnh sửa</h2>
+<h2>Edit</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <style>
-        
-        .col-md-10 {
-            width: 80%;
-            border-radius: 10px;
-        }
-        
-    </style>
+    
     <div class="form-horizontal">
-       
+        <h4>Order_Detail</h4>
         <hr />
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.ID)
-        @Html.HiddenFor(model=>model.NgayGiaoHang)
-        @Html.HiddenFor(model => model.NgayDatHang)
+        @Html.HiddenFor(model => model.Order_ID)
+
+        @Html.HiddenFor(model => model.Watch_ID)
+
         <div class="form-group">
-            @Html.LabelFor(model => model.TenDH,"Tên đồng hồ", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Amount, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TenDH)
-                @Html.ValidationMessageFor(model => model.TenDH)
+                @Html.EditorFor(model => model.Amount)
+                @Html.ValidationMessageFor(model => model.Amount)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SoLuong,"Số lượng", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SoLuong)
-                @Html.ValidationMessageFor(model => model.SoLuong)
+                @Html.EditorFor(model => model.Price)
+                @Html.ValidationMessageFor(model => model.Price)
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DonGia,"Đơn giá", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DonGia)
-                @Html.ValidationMessageFor(model => model.DonGia)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TongTien,"Tổng tiền", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TongTien)
-                @Html.ValidationMessageFor(model => model.TongTien)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.HinhAnh,"Hình ảnh", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HinhAnh)
-                @Html.ValidationMessageFor(model => model.HinhAnh)
-            </div>
-        </div>
-        
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input style="margin-left:37%;font-size:20px;font-family:Arial" type="submit" value="Lưu" class="btn btn-sm btn-primary" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-info" })
+    @Html.ActionLink("Back to List", "Index")
 </div>

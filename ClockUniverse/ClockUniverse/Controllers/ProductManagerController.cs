@@ -12,12 +12,24 @@ namespace ClockUniverse.Controllers
 {
     public class ProductManagerController : Controller
     {
-        private ClockUniverseEntities db = new ClockUniverseEntities();
+        private CsK23T3bEntities db = new CsK23T3bEntities();
 
         // GET: /ProductManager/
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            return View(db.QuanLyDHs.ToList());
+            var model = db.ProductTables.ToList();
+            var pro = from o in db.ProductTables select o;
+            if (String.IsNullOrEmpty(searchTerm))
+            {
+
+                return HttpNotFound();
+            }
+            else
+            {
+                pro = db.ProductTables.Where(o => o.Watch_ID.ToString().Contains(searchTerm));
+            }
+            ViewBag.SearchTerm = searchTerm;
+            return View(pro.ToList());
         }
 
         // GET: /ProductManager/Details/5
@@ -27,17 +39,18 @@ namespace ClockUniverse.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            QuanLyDH quanlydh = db.QuanLyDHs.Find(id);
-            if (quanlydh == null)
+            ProductTable producttable = db.ProductTables.Find(id);
+            if (producttable == null)
             {
                 return HttpNotFound();
             }
-            return View(quanlydh);
+            return View(producttable);
         }
 
         // GET: /ProductManager/Create
         public ActionResult Create()
         {
+            ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name");
             return View();
         }
 
@@ -46,16 +59,17 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,TenDH,LoaiDH,ThongTinDH,HinhAnhDH,GiaTien,SoLuong")] QuanLyDH quanlydh)
+        public ActionResult Create([Bind(Include="Watch_ID,Watch_Name,Watch_Description,WatchType_ID,Original_Price,Selling_Price,InStock")] ProductTable producttable)
         {
             if (ModelState.IsValid)
             {
-                db.QuanLyDHs.Add(quanlydh);
+                db.ProductTables.Add(producttable);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View("Create",quanlydh);
+            ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", producttable.WatchType_ID);
+            return View(producttable);
         }
 
         // GET: /ProductManager/Edit/5
@@ -65,12 +79,13 @@ namespace ClockUniverse.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            QuanLyDH quanlydh = db.QuanLyDHs.Find(id);
-            if (quanlydh == null)
+            ProductTable producttable = db.ProductTables.Find(id);
+            if (producttable == null)
             {
                 return HttpNotFound();
             }
-            return View(quanlydh);
+            ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", producttable.WatchType_ID);
+            return View(producttable);
         }
 
         // POST: /ProductManager/Edit/5
@@ -78,15 +93,16 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,TenDH,LoaiDH,ThongTinDH,HinhAnhDH,GiaTien,SoLuong")] QuanLyDH quanlydh)
+        public ActionResult Edit([Bind(Include="Watch_ID,Watch_Name,Watch_Description,WatchType_ID,Original_Price,Selling_Price,InStock")] ProductTable producttable)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(quanlydh).State = EntityState.Modified;
+                db.Entry(producttable).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(quanlydh);
+            ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", producttable.WatchType_ID);
+            return View(producttable);
         }
 
         // GET: /ProductManager/Delete/5
@@ -96,12 +112,12 @@ namespace ClockUniverse.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            QuanLyDH quanlydh = db.QuanLyDHs.Find(id);
-            if (quanlydh == null)
+            ProductTable producttable = db.ProductTables.Find(id);
+            if (producttable == null)
             {
                 return HttpNotFound();
             }
-            return View(quanlydh);
+            return View(producttable);
         }
 
         // POST: /ProductManager/Delete/5
@@ -109,8 +125,8 @@ namespace ClockUniverse.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            QuanLyDH quanlydh = db.QuanLyDHs.Find(id);
-            db.QuanLyDHs.Remove(quanlydh);
+            ProductTable producttable = db.ProductTables.Find(id);
+            db.ProductTables.Remove(producttable);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
