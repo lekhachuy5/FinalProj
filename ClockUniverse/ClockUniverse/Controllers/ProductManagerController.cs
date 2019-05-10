@@ -15,21 +15,22 @@ namespace ClockUniverse.Controllers
         private CsK23T3bEntities db = new CsK23T3bEntities();
 
         // GET: /ProductManager/
-        public ActionResult Index(string searchTerm)
-        {
-            var model = db.ProductTables.ToList();
-            var pro = from o in db.ProductTables select o;
-            if (String.IsNullOrEmpty(searchTerm))
-            {
 
-                return HttpNotFound();
-        }
-            else
+        public ActionResult Index(string id)
+        {
+            
+            var pro = from o in db.ProductTables select o;
+           
+
+            if (!string.IsNullOrEmpty(id))
             {
-                pro = db.ProductTables.Where(o => o.Watch_ID.ToString().Contains(searchTerm));
+               
+                var strI = Convert.ToInt32(id.Trim());
+                pro = db.ProductTables.Where(o => o.Watch_ID == strI);
             }
-            ViewBag.SearchTerm = searchTerm;
-            return View(pro.ToList());
+
+            ViewBag.SearchTerm = id;
+            return View(pro);
         }
 
         // GET: /ProductManager/Details/5
@@ -59,16 +60,16 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Watch_ID,Watch_Name,Watch_Description,WatchType_ID,Original_Price,Selling_Price,InStock")] ProductTable model)
+        public ActionResult Create([Bind(Include = "Watch_ID,Watch_Name,Watch_Description,WatchType_ID,Original_Price,Selling_Price,InStock")] ProductTable model)
         {
-           
+
             if (ModelState.IsValid)
             {
                 db.ProductTables.Add(model);
                 db.SaveChanges();
-                 
+
             }
-            
+
 
             ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", model.WatchType_ID.ToString());
             return View(model);
@@ -95,7 +96,7 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Watch_ID,Watch_Name,Watch_Description,WatchType_ID,Original_Price,Selling_Price,InStock")] ProductTable producttable)
+        public ActionResult Edit([Bind(Include = "Watch_ID,Watch_Name,Watch_Description,WatchType_ID,Original_Price,Selling_Price,InStock")] ProductTable producttable)
         {
             if (ModelState.IsValid)
             {

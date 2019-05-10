@@ -15,20 +15,16 @@ namespace ClockUniverse.Controllers
         private CsK23T3bEntities db = new CsK23T3bEntities();
 
         // GET: /InformationManager/
-        public ActionResult Index(string searchTerm)
+        public ActionResult Index(string id)
         {
             var model = db.Contacts.ToList();
             var cont = from o in db.Contacts select o;
-            if (String.IsNullOrEmpty(searchTerm))
+            if (!String.IsNullOrEmpty(id))
             {
-
-                return HttpNotFound();
+                var strI = Convert.ToInt32(id.Trim());
+                cont = db.Contacts.Where(o => o.Contact_ID ==strI);      
             }
-            else
-            {
-                cont = db.Contacts.Where(o => o.Contact_ID.ToString().Contains(searchTerm));
-            }
-            ViewBag.SearchTerm = searchTerm;
+            ViewBag.SearchTerm = id;
             return View(cont.ToList());
         }
 

@@ -54,10 +54,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <!--logo and iconic logo start-->
             <div class="logo">
-                <h1><a href="index.html">Easy <span>Admin</span></a></h1>
+                <h1><a href="@Url.Action("Index","ProductManager")">Easy <span>Admin</span></a></h1>
             </div>
             <div class="logo-icon text-center">
-                <a href="index.html"><i class="lnr lnr-home"></i> </a>
+                <a href="@Url.Action("Index","ProductManager")"><i class="lnr lnr-home"></i> </a>
             </div>
 
             <!--logo and iconic logo end-->
@@ -65,16 +65,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <!--sidebar nav start-->
                 <ul class="nav nav-pills nav-stacked custom-nav">
-                    <li><a href="index.html"><span>Sản phẩm</span><i class="glyphicon glyphicon-th-large"></i></a></li>
-                    <li class="menu-list">
-                        <a href="#">
-                            <i class="glyphicon glyphicon-th-list"></i>
-                            <span>Hóa đơn</span>
-                        </a>
+                    <li><a href="@Url.Action("Index","ProductManager")"><span>Sản phẩm</span><i class="glyphicon glyphicon-th-large"></i></a></li>
+                    <li><a href="@Url.Action("Index","OrderManager")"><i class="glyphicon glyphicon-th-list"></i><span>Hóa đơn</span></a>
                     </li>
-                    <li><a href="forms.html"><i class="glyphicon glyphicon-headphones"></i> <span>Feedback</span></a></li>
-                    <li><a href="tables.html"><i class="glyphicon glyphicon-user"></i> <span>Quản lý Nhân viên</span></a></li>
-                    <li> <a href="sign-up.html"><i class="fa fa-sign-out"></i><span>Đăng xuất</span> </a></li>
+                    <li><a href="@Url.Action("Index","InformationManager")"><i class="glyphicon glyphicon-headphones"></i> <span>Feedback</span></a></li>
+                    <li><a href="@Url.Action("Manage","Account")"><i class="glyphicon glyphicon-user"></i> <span>Quản lý Nhân viên</span></a></li>
+                    
                 </ul>
                 <!--sidebar nav end-->
             </div>
@@ -126,7 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             </div>
                                             <i class="lnr lnr-chevron-down"></i>
                                             <i class="lnr lnr-chevron-up"></i>
-                                            
+
                                         </div>
                                     </a>
                                     <ul class="dropdown-menu drp-mnu">
@@ -135,11 +131,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <li> <a href="sign-up.html"><i class="fa fa-sign-out"></i> Đăng xuất</a> </li>
                                     </ul>
                                 </li>
-                                
+
                             </ul>
                         </div>
 
-                        
+
                     </div>
                 </div>
                 <!--notification menu end -->
@@ -159,5 +155,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="/Scripts/jsM/scripts.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="/Scripts/jsM/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".numberinput").forceNumeric();
+        });
+
+        // forceNumeric() plug-in implementation
+        jQuery.fn.forceNumeric = function () {
+            return this.each(function () {
+                $(this).keydown(function (e) {
+                    var key = e.which || e.keyCode;
+
+                    if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
+                        // numbers
+                        key >= 48 && key <= 57 ||
+                        // Numeric keypad
+                        key >= 96 && key <= 105 ||
+                        // comma, period and minus, . on keypad
+                       key == 190 || key == 188 || key == 109 || key == 110 ||
+                        // Backspace and Tab and Enter
+                       key == 8 || key == 9 || key == 13 ||
+                        // Home and End
+                       key == 35 || key == 36 ||
+                        // left and right arrows
+                       key == 37 || key == 39 ||
+                        // Del and Ins
+                       key == 46 || key == 45)
+                        return true;
+
+                    return false;
+                });
+            });
+        }
+    </script>
 </body>
 </html>

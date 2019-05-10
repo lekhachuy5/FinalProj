@@ -6,16 +6,16 @@
 }
 
 <h2>QUẢN LÝ LIÊN HỆ</h2>
-@using (Html.BeginForm("Index", "InformationManager", FormMethod.Get, new { @class = "navbar-form navbar-right", role = "search", id = "search-form" }))
-{
-    <div class="form-group">
-        <input type="text" class="form-control" placeholder="Nhập id liên hệ" name="SearchTerm" value="@ViewBag.SearchTerm" id="search-box">
-        <button type="submit" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-search"></i></button>
-    </div>
-}
 <p>
     @Html.ActionLink("Thêm mới liên hệ", "Create")
 </p>
+@using (Html.BeginForm("Index", "InformationManager", FormMethod.Get, new { @class = "navbar-form navbar-right", role = "search", id = "search-form" }))
+{
+    <div class="form-group">
+        <input type="text" class="form-control numberinput" placeholder="Nhập id Liên hệ" name="id" value="@ViewBag.SearchTerm" id="search-box">
+        <button type="submit" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-search"></i></button>
+    </div>
+}
 <table class="table table-bordered">
     <tr>
         <th>
