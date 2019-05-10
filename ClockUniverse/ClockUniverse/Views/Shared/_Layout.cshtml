@@ -18,6 +18,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=vietnamese" rel="stylesheet">
 </head>
+<style>
+    #searchform #s {
+        padding-right: 25px;
+        width: 101%;
+    }
+</style>
 <body>
 
     <div id="header">
@@ -35,7 +41,7 @@
         <div class="header-body">
             <div class="container beta-relative">
                 <div class="pull-left">
-                    <a href="index.html" id="logo"><img src="/Content/images/logo.jpg" width="200px" alt=""></a>
+                    <a href="@Url.Action("Index","Home")" id="logo"><img src="/Content/images/logo.jpg" width="200px" alt=""></a>
                 </div>
                 <div class="pull-right beta-components space-left ov">
                     <div class="space10">&nbsp;</div>
@@ -86,22 +92,16 @@
     <div id="footer" class="color-div">
         <div class="container">
             <div class="row">
-                <div class="col-sm-3">
+
+                <div class="col-sm-4">
                     <div class="widget">
-                        <h4 class="widget-title">Instagram Feed</h4>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="widget">
-                        <h4 class="widget-title">Information</h4>
+                        <h4 class="widget-title">Hướng dẫn</h4>
                         <div>
                             <ul>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web Design</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web development</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Marketing</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Tips</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Resources</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Illustrations</a></li>
+                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Thông tin liên hệ</a></li>
+                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Hướng Dẫn Mua Hàng</a></li>
+                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Hướng Dẫn Sử Dụng Đồng Hồ (Đầy Đủ)</a></li>
+                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Hỏi Đáp - Góp Ý</a></li>
                             </ul>
                         </div>
                     </div>
@@ -113,20 +113,26 @@
                             <div>
                                 <div class="contact-info">
                                     <i class="fa fa-map-marker"></i>
-                                    <p>30 South Park Avenue San Francisco, CA 94108 Phone: +78 123 456 78</p>
-                                    <p>Nemo enim ipsam voluptatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione.</p>
+                                    <p>
+                                        177/25 1 Đường số 6, Phường 5, Gò Vấp, Hồ Chí Minh, Viet Nam
+                                        <br />Phone: 028. 3836 7933
+                                    </p>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div cl0ass="col-sm-3">
                     <div class="widget">
-                        <h4 class="widget-title">Newsletter Subscribe</h4>
-                        <form action="#" method="post">
-                            <input type="email" name="your_email">
-                            <button class="pull-right" type="submit">Subscribe <i class="fa fa-chevron-right"></i></button>
-                        </form>
+                        <h4 class="widget-title">FOLLOW US</h4>
+                        <div>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i>FACEBOOK</a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i>INSTAGRAM</a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i>YOUTUBE</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div> <!-- .row -->
@@ -136,9 +142,9 @@
         <div class="container">
             <p class="pull-left">Privacy policy. (&copy;) 2014</p>
             <p class="pull-right pay-options">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                
+                
+                
             </p>
             <div class="clearfix"></div>
         </div> <!-- .container -->
