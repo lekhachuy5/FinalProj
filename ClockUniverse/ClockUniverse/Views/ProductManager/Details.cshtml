@@ -4,8 +4,24 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutManage.cshtml";
 }
+<style>
+    table, th,td{
+        border:1px solid black;
+        border-collapse: collapse;
+    }
 
-<h2>Details</h2>
+    th,td{
+        padding: 5px;
+        text-align:left;
+    }
+
+    h2{
+        text-align:center;
+        margin-top: 4px;
+    }
+
+</style>
+<h2>Thông Tin Sản Phẩm</h2>
 
 <div>
     <h4>ProductTable</h4>
@@ -59,8 +75,11 @@
             @Html.DisplayFor(model => model.ProductType.ProductType_Name)
         </dd>
 
+    </table>
     </dl>
+
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Watch_ID }) |
     @Html.ActionLink("Back to List", "Index")

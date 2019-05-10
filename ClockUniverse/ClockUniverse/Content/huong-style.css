@@ -18,3 +18,11 @@
 	color: #fff;
 	padding: 10px 35px
 }
+html {
+    background: white;
+    font-family: 'Montserrat', sans-serif;
+}
+#logo img{
+
+    width:169px;
+}

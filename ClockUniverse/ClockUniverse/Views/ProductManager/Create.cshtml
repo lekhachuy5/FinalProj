@@ -10,68 +10,99 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ProductTable</h4>
-        <hr />
-        @Html.ValidationSummary(true)
 
-        <div class="form-group">
+
+   
+   <div class="form-horizontal">
+        <h4>ProductTable</h4>
+       <hr />
+       @Html.ValidationSummary(true)
+
+       <div class="form-group">
             @Html.LabelFor(model => model.Watch_Name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+           <div class="col-md-10">
                 @Html.EditorFor(model => model.Watch_Name)
                 @Html.ValidationMessageFor(model => model.Watch_Name)
-            </div>
-        </div>
+           </div>
+       </div>
 
-        <div class="form-group">
+       <div class="form-group">
             @Html.LabelFor(model => model.Watch_Description, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+           <div class="col-md-10">
                 @Html.EditorFor(model => model.Watch_Description)
                 @Html.ValidationMessageFor(model => model.Watch_Description)
-            </div>
-        </div>
+           </div>
+       </div>
 
-        <div class="form-group">
+       <div class="form-group">
             @Html.LabelFor(model => model.WatchType_ID, "WatchType_ID", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+           <div class="col-md-10">
                 @Html.DropDownList("WatchType_ID", String.Empty)
                 @Html.ValidationMessageFor(model => model.WatchType_ID)
-            </div>
-        </div>
+           </div>
+       </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Original_Price, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Original_Price)
-                @Html.ValidationMessageFor(model => model.Original_Price)
-            </div>
-        </div>
 
-        <div class="form-group">
+
+       
+
+       <form class="md-form">
+           <div class="file-field">
+
+               <div class="file-path-wrapper">
+                   @*<input class="file-path validate" type="text" placeholder="Upload your file">*@
+                   <input type="file">
+               </div>
+              
+           </div>
+       </form>
+
+
+
+       <div class="form-group">
             @Html.LabelFor(model => model.Selling_Price, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+           <div class="col-md-10">
                 @Html.EditorFor(model => model.Selling_Price)
                 @Html.ValidationMessageFor(model => model.Selling_Price)
-            </div>
-        </div>
+           </div>
+       </div>
 
-        <div class="form-group">
+       <div class="form-group">
             @Html.LabelFor(model => model.InStock, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+           <div class="col-md-10">
                 @Html.EditorFor(model => model.InStock)
                 @Html.ValidationMessageFor(model => model.InStock)
-            </div>
-        </div>
+           </div>
+       </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+       <div class="form-group">
+           <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+           </div>
+       </div>
+   </div>
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function readIMG(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#Demo')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

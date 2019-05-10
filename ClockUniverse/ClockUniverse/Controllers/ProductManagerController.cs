@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ClockUniverse;
-
+using System.Transactions;
 namespace ClockUniverse.Controllers
 {
     public class ProductManagerController : Controller
@@ -23,7 +23,7 @@ namespace ClockUniverse.Controllers
             {
 
                 return HttpNotFound();
-            }
+        }
             else
             {
                 pro = db.ProductTables.Where(o => o.Watch_ID.ToString().Contains(searchTerm));
@@ -59,17 +59,19 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Watch_ID,Watch_Name,Watch_Description,WatchType_ID,Original_Price,Selling_Price,InStock")] ProductTable producttable)
+        public ActionResult Create([Bind(Include="Watch_ID,Watch_Name,Watch_Description,WatchType_ID,Original_Price,Selling_Price,InStock")] ProductTable model)
         {
+           
             if (ModelState.IsValid)
             {
-                db.ProductTables.Add(producttable);
+                db.ProductTables.Add(model);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                 
             }
+            
 
-            ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", producttable.WatchType_ID);
-            return View(producttable);
+            ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", model.WatchType_ID.ToString());
+            return View(model);
         }
 
         // GET: /ProductManager/Edit/5
@@ -103,6 +105,13 @@ namespace ClockUniverse.Controllers
             }
             ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", producttable.WatchType_ID);
             return View(producttable);
+        }
+
+        public ActionResult Image(string id)
+        {
+            var path = Server.MapPath("~/App_Data");
+            path = System.IO.Path.Combine(path, id);
+            return File(path, "image/jpg/*");
         }
 
         // GET: /ProductManager/Delete/5

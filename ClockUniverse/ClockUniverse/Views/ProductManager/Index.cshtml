@@ -40,31 +40,31 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
+        <tr>
+            <td>
             @Html.DisplayFor(modelItem => item.Watch_Name)
-        </td>
-        <td>
+            </td>
+            <td>
             @Html.DisplayFor(modelItem => item.Watch_Description)
-        </td>
-        <td>
+            </td>
+            <td>
             @Html.DisplayFor(modelItem => item.Original_Price)
-        </td>
-        <td>
+            </td>
+            <td>
             @Html.DisplayFor(modelItem => item.Selling_Price)
-        </td>
-        <td>
+            </td>
+            <td>
             @Html.DisplayFor(modelItem => item.InStock)
-        </td>
-        <td>
+            </td>
+            <td>
             @Html.DisplayFor(modelItem => item.ProductType.ProductType_Name)
-        </td>
-        <td>
+            </td>
+            <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Watch_ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.Watch_ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Watch_ID })
-        </td>
-    </tr>
-}
+            </td>
+        </tr>
+    }
 
 </table>
