@@ -8,114 +8,121 @@
 <h2>Thêm Mới Sản Phẩm</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "ProductManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-   <style>
-       .col-md-10 {
-           width:80%;
-           border-radius:10px;
-           }
-       .btn-primary a{
-           color:white;
-       }
-       .btn-primary {
-           margin-left: 90%;
-           display: block;
-           margin-bottom: 22px;
-       }
-       .btn-success {
-           width: 80%;
-           background-color : blue;
-       }
+    <style>
 
-       .file-path-wrapper{
-           margin-top:-4%;
-           margin-left:17%;
-           margin-bottom:1%;
-          
-       }
+        .col-md-10 {
+            width: 80%;
+            border-radius: 10px;
+        }
 
-   </style>
-   <div class="form-horizontal">
-       <h4></h4>
-       <hr />
-       @Html.ValidationSummary(true)
+        .btn-primary a {
+            color: white;
+        }
 
-       <div class="form-group">
-           @Html.LabelFor(model => model.TenDH, "Tên Đồng Hồ", new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-               @Html.EditorFor(model => model.TenDH)
-               @Html.ValidationMessageFor(model => model.TenDH)
-           </div>
-       </div>
+        .btn-primary {
+            margin-left: 90%;
+            display: block;
+            margin-bottom: 22px;
+        }
 
-       <div class="form-group">
-           @Html.LabelFor(model => model.LoaiDH, "Loại Đồng Hồ", new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-               @Html.EditorFor(model => model.LoaiDH)
-               @Html.ValidationMessageFor(model => model.LoaiDH)
-           </div>
-       </div>
+        .btn-success {
+            width: 80%;
+            background-color: blue;
+        }
 
-       <div class="form-group">
-           @Html.LabelFor(model => model.ThongTinDH, "Thông Tin Đồng Hồ", new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-               @Html.EditorFor(model => model.ThongTinDH)
-               @Html.ValidationMessageFor(model => model.ThongTinDH)
-           </div>
-       </div>
+        .file-path-wrapper {
+            margin-top: -4%;
+            margin-left: 17%;
+            margin-bottom: 1%;
+        }
+    </style>
+    <div class="form-horizontal">
+        <h4></h4>
+        <hr />
+        @Html.ValidationSummary(true)
 
-       <div class="form-group">
-           @Html.LabelFor(model => model.HinhAnhDH, "Hình Ảnh Đồng Hồ", new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-               @Html.EditorFor(model => model.HinhAnhDH)
-               @Html.ValidationMessageFor(model => model.HinhAnhDH)
-           </div>
-       </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenDH, "Tên Đồng Hồ", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenDH)
+                @Html.ValidationMessageFor(model => model.TenDH)
+            </div>
+        </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.LoaiDH, "Loại Đồng Hồ", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LoaiDH)
+                @Html.ValidationMessageFor(model => model.LoaiDH)
+            </div>
+        </div>
 
-       
+        <div class="form-group">
+            @Html.LabelFor(model => model.ThongTinDH, "Thông Tin Đồng Hồ", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ThongTinDH)
+                @Html.ValidationMessageFor(model => model.ThongTinDH)
+            </div>
+        </div>
 
-       <form class="md-form">
-           <div class="file-field">
-
-               <div class="file-path-wrapper">
-                   @*<input class="file-path validate" type="text" placeholder="Upload your file">*@
-                   <input type="file">
-               </div>
-              
-           </div>
-       </form>
+        <div class="form-group">
+            <label for=" 1339 " class="control-label col-md-2">Hình Ảnh Đồng Hồ</label>
+            <div class="col-md-10">
+                <input type="file" name="Image" id="1339" onchange="readIMG(this)" />
+                <img id="Demo" />
+            </div>
+        </div>
 
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.GiaTien, "Giá Tiền", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GiaTien)
+                @Html.ValidationMessageFor(model => model.GiaTien)
+            </div>
+        </div>
 
-       <div class="form-group">
-           @Html.LabelFor(model => model.GiaTien, "Giá Tiền", new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-               @Html.EditorFor(model => model.GiaTien)
-               @Html.ValidationMessageFor(model => model.GiaTien)
-           </div>
-       </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SoLuong, "Số Lượng", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SoLuong)
+                @Html.ValidationMessageFor(model => model.SoLuong)
+            </div>
+        </div>
 
-       <div class="form-group">
-           @Html.LabelFor(model => model.SoLuong, "Số Lượng", new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-               @Html.EditorFor(model => model.SoLuong)
-               @Html.ValidationMessageFor(model => model.SoLuong)
-           </div>
-       </div>
-
-       <div class="form-group">
-           <div class="col-md-offset-2 col-md-10">
-               <input type="submit" value="Thêm Sản Phẩm" class="btn btn-success" />
-           </div>
-       </div>
-   </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm Sản Phẩm" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
 }
 
 <div>
     <button type="button" class="btn btn-primary">@Html.ActionLink("Back to List", "Index")</button>
-    
+
 
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function readIMG(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#Demo')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
