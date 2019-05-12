@@ -83,19 +83,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductType_WatchType">
-          <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="1" />
-          <End Role="ProductTables" Type="Self.ProductTables" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductTypes">
-              <PropertyRef Name="ProductType_ID" />
-            </Principal>
-            <Dependent Role="ProductTables">
-              <PropertyRef Name="WatchType_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Order_ID">
+        <Association Name="FK_Order_Order_ID">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
           <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -107,7 +95,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Watch_ID">
+        <Association Name="FK_ProductTables_Watch_ID">
           <End Role="ProductTables" Type="Self.ProductTables" Multiplicity="1" />
           <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -116,6 +104,18 @@
             </Principal>
             <Dependent Role="Order_Detail">
               <PropertyRef Name="Watch_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductType_WatchType">
+          <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="1" />
+          <End Role="ProductTables" Type="Self.ProductTables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypes">
+              <PropertyRef Name="ProductType_ID" />
+            </Principal>
+            <Dependent Role="ProductTables">
+              <PropertyRef Name="WatchType_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -130,17 +130,17 @@
             <End Role="Contacts" EntitySet="Contacts" />
             <End Role="ContactsDetail" EntitySet="ContactsDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductType_WatchType" Association="Self.FK_ProductType_WatchType">
-            <End Role="ProductTypes" EntitySet="ProductTypes" />
-            <End Role="ProductTables" EntitySet="ProductTables" />
-          </AssociationSet>
-          <AssociationSet Name="Order_ID" Association="Self.Order_ID">
+          <AssociationSet Name="FK_Order_Order_ID" Association="Self.FK_Order_Order_ID">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="Order_Detail" EntitySet="Order_Detail" />
           </AssociationSet>
-          <AssociationSet Name="Watch_ID" Association="Self.Watch_ID">
+          <AssociationSet Name="FK_ProductTables_Watch_ID" Association="Self.FK_ProductTables_Watch_ID">
             <End Role="ProductTables" EntitySet="ProductTables" />
             <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductType_WatchType" Association="Self.FK_ProductType_WatchType">
+            <End Role="ProductTypes" EntitySet="ProductTypes" />
+            <End Role="ProductTables" EntitySet="ProductTables" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>

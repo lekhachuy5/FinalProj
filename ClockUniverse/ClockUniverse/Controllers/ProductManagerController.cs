@@ -67,7 +67,7 @@ namespace ClockUniverse.Controllers
             {
                 db.ProductTables.Add(model);
                 db.SaveChanges();
-
+                return RedirectToAction("Index");
             }
 
 
