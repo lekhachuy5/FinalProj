@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CsK23T3bModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CsK23T3bModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Contacts">
           <Key>
             <PropertyRef Name="Contact_ID" />
@@ -27,10 +27,14 @@
           <Property Name="Feedback_Detail" Type="nvarchar(max)" />
           <Property Name="Date" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CsK23T3b.dbo.Order_Detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Order_Detail">
           <Key>
             <PropertyRef Name="Order_ID" />
             <PropertyRef Name="Watch_ID" />
+            
+            
           </Key>
           <Property Name="Order_ID" Type="int" Nullable="false" />
           <Property Name="Watch_ID" Type="int" Nullable="false" />
@@ -49,7 +53,7 @@
           <Property Name="Customer_Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Deliver_Address" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Deliver_Status" Type="int" Nullable="false" />
-          <Property Name="Order_ChangeDate" Type="datetime" Nullable="false" />
+          <Property Name="Order_ChangeDate" Type="datetime" />
           <Property Name="Total_Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductTables">
@@ -63,6 +67,7 @@
           <Property Name="Original_Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Selling_Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="InStock" Type="int" Nullable="false" />
+          <Property Name="Watch_Static" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ProductTypes">
           <Key>
@@ -83,6 +88,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_Order_ID">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTables_Watch_ID">
+          <End Role="ProductTables" Type="Self.ProductTables" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTables">
+              <PropertyRef Name="Watch_ID" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Watch_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductType_WatchType">
           <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="1" />
           <End Role="ProductTables" Type="Self.ProductTables" Multiplicity="*" />
@@ -95,52 +124,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Order_ID">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
-          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Orders">
-              <PropertyRef Name="Order_ID" />
-            </Principal>
-            <Dependent Role="Order_Detail">
-              <PropertyRef Name="Order_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Watch_ID">
-          <End Role="ProductTables" Type="Self.ProductTables" Multiplicity="1" />
-          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductTables">
-              <PropertyRef Name="Watch_ID" />
-            </Principal>
-            <Dependent Role="Order_Detail">
-              <PropertyRef Name="Watch_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="CsK23T3bModelStoreContainer">
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContactsDetail" EntityType="Self.ContactsDetail" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductTables" EntityType="Self.ProductTables" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Order_Detail].[Order_ID] AS [Order_ID], 
+    [Order_Detail].[Watch_ID] AS [Watch_ID], 
+    [Order_Detail].[Amount] AS [Amount], 
+    [Order_Detail].[Price] AS [Price]
+    FROM [dbo].[Order_Detail] AS [Order_Detail]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="Contact_ID" Association="Self.Contact_ID">
             <End Role="Contacts" EntitySet="Contacts" />
             <End Role="ContactsDetail" EntitySet="ContactsDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductType_WatchType" Association="Self.FK_ProductType_WatchType">
-            <End Role="ProductTypes" EntitySet="ProductTypes" />
-            <End Role="ProductTables" EntitySet="ProductTables" />
-          </AssociationSet>
-          <AssociationSet Name="Order_ID" Association="Self.Order_ID">
+          <AssociationSet Name="FK_Order_Order_ID" Association="Self.FK_Order_Order_ID">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="Order_Detail" EntitySet="Order_Detail" />
           </AssociationSet>
-          <AssociationSet Name="Watch_ID" Association="Self.Watch_ID">
+          <AssociationSet Name="FK_ProductTables_Watch_ID" Association="Self.FK_ProductTables_Watch_ID">
             <End Role="ProductTables" EntitySet="ProductTables" />
             <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductType_WatchType" Association="Self.FK_ProductType_WatchType">
+            <End Role="ProductTypes" EntitySet="ProductTypes" />
+            <End Role="ProductTables" EntitySet="ProductTables" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -195,7 +207,7 @@
           <Property Name="Customer_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Deliver_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Deliver_Status" Type="Int32" Nullable="false" />
-          <Property Name="Order_ChangeDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Order_ChangeDate" Type="DateTime" Precision="3" />
           <Property Name="Total_Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="Order_Detail" Relationship="Self.Order_ID" FromRole="Orders" ToRole="Order_Detail" />
         </EntityType>
@@ -212,6 +224,7 @@
           <Property Name="InStock" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Order_Detail" Relationship="Self.Watch_ID" FromRole="ProductTables" ToRole="Order_Detail" />
           <NavigationProperty Name="ProductType" Relationship="Self.FK_ProductType_WatchType" FromRole="ProductTables" ToRole="ProductTypes" />
+          <Property Name="Watch_Static" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -352,6 +365,7 @@
           <EntitySetMapping Name="ProductTables">
             <EntityTypeMapping TypeName="CsK23T3bModel.ProductTable">
               <MappingFragment StoreEntitySet="ProductTables">
+                <ScalarProperty Name="Watch_Static" ColumnName="Watch_Static" />
                 <ScalarProperty Name="Watch_ID" ColumnName="Watch_ID" />
                 <ScalarProperty Name="Watch_Name" ColumnName="Watch_Name" />
                 <ScalarProperty Name="Watch_Description" ColumnName="Watch_Description" />

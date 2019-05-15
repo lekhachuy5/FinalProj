@@ -2,6 +2,8 @@
     Layout = null;
 }
 
+
+
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -48,7 +50,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 
 <body class="sticky-header left-side-collapsed">
+    @RenderSection("Scripts", required: false)
     <section>
+
         <!-- left side start-->
         <div class="left-side sticky-left-side">
 
@@ -66,11 +70,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!--sidebar nav start-->
                 <ul class="nav nav-pills nav-stacked custom-nav">
                     <li><a href="@Url.Action("Index","ProductManager")"><span>Sản phẩm</span><i class="glyphicon glyphicon-th-large"></i></a></li>
-                    <li><a href="@Url.Action("Index","OrderManager")"><i class="glyphicon glyphicon-th-list"></i><span>Hóa đơn</span></a>
+                    <li>
+                        <a href="@Url.Action("Index","OrderManager")"><i class="glyphicon glyphicon-th-list"></i><span>Hóa đơn</span></a>
                     </li>
                     <li><a href="@Url.Action("Index","InformationManager")"><i class="glyphicon glyphicon-headphones"></i> <span>Feedback</span></a></li>
                     <li><a href="@Url.Action("Manage","Account")"><i class="glyphicon glyphicon-user"></i> <span>Quản lý Nhân viên</span></a></li>
-                    
+
                 </ul>
                 <!--sidebar nav end-->
             </div>
@@ -172,15 +177,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         // Numeric keypad
                         key >= 96 && key <= 105 ||
                         // comma, period and minus, . on keypad
-                       key == 190 || key == 188 || key == 109 || key == 110 ||
+                        key == 190 || key == 188 || key == 109 || key == 110 ||
                         // Backspace and Tab and Enter
-                       key == 8 || key == 9 || key == 13 ||
+                        key == 8 || key == 9 || key == 13 ||
                         // Home and End
-                       key == 35 || key == 36 ||
+                        key == 35 || key == 36 ||
                         // left and right arrows
-                       key == 37 || key == 39 ||
+                        key == 37 || key == 39 ||
                         // Del and Ins
-                       key == 46 || key == 45)
+                        key == 46 || key == 45)
                         return true;
 
                     return false;

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutManage.cshtml";
 }
 
-<h2>QUẢN LÝ SẢN PHẨM</h2>
+<h2>DANH SÁCH SẢN PHẨM</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -20,59 +20,72 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Watch_ID)
+            Id
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Watch_Name)
+            Tên Đồng Hồ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Watch_Description)
+            Mô Tả Đồng Hồ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Original_Price)
+            Thông Số Đồng Hồ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Selling_Price)
+            Giá Niêm Yết
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InStock)
+            Giá Khuyến Mãi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProductType.ProductType_Name)
+            Số Lượng
+        </th>
+        <th>
+            Loại Đồng Hồ
+        </th>
+        <th>
+            Hình Ảnh Đồng Hồ
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @item.Watch_ID
-            </td>
-            <td>
-               @item.Watch_Name
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Watch_Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Original_Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Selling_Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InStock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductType.ProductType_Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Watch_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Watch_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Watch_ID })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @item.Watch_ID
+        </td>
+        <td>
+            @item.Watch_Name
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Watch_Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Watch_Static)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Original_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Selling_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InStock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductType.ProductType_Name)
+        </td>
+        <td>
+            @*<img src="@Url.Action("Image", new { id = item.Watch_ID }) " />*@
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Watch_ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Watch_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Watch_ID })
+        </td>
+    </tr>
     }
 
 </table>
