@@ -27,7 +27,7 @@ namespace ClockUniverse
         public string Customer_Email { get; set; }
         public string Deliver_Address { get; set; }
         public int Deliver_Status { get; set; }
-        public System.DateTime Order_ChangeDate { get; set; }
+        public Nullable<System.DateTime> Order_ChangeDate { get; set; }
         public decimal Total_Price { get; set; }
     
         public virtual ICollection<Order_Detail> Order_Detail { get; set; }
