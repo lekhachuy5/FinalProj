@@ -27,14 +27,10 @@
           <Property Name="Feedback_Detail" Type="nvarchar(max)" />
           <Property Name="Date" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'CsK23T3b.dbo.Order_Detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Order_Detail">
           <Key>
             <PropertyRef Name="Order_ID" />
             <PropertyRef Name="Watch_ID" />
-            
-            
           </Key>
           <Property Name="Order_ID" Type="int" Nullable="false" />
           <Property Name="Watch_ID" Type="int" Nullable="false" />
@@ -127,17 +123,10 @@ warning 6002: The table/view 'CsK23T3b.dbo.Order_Detail' does not have a primary
         <EntityContainer Name="CsK23T3bModelStoreContainer">
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContactsDetail" EntityType="Self.ContactsDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductTables" EntityType="Self.ProductTables" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Order_Detail].[Order_ID] AS [Order_ID], 
-    [Order_Detail].[Watch_ID] AS [Watch_ID], 
-    [Order_Detail].[Amount] AS [Amount], 
-    [Order_Detail].[Price] AS [Price]
-    FROM [dbo].[Order_Detail] AS [Order_Detail]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="Contact_ID" Association="Self.Contact_ID">
             <End Role="Contacts" EntitySet="Contacts" />
             <End Role="ContactsDetail" EntitySet="ContactsDetail" />

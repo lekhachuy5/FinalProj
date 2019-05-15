@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿// T4 code generation is enabled for model 'D:\Anh_Quoc\K\Năm 2\SOFTWARE TESTING\Team Project\Final project team\Code\FinalProj\ClockUniverse\ClockUniverse\Model1.edmx'. 
-=======
 ﻿// T4 code generation is enabled for model 'D:\Education\do_an_cs_ts\FinalProj\ClockUniverse\ClockUniverse\Model1.edmx'. 
->>>>>>> 66d709cb0fefc22de3f74e6951229dc78f97fee3
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
