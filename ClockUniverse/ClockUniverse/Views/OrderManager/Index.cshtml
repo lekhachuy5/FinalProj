@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ClockUniverse.Order>
+﻿@model IEnumerable<ClockUniverse.Order_Detail>
 
 @{
     ViewBag.Title = "Index";
@@ -8,8 +8,9 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create2")
 </p>
+
 @using (Html.BeginForm("Index", "OrderManager", FormMethod.Get, new { @class = "navbar-form navbar-right", role = "search", id = "search-form" }))
 {
     <div class="form-group">
@@ -17,34 +18,19 @@
         <button type="submit" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-search"></i></button>
     </div>
 }
-<table class="table table-bordered">
+<table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Order_Date)
+            @Html.DisplayNameFor(model => model.Amount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Delivery_Date)
+            @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Customer_Name)
+            @Html.DisplayNameFor(model => model.Order.Customer_Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Customer_Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Deliver_Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Deliver_Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Order_ChangeDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Total_Price)
+            @Html.DisplayNameFor(model => model.ProductTable.Watch_Name)
         </th>
         <th></th>
     </tr>
@@ -52,36 +38,21 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Order_Date)
+            @Html.DisplayFor(modelItem => item.Amount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Delivery_Date)
+            @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Customer_Name)
+            @Html.DisplayFor(modelItem => item.Order.Customer_Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Customer_Phone)
+            @Html.DisplayFor(modelItem => item.ProductTable.Watch_Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Customer_Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deliver_Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deliver_Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Order_ChangeDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Total_Price)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Order_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Order_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Order_ID })
+            @Html.ActionLink("Edit", "Edit", new { id1 =item.Order_ID, id2 = item.Watch_ID}) |
+            @Html.ActionLink("Details", "Details", new { id1 = item.Order_ID, id2 = item.Watch_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id1 = item.Order_ID, id2 = item.Watch_ID })
         </td>
     </tr>
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Runtime.Caching;
 using ClockUniverse;
 
 namespace ClockUniverse.Controllers
@@ -13,29 +14,30 @@ namespace ClockUniverse.Controllers
     public class OrderManagerController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();
-
+        
         // GET: /OrderManager/
         public ActionResult Index(string id)
         {
-            var model = db.Orders.ToList();
-            var od = from o in db.Orders select o;
+            var model = db.Order_Detail.ToList();
+            
+            var od = from o in db.Order_Detail select o;
             if (!String.IsNullOrEmpty(id))
             {
                 var strI = Convert.ToInt32(id.Trim());
-                od = db.Orders.Where(o => o.Order_ID == strI);
+                od = db.Order_Detail.Where(o => o.Order_ID == strI);
             }
             ViewBag.SearchTerm = id;
             return View(od.ToList());
         }
 
         // GET: /OrderManager/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id1, int? id2)
         {
-            if (id == null)
+            if (id1 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
+            Order_Detail order = db.Order_Detail.Find(id1, id2);
             if (order == null)
             {
                 return HttpNotFound();
@@ -43,9 +45,14 @@ namespace ClockUniverse.Controllers
             return View(order);
         }
 
+        public ActionResult Create2()
+        {
+            return View();
+        }
         // GET: /OrderManager/Create
         public ActionResult Create()
         {
+            ViewBag.Watch_ID = new SelectList(db.ProductTables, "Watch_ID", "Watch_Name");
             return View();
         }
 
@@ -54,29 +61,45 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Order order)
+        public ActionResult Create( int id)
         {
+            Order_Detail order = new Order_Detail();
             if (ModelState.IsValid)
-            { 
-                ProductTable pro = new ProductTable();
-                
-                db.Orders.Add(order);
+            {
+                order.Order_ID = id;
+                db.Order_Detail.Add(order);
                 db.SaveChanges();
+                
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Watch_ID = new SelectList(db.ProductTables, "Watch_ID", "Watch_Name", order.Watch_ID.ToString());
             return View(order);
+            
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create2(Order od)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Orders.Add(od);
+                db.SaveChanges();
+                return RedirectToAction("Create", new {id = od.Order_ID});
+            }
+            return View(od);
         }
 
         // GET: /OrderManager/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id1, int? id2)
         {
-            if (id == null)
+            if (id1 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            Order_Detail order = db.Order_Detail.Find(id1, id2);
+            
+            if (order == null ) 
             {
                 return HttpNotFound();
             }
@@ -100,13 +123,13 @@ namespace ClockUniverse.Controllers
         }
 
         // GET: /OrderManager/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id1, int? id2)
         {
-            if (id == null)
+            if (id1 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
+            Order_Detail order = db.Order_Detail.Find(id1, id2);
             if (order == null)
             {
                 return HttpNotFound();
