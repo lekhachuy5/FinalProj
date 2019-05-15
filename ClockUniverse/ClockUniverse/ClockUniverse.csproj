@@ -1019,6 +1019,8 @@
     <Content Include="Scripts\vendors\revolution-slider\assets\Thumbs.db" />
     <Content Include="Scripts\vendors\revolution-slider\images\gradient\Thumbs.db" />
     <Content Include="Scripts\vendors\revolution-slider\images\Thumbs.db" />
+    <Content Include="Views\product_types\ListType.cshtml" />
+    <Content Include="Views\products\product_detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
