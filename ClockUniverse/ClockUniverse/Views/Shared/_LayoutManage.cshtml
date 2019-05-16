@@ -31,10 +31,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- chart -->
     <script src="/Scripts/jsM/Chart.js"></script>
     <!-- //chart -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
     <!--animate-->
     <link href="/Content/cssM/animate.css" rel="stylesheet" type="text/css" media="all">
     <script src="/Scripts/jsM/wow.min.js"></script>
     <script>
+        https://www.google.com.vn/search?q=scripts+mvc&tbm=isch&source=iu&ictx=1&fir=o51-4qzxi5L7HM%253A%252CehDmSRi5CLCNUM%252C_&vet=1&usg=AI4_-kRteMZAMWrB8LYHsufp_GrkUirYJw&sa=X&ved=2ahUKEwjlkcLEhJ_iAhWGyYsBHX0VBmcQ9QEwDnoECAkQDA#imgrc=o51-4qzxi5L7HM:
         new WOW().init();
     </script>
     <!--//end-animate-->
@@ -66,11 +71,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!--sidebar nav start-->
                 <ul class="nav nav-pills nav-stacked custom-nav">
                     <li><a href="@Url.Action("Index","ProductManager")"><span>Sản phẩm</span><i class="glyphicon glyphicon-th-large"></i></a></li>
-                    <li><a href="@Url.Action("Index","OrderManager")"><i class="glyphicon glyphicon-th-list"></i><span>Hóa đơn</span></a>
+                    <li>
+                        <a href="@Url.Action("Index","OrderManager")"><i class="glyphicon glyphicon-th-list"></i><span>Hóa đơn</span></a>
                     </li>
                     <li><a href="@Url.Action("Index","InformationManager")"><i class="glyphicon glyphicon-headphones"></i> <span>Feedback</span></a></li>
                     <li><a href="@Url.Action("Manage","Account")"><i class="glyphicon glyphicon-user"></i> <span>Quản lý Nhân viên</span></a></li>
-                    
+
                 </ul>
                 <!--sidebar nav end-->
             </div>
@@ -144,17 +150,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div id="page-wrapper">
                 @RenderBody()
             </div>
-            <!--footer section start-->
-            <footer>
-                <p>&copy 2015 Easy Admin Panel. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">w3layouts.</a></p>
-            </footer>
-            <!--footer section end-->
+        </div>
+        <!--footer section start-->
+        <footer>
+            <p>&copy 2015 Easy Admin Panel. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">w3layouts.</a></p>
+        </footer>
+        <!--footer section end-->
     </section>
 
     <script src="/Scripts/jsM/jquery.nicescroll.js"></script>
     <script src="/Scripts/jsM/scripts.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="/Scripts/jsM/bootstrap.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".numberinput").forceNumeric();
@@ -172,21 +180,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         // Numeric keypad
                         key >= 96 && key <= 105 ||
                         // comma, period and minus, . on keypad
-                       key == 190 || key == 188 || key == 109 || key == 110 ||
+                        key == 190 || key == 188 || key == 109 || key == 110 ||
                         // Backspace and Tab and Enter
-                       key == 8 || key == 9 || key == 13 ||
+                        key == 8 || key == 9 || key == 13 ||
                         // Home and End
-                       key == 35 || key == 36 ||
+                        key == 35 || key == 36 ||
                         // left and right arrows
-                       key == 37 || key == 39 ||
+                        key == 37 || key == 39 ||
                         // Del and Ins
-                       key == 46 || key == 45)
+                        key == 46 || key == 45)
                         return true;
 
                     return false;
                 });
             });
         }
+    </script>
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+            $('#table_id').DataTable();
+        });
     </script>
 </body>
 </html>

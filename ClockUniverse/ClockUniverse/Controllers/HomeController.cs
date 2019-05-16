@@ -8,9 +8,10 @@ namespace ClockUniverse.Controllers
 {
     public class HomeController : Controller
     {
+        private CsK23T3bEntities db = new CsK23T3bEntities();
         public ActionResult Index()
         {
-            return View();
+            return View(db.ProductTables.ToList());
         }
 
         public ActionResult About()

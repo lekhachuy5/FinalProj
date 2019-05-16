@@ -27,6 +27,7 @@ namespace ClockUniverse.Controllers
             }
             ViewBag.SearchTerm = id;
             return View(od.ToList());
+           
         }
 
         // GET: /OrderManager/Details/5
@@ -40,8 +41,11 @@ namespace ClockUniverse.Controllers
             if (order == null)
             {
                 return HttpNotFound();
+
             }
+            
             return View(order);
+            
         }
 
        
@@ -85,13 +89,14 @@ namespace ClockUniverse.Controllers
         }
 
         // GET: /OrderManager/Delete/5
-        public ActionResult Delete(int? id1, int? id2)
+        public ActionResult Delete(int? id1,int? id2)
         {
             if (id1 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order_Detail order = db.Order_Detail.Find(id1, id2);
+            Order od = db.Orders.Find(id1);
+            Order_Detail order = db.Order_Detail.Find(id1,id2);
             if (order == null)
             {
                 return HttpNotFound();
@@ -102,10 +107,12 @@ namespace ClockUniverse.Controllers
         // POST: /OrderManager/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id1 , int id2)
         {
-            Order order = db.Orders.Find(id);
+            Order order = db.Orders.Find(id1);
+            Order_Detail od = db.Order_Detail.Find(id1, id2);
             db.Orders.Remove(order);
+            db.Order_Detail.Remove(od);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
