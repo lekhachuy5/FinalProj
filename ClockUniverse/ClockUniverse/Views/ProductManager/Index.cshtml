@@ -78,7 +78,7 @@
             @Html.DisplayFor(modelItem => item.ProductType.ProductType_Name)
         </td>
         <td>
-            @*<img src="@Url.Action("Image", new { id = item.Watch_ID }) " />*@
+            <img src="@Url.Action("Image", new { id = item.Watch_ID }) " />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Watch_ID }) |

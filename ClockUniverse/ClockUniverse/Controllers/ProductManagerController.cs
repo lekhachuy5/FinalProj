@@ -60,40 +60,38 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Watch_ID,Watch_Name,Watch_Description,WatchType_ID,Original_Price,Selling_Price,InStock")] ProductTable model)
+        public ActionResult Create([Bind(Include = "Watch_ID,Watch_Name,Watch_Description,Watch_Static,WatchType_ID,Original_Price,Selling_Price,InStock")] ProductTable producttable)
         {
 
-            if (ModelState.IsValid)
-            {
-                db.ProductTables.Add(model);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            ValidateClock(producttable);
+            
+            
+                if (ModelState.IsValid)
+                {
+                    using (var scope = new TransactionScope())
+                    {
 
-            //if (ModelState.IsValid)
-            //{
-            //    using (var scope = new TransactionScope())
-            //    {
-
-            //        // add model to database
-            //        db.ProductTables.Add(model);
-            //        db.SaveChanges();
-            //        // save file to app_data
-            //        var path = Server.MapPath("~/App_Data");
-            //        path = System.IO.Path.Combine(path, model.Watch_ID.ToString());
-            //        Request.Files["Image"].SaveAs(path + "_0");
-            //        Request.Files["Image1"].SaveAs(path + "_1");
-            //        Request.Files["Image2"].SaveAs(path + "_2");
-            //        // all done successfully
-            //        scope.Complete();
-            //        return RedirectToAction("Index");
-            //    }
-
-            //}
+                        // add model to database
+                        db.ProductTables.Add(producttable);
+                        db.SaveChanges();
+                        // save file to app_data
+                        var path = Server.MapPath("~/App_Data");
+                        path = System.IO.Path.Combine(path, producttable.Watch_ID.ToString());
+                        Request.Files["Image"].SaveAs(path + "_0");
+                        Request.Files["Image1"].SaveAs(path + "_1");
+                        Request.Files["Image2"].SaveAs(path + "_2");
+                        // all done successfully
+                        scope.Complete();
+                        return RedirectToAction("Index");
+                    }
+                }
+            
+          
 
 
-            ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", model.WatchType_ID.ToString());
-            return View(model);
+                //ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", model.WatchType_ID.ToString());
+                return View("Create", producttable);
+            
         }
 
         // GET: /ProductManager/Edit/5
@@ -129,29 +127,35 @@ namespace ClockUniverse.Controllers
             return View(producttable);
         }
 
-        //public ActionResult Image(string id)
-        //{
-        //    var path = Server.MapPath("~/App_Data");
-        //    path = System.IO.Path.Combine(path, id);
-        //    return File(path + "_0", "image/jpg/*");
+        public ActionResult Image(string id)
+        {
+            var path = Server.MapPath("~/App_Data");
+            path = System.IO.Path.Combine(path, id);
+            return File(path + "_0", "image/jpg/*");
 
-        //}
+        }
 
-        //public ActionResult Image1(string id)
-        //{
-        //    var path = Server.MapPath("~/App_Data");
-        //    path = System.IO.Path.Combine(path, id);
-        //    return File(path + "_1", "image/jpg/*");
+        public ActionResult Image1(string id)
+        {
+            var path = Server.MapPath("~/App_Data");
+            path = System.IO.Path.Combine(path, id);
+            return File(path + "_1", "image/jpg/*");
 
-        //}
+        }
 
-        //public ActionResult Image2(string id)
-        //{
-        //    var path = Server.MapPath("~/App_Data");
-        //    path = System.IO.Path.Combine(path, id);
-        //    return File(path + "_2", "image/jpg/*");
+        public ActionResult Image2(string id)
+        {
+            var path = Server.MapPath("~/App_Data");
+            path = System.IO.Path.Combine(path, id);
+            return File(path + "_2", "image/jpg/*");
 
-        //}
+        }
+
+        private void ValidateClock(ProductTable model)
+        {
+            if (model.Original_Price <= 0 && model.Selling_Price <= 0 )
+                ModelState.AddModelError("price", Resource1.priceLess0);
+        }
 
         // GET: /ProductManager/Delete/5
         public ActionResult Delete(int? id)
