@@ -70,6 +70,27 @@ namespace ClockUniverse.Controllers
                 return RedirectToAction("Index");
             }
 
+            //if (ModelState.IsValid)
+            //{
+            //    using (var scope = new TransactionScope())
+            //    {
+
+            //        // add model to database
+            //        db.ProductTables.Add(model);
+            //        db.SaveChanges();
+            //        // save file to app_data
+            //        var path = Server.MapPath("~/App_Data");
+            //        path = System.IO.Path.Combine(path, model.Watch_ID.ToString());
+            //        Request.Files["Image"].SaveAs(path + "_0");
+            //        Request.Files["Image1"].SaveAs(path + "_1");
+            //        Request.Files["Image2"].SaveAs(path + "_2");
+            //        // all done successfully
+            //        scope.Complete();
+            //        return RedirectToAction("Index");
+            //    }
+
+            //}
+
 
             ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", model.WatchType_ID.ToString());
             return View(model);
@@ -108,12 +129,29 @@ namespace ClockUniverse.Controllers
             return View(producttable);
         }
 
-        public ActionResult Image(string id)
-        {
-            var path = Server.MapPath("~/App_Data");
-            path = System.IO.Path.Combine(path, id);
-            return File(path, "image/jpg/*");
-        }
+        //public ActionResult Image(string id)
+        //{
+        //    var path = Server.MapPath("~/App_Data");
+        //    path = System.IO.Path.Combine(path, id);
+        //    return File(path + "_0", "image/jpg/*");
+
+        //}
+
+        //public ActionResult Image1(string id)
+        //{
+        //    var path = Server.MapPath("~/App_Data");
+        //    path = System.IO.Path.Combine(path, id);
+        //    return File(path + "_1", "image/jpg/*");
+
+        //}
+
+        //public ActionResult Image2(string id)
+        //{
+        //    var path = Server.MapPath("~/App_Data");
+        //    path = System.IO.Path.Combine(path, id);
+        //    return File(path + "_2", "image/jpg/*");
+
+        //}
 
         // GET: /ProductManager/Delete/5
         public ActionResult Delete(int? id)
