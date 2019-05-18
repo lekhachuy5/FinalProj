@@ -47,8 +47,8 @@
                 <div class="pull-right beta-components space-left ov">
                     <div class="space10">&nbsp;</div>
                     <div class="beta-comp">
-                        <form role="search" method="get" id="searchform" action="/">
-                            <input type="text" value="" name="s" id="s" placeholder="Nhập từ khóa..." />
+                        <form role="search" method="get" id="searchform" action="@Url.Action("Search", "Home")">
+                            <input type="text" value="" name="text" id="s" placeholder="Nhập từ khóa..." />
                             <button class="fa fa-search" type="submit" id="searchsubmit"></button>
                         </form>
                     </div>
@@ -73,10 +73,8 @@
                         <li>
                             <a href="#">Sản phẩm</a>
                             <ul class="sub-menu">
-
-                                <li><a href="">Nam</a></li>
-
-                                <li><a href="product_type.html">Nữ</a></li>
+                                <li><a href="@Url.Action("ListItem", "ProductManager")?type=1">Nam</a></li>
+                                <li><a href="@Url.Action("ListItem", "ProductManager")?type=2">Nữ</a></li>
                             </ul>
                         </li>
                         <li><a href="@Url.Action("About","Home")">Giới thiệu</a></li>
