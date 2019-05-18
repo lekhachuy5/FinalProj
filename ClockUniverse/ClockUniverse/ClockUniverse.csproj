@@ -1022,6 +1022,8 @@
     <Content Include="Views\products\product_detail.cshtml" />
     <Content Include="Views\InformationManager\Create.cshtml" />
     <Content Include="Views\InformationManager\Details.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\ProductManager\ListItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
