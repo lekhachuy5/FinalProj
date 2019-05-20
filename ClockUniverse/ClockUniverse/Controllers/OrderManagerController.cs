@@ -65,7 +65,8 @@ namespace ClockUniverse.Controllers
         {
             Order_Detail order = new Order_Detail();
             if (ModelState.IsValid)
-            {
+            {  
+               
                 order.Order_ID = id;
                 db.Order_Detail.Add(order);
                 db.SaveChanges();
@@ -83,6 +84,8 @@ namespace ClockUniverse.Controllers
         {
             if (ModelState.IsValid)
             {
+                od.Order_Date = DateTime.Now;
+                od.Delivery_Date = DateTime.Now;
                 db.Orders.Add(od);
                 db.SaveChanges();
                 return RedirectToAction("Create", new {id = od.Order_ID});

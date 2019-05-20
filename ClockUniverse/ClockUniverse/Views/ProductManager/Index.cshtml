@@ -17,62 +17,72 @@
     </div>
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Watch_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Watch_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Watch_Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Original_Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Selling_Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InStock)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductType.ProductType_Name)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="display" id="mytable">
+    <thead>
         <tr>
-            <td>
-                @item.Watch_ID
-            </td>
-            <td>
-               @item.Watch_Name
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Watch_Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Original_Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Selling_Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InStock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductType.ProductType_Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Watch_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Watch_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Watch_ID })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Watch_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Watch_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Watch_Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Original_Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Selling_Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductType.ProductType_Name)
+            </th>
+            <th></th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Watch_ID
+                </td>
+                <td>
+                    @item.Watch_Name
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Watch_Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Original_Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Selling_Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InStock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductType.ProductType_Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Watch_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Watch_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Watch_ID })
+                </td>
+            </tr>
+
+        }
+    </tbody>
 
 </table>
+@section scripts
+{
+    $(document).ready(function () {
+    $(‘#mytable’).DataTable();
+    });
+}
