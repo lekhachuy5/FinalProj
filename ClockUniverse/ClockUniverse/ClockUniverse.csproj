@@ -1046,7 +1046,6 @@
     <Content Include="Views\InformationManager\Create.cshtml" />
     <Content Include="Views\InformationManager\Details.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
-    <Content Include="Views\ProductManager\ListItem.cshtml" />
     <Content Include="Views\OrderManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
