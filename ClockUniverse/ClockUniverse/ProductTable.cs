@@ -27,6 +27,7 @@ namespace ClockUniverse
         public decimal Selling_Price { get; set; }
         public int InStock { get; set; }
         public string Watch_Static { get; set; }
+        public string Image { get; set; }
     
         public virtual ICollection<Order_Detail> Order_Detail { get; set; }
         public virtual ProductType ProductType { get; set; }
