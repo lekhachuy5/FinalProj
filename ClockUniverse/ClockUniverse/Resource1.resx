@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AmountLess0" xml:space="preserve">
+    <value>Số lượng phải lớn hơn 0</value>
+  </data>
+  <data name="OverInStock" xml:space="preserve">
+    <value>Số lượng đặt vượt quá tồn kho</value>
+  </data>
   <data name="priceLess0" xml:space="preserve">
     <value>Giá phải lớn hơn 0</value>
   </data>

@@ -10,18 +10,13 @@
 namespace ClockUniverse
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ContactsDetail
+    public partial class sp_helpdiagrams_Result
     {
-        public int Feedback_ID { get; set; }
-        public int Contact_ID { get; set; }
-        public int Employee_ID { get; set; }
-        public string Title { get; set; }
-        public string Feedback_Detail { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public string Feedback_Reply { get; set; }
-    
-        public virtual Contact Contact { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

@@ -5,47 +5,56 @@
     Layout = "~/Views/Shared/_LayoutManage.cshtml";
 }
 
-<h2>Detail</h2>
+<h2 style="text-align:center">CHI TIẾT ĐƠN HÀNG</h2>
+<div class="form-group fa-border " style="font-family:Arial;font-size: 20px ;width:50%;margin:auto;margin-bottom:1%">
+    <table class="table ">
+        <tr >
+            <th style="color:blue">Thông tin đơn hàng : #HD@(Model.Order_ID) </th>
+            <td>(Ngày đặt:@Model.Order.Order_Date.ToShortDateString())</td>
+        </tr>
+        <tr style="font-weight:bold; border-top:double">
+            <th>Thông tin thanh toán</th>
+            <th>Địa chỉ giao hàng</th>
+        </tr>
+        <tr>
+            <td> @Model.Order.Customer_Name</td>
+            <td> @Model.Order.Customer_Name</td>
+        </tr>
+        <tr>
+            <td> @Model.Order.Customer_Email</td>
+            <td> @Model.Order.Deliver_Address</td>
+        </tr>
+        <tr>
+            <td> @Model.Order.Customer_Phone</td>
+            <td> @Model.Order.Customer_Phone</td>
+        </tr>
 
-<div>
-    <h4>Order_Detail</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Amount)
-        </dt>
+    </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.Amount)
-        </dd>
+</div>
+<div class="form-group" style="margin:auto;width:50%">
+    <table class=" table table-bordered">
+        <tr style="background-color:orange">
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Thành tiền</th>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+        <tr>
+            <td>@Model.ProductTable.Watch_Name</td>
+            <td>@Model.Amount</td>
+            <td>@Model.ProductTable.Selling_Price.ToString("N0")</td>
+            <td>@Model.Price.ToString("N0") </td>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Order.Customer_Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Order.Customer_Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductTable.Watch_Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductTable.Watch_Name)
-        </dd>
-
-    </dl>
+    </table>
+</div>
+<div class="col-lg-offset-10">
+    Ngày cập nhật : @Model.Order.Order_ChangeDate
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Cập nhật", "Edit", new { id1 = Model.Order_ID, id2 = Model.Watch_ID }, new { @class = " btn btn-primary" })
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
 </p>

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ClockUniverse.Controllers;
 using System.Web.Mvc;
 using ClockUniverse.Models;
+
 
 namespace ClockUniverse.Controllers
 {
@@ -135,8 +137,12 @@ namespace ClockUniverse.Controllers
         }
         public ActionResult Index()
         {
+<<<<<<< HEAD
             ViewBag.Message = "Your application description page.";
 
+=======
+            
+>>>>>>> 6b663129cacaa2b3c718800bfec3eafd4936d29c
             return View();
         }
         // Tao partial gio hang
