@@ -1,85 +1,91 @@
 ﻿@model IEnumerable<ClockUniverse.Order_Detail>
 
 @{
+    /**/
+
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutManage.cshtml";
 }
 
 <h2>QUẢN LÝ ĐƠN HÀNG</h2>
-<div class="form-group">
-    @using (Html.BeginForm("Index", "OrderManager", FormMethod.Get, new { @class = "navbar-form navbar-right", role = "search", id = "search-form" }))
-    {
-        <div class="form-group">
-            <input type="text" class="form-control numberinput" placeholder="Nhập id đơn hàng" name="id" value="@ViewBag.SearchTerm" id="search-box">
-            <button type="submit" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-search"></i></button>
-        </div>
-    }
-</div>
-<div class="form-group">
-    <table class="table table-bordered">
-        <tr style=" background-color:aqua ;">
-            <th>
-                Mã đơn hàng
-            <th>
-                Họ tên khách hàng
-            </th>
-            <th>
-                Địa chỉ
-            </th>
-            <th>
-                Tổng tiền
-            </th>
-            <th>
-                Tình trạng
-            </th>
-            <th></th>
-        </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @item.Order_ID
-                </td>
-                <td>
-                    @item.Order.Customer_Name
-                </td>
-                <td>
-                    @item.Order.Deliver_Address
-                </td>
-                <td>
-                    @item.Order.Total_Price
-                </td>
-                <td>
-                    @switch (@item.Order.Deliver_Status)
-                    {
-                        case 1:
-                            <div>Đang xử lý</div>
-                            break;
-                        case 2:
-                            <div>Đã tiếp nhận</div>
-                            break;
-                        case 3:
-                            <div>Đang giao hàng</div>
-                            break;
-                        case 4:
-                            <div>Đã giao hàng</div>
-                            break;
-                    }
-                </td>
-                <td>
-                    @Html.ActionLink("Cập nhật", "Edit", new { id1 = item.Order_ID, id2 = item.Watch_ID }, new {@class=" btn btn-primary" }) |
-                    @Html.ActionLink("Chi tiết", "Details", new { id1 = item.Order_ID, id2 = item.Watch_ID }, new {@class="btn btn-info" }) |
-                    @Html.ActionLink("Hủy", "Delete", new { id1 = item.Order_ID, id2 = item.Watch_ID },new { @class="btn btn-warning"})
-                </td>
+<div class="form-group">
+    <table id="mytable" class="display table table-bordered">
+        <thead>
+            <tr style=" background-color:hotpink ;">
+                <th>
+                    Mã đơn hàng
+                <th>
+                    Họ tên khách hàng
+                </th>
+                <th>
+                    Địa chỉ
+                </th>
+                <th>
+                    Tổng tiền
+                </th>
+                <th>
+                    Tình trạng
+                </th>
+                <th></th>
             </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Order_ID
+                    </td>
+                    <td>
+                        @item.Order.Customer_Name
+                    </td>
+                    <td>
+                        @item.Order.Deliver_Address
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                    <td>
+                        @switch (@item.Order.Deliver_Status)
+                        {
+                            case 1:
+                                <div>Đang xử lý</div>
+                                break;
+                            case 2:
+                                <div>Đã tiếp nhận</div>
+                                break;
+                            case 3:
+                                <div>Đang giao hàng</div>
+                                break;
+                            case 4:
+                                <div>Đã giao hàng</div>
+                                break;
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Cập nhật", "Edit", new { id1 = item.Order_ID, id2 = item.Watch_ID }, new { @class = " btn btn-primary" }) |
+                        @Html.ActionLink("Chi tiết", "Details", new { id1 = item.Order_ID, id2 = item.Watch_ID }, new { @class = "btn btn-info" }) |
+                        @if (item.Order.Deliver_Status == 1)
+                        {
+                            @Html.ActionLink("Hủy", "Delete", new { id1 = item.Order_ID, id2 = item.Watch_ID }, new { @class = "btn btn-warning" })
+                        }
 
-        }
+                    </td>
+                </tr>
+
+            }
+        </tbody>
 
     </table>
 </div>
-<script type="text/javascript">
-    $(document).ready(function () {
-            $('#table_id').DataTable();
-        });
-</script>
+
+
+
+
+
+
+
+
+
+

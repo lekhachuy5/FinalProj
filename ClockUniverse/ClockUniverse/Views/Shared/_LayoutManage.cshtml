@@ -33,11 +33,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- chart -->
     <script src="/Scripts/jsM/Chart.js"></script>
     <!-- //chart -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   
 
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
-    <!--animate-->
+    <link href="~/Content/db/datatables.min.css" rel="stylesheet" />
+    
+    <link href="~/Content/db/datatables.css" rel="stylesheet" />
     <link href="/Content/cssM/animate.css" rel="stylesheet" type="text/css" media="all">
     <script src="/Scripts/jsM/wow.min.js"></script>
     <script>
@@ -161,11 +162,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </footer>
         <!--footer section end-->
     </section>
-
-    <script src="/Scripts/jsM/jquery.nicescroll.js"></script>
-    <script src="/Scripts/jsM/scripts.js"></script>
     <!-- Bootstrap Core JavaScript -->
-
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/db/datatables.js"></script>
+    <script src="/Scripts/db/VNLanguage.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -199,12 +202,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 });
             });
         }
-    </script>
-    <script type="text/javascript">
-
-    $(document).ready(function () {
-            $('#table_id').DataTable();
-        });
     </script>
 </body>
 </html>

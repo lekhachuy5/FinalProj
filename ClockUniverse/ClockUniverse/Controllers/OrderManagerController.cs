@@ -64,12 +64,12 @@ namespace ClockUniverse.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Order_Detail order = db.Order_Detail.Find(id1, id2);
-
+            Order od = db.Orders.Find(id1);
             if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
+                        return View(order);
         }
 
         // POST: /OrderManager/Edit/5
@@ -77,14 +77,21 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Order_ID,Order_Date,Delivery_Date,Customer_Name,Customer_Phone,Customer_Email,Deliver_Address,Deliver_Status,Order_ChangeDate,Total_Price")] Order order)
+        public ActionResult Edit(Order_Detail order)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(order).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using(var scope = new TransactionScope())
+                {
+                    order.Price = order.Amount * order.ProductTable.Selling_Price;
+                    db.Entry(order).State = EntityState.Modified;
+                    
+                    db.SaveChanges();
+                    scope.Complete();
+                    return RedirectToAction("Index");
+                }
             }
+           
             return View(order);
         }
 

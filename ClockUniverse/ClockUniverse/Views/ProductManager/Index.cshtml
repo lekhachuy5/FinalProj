@@ -9,83 +9,79 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm("Index", "ProductManager", FormMethod.Get, new { @class = "navbar-form navbar-right", role = "search", id = "search-form" }))
-{
-    <div class="form-group">
-        <input type="text" class="form-control numberinput" placeholder="Nhập id sản phẩm" name="id" value="@ViewBag.SearchTerm" id="search-box">
-        <button type="submit" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-search"></i></button>
-    </div>
-}
 
-<table class="table">
-    <tr>
-        <th>
-            Id
-        </th>
-        <th>
-            Tên Đồng Hồ
-        </th>
-        <th>
-            Mô Tả Đồng Hồ
-        </th>
-        <th>
-            Thông Số Đồng Hồ
-        </th>
-        <th>
-            Giá Niêm Yết
-        </th>
-        <th>
-            Giá Khuyến Mãi
-        </th>
-        <th>
-            Số Lượng
-        </th>
-        <th>
-            Loại Đồng Hồ
-        </th>
-        <th>
-            Hình Ảnh Đồng Hồ
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-    <tr>
-        <td>
-            @item.Watch_ID
-        </td>
-        <td>
-            @item.Watch_Name
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Watch_Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Watch_Static)
-        </td>
+<table class="display table table-bordered" id="mytable">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Tên Đồng Hồ
+            </th>
+            <th>
+                Mô Tả Đồng Hồ
+            </th>
+            <th>
+                Thông Số Đồng Hồ
+            </th>
+            <th>
+                Giá Niêm Yết
+            </th>
+            <th>
+                Giá Khuyến Mãi
+            </th>
+            <th>
+                Số Lượng
+            </th>
+            <th>
+                Loại Đồng Hồ
+            </th>
+            <th>
+                Hình Ảnh Đồng Hồ
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Watch_ID
+                </td>
+                <td>
+                    @item.Watch_Name
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Watch_Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Watch_Static)
+                </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Original_Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Selling_Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InStock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductType.ProductType_Name)
-        </td>
-        <td>
-            <img src="@Url.Action("Image", new { id = item.Watch_ID }) " />
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Watch_ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Watch_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Watch_ID })
-        </td>
-    </tr>
-    }
-
+                <td>
+                    @Html.DisplayFor(modelItem => item.Original_Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Selling_Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InStock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductType.ProductType_Name)
+                </td>
+                <td>
+                    <img src="@Url.Action("Image", new { id = item.Watch_ID }) " />
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Watch_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Watch_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Watch_ID })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

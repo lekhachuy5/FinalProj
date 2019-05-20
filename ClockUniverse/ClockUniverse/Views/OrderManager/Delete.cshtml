@@ -58,14 +58,14 @@
                 <td>@Model.ProductTable.Watch_Name</td>
                 <td>@Model.Amount</td>
                 <td>@Model.ProductTable.Selling_Price</td>
-                <td>@(Model.Amount + Model.ProductTable.Selling_Price) </td>
+                <td>@(Model.Amount * Model.ProductTable.Selling_Price) </td>
             </tr>
 
 
         </table>
     </div>
     <div class="col-lg-offset-10">
-        Tổng tiền: @(Model.Amount + Model.ProductTable.Selling_Price) VND
+       
     </div>
 
     @using (Html.BeginForm())

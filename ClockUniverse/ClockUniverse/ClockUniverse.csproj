@@ -259,6 +259,14 @@
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\under-construction.min.css" />
     <Content Include="Content\css\yellow.css" />
+    <Content Include="Content\db\DataTables-1.10.18\images\sort_asc.png" />
+    <Content Include="Content\db\DataTables-1.10.18\images\sort_asc_disabled.png" />
+    <Content Include="Content\db\DataTables-1.10.18\images\sort_both.png" />
+    <Content Include="Content\db\DataTables-1.10.18\images\sort_desc.png" />
+    <Content Include="Content\db\DataTables-1.10.18\images\sort_desc_disabled.png" />
+    <Content Include="Content\db\dataTables.bootstrap.min.css" />
+    <Content Include="Content\db\datatables.css" />
+    <Content Include="Content\db\datatables.min.css" />
     <Content Include="Content\fabochart.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\css\huong-style.css" />
@@ -783,6 +791,9 @@
     <Content Include="Content\vendors\revolution-slider\images\gradient\g40.png" />
     <Content Include="Content\vroom.css" />
     <Content Include="Content\yellow.css" />
+    <Content Include="Scripts\db\datatables.js" />
+    <Content Include="Scripts\db\datatables.min.js" />
+    <Content Include="Scripts\db\VNLanguage.js" />
     <Content Include="Scripts\jsM\common-scripts.js" />
     <Content Include="Scripts\jsM\DT_bootstrap.js" />
     <Content Include="Scripts\jsM\editable-table.js" />
