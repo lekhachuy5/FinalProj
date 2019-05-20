@@ -56,7 +56,12 @@
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </select>
-                                <a class="add-to-cart" href="@Url.Action("index","shoppingcart")"><i class="fa fa-shopping-cart"></i></a>
+                                @using (Html.BeginForm("addShoppingCart", "ShoppingCart", new { @iMaSP = Model.Watch_ID, @strUrl = Request.Url.ToString() }))
+                                {
+                                    <a class="add-to-cart" href=""><i class="fa fa-shopping-cart"></i></a>
+                                    <input type="submit" value="Mua Hang" id="btnGioHang" class="btn btn-primary" />
+                                }
+
                                 <div class="clearfix"></div>
                             </div>
                         </div>
