@@ -4,75 +4,140 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutManage.cshtml";
 }
+<style>
+    h2 {
+        text-align: center;
+        margin-top: 4px;
+    }
 
-<h2>Create</h2>
+</style>
 
-@using (Html.BeginForm()) 
+<h2>THÊM MỚI SẢN PHẨM</h2>
+
+@using (Html.BeginForm("Create", "ProductManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
 
-   
-   <div class="form-horizontal">
-        <h4>ProductTable</h4>
-       <hr />
-       @Html.ValidationSummary(true)
 
-       <div class="form-group">
-            @Html.LabelFor(model => model.Watch_Name, new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-                @Html.EditorFor(model => model.Watch_Name)
-                @Html.ValidationMessageFor(model => model.Watch_Name)
-           </div>
-       </div>
+<div class="form-horizontal">
+    <h4></h4>
+    <hr />
+    @Html.ValidationSummary(true)
 
-       <div class="form-group">
-            @Html.LabelFor(model => model.Watch_Description, new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-                @Html.EditorFor(model => model.Watch_Description)
-                @Html.ValidationMessageFor(model => model.Watch_Description)
-           </div>
-       </div>
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            Tên Đồng Hồ
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Watch_Name)
+            @Html.ValidationMessageFor(model => model.Watch_Name)
+        </div>
+    </div>
 
-       <div class="form-group">
-            @Html.LabelFor(model => model.WatchType_ID, "WatchType_ID", new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-                @Html.DropDownList("WatchType_ID", String.Empty)
-                @Html.ValidationMessageFor(model => model.WatchType_ID)
-           </div>
-       </div>
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            Mô Tả Đồng Hồ
+        </div>
+        <div class="col-md-10">
+            @Html.TextArea("Watch_Description", String.Empty)
+            @Html.ValidationMessageFor(model => model.Watch_Description)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            Thông Số Đồng Hồ
+        </div>
+        <div class="col-md-10">
+            @Html.TextArea("Watch_Static", String.Empty)
+            @Html.ValidationMessageFor(model => model.Watch_Static)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            Giá Niêm Yết
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Original_Price)
+            @Html.ValidationMessageFor(model => model.Original_Price)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            Giá Khuyến Mãi
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Selling_Price)
+            @Html.ValidationMessageFor(model => model.Selling_Price)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            Số Lượng
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.InStock)
+            @Html.ValidationMessageFor(model => model.InStock)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            Loại Đồng Hồ
+        </div>
+        <div class="col-md-10">
+            @Html.DropDownList("WatchType_ID", String.Empty)
+            @Html.ValidationMessageFor(model => model.WatchType_ID)
+        </div>
+    </div>
 
 
+    <div class="form-group">
+        <label for="1339" class="control-label col-md-2">Hình Ảnh</label>
+        <div class="col-md-10">
+            <input type="file" name="Image" id="1339" onchange="readIMG(this)" />
+            <img id="Demo" />
 
-  
+            <input type="file" name="Image1" id="1339" onchange="readIMG(this)" />
+            <img id="Demo" />
+
+            <input type="file" name="Image2" id="1339" onchange="readIMG(this)" />
+            <img id="Demo" />
+
+        </div>
+    </div>
 
 
-       <div class="form-group">
-            @Html.LabelFor(model => model.Selling_Price, new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-                @Html.EditorFor(model => model.Selling_Price)
-                @Html.ValidationMessageFor(model => model.Selling_Price)
-           </div>
-       </div>
-
-       <div class="form-group">
-            @Html.LabelFor(model => model.InStock, new { @class = "control-label col-md-2" })
-           <div class="col-md-10">
-                @Html.EditorFor(model => model.InStock)
-                @Html.ValidationMessageFor(model => model.InStock)
-           </div>
-       </div>
-
-       <div class="form-group">
-           <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-           </div>
-       </div>
-   </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Trở về danh sách", "Index")
 </div>
 
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function readIMG(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $(input).next()
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

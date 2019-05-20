@@ -1,0 +1,86 @@
+﻿@using ClockUniverse.Models;
+@model ProductTable
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    img {
+        width: 362px;
+        margin-left: 125px;
+    }
+    .ribbon-wrapper {
+        right: 349px;
+    }
+</style>
+
+    <div class="container">
+        <div id="content">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <img src="/Content/images/products/6.jpg" alt="">
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="single-item-body">
+                                <p class="single-item-title">@Model.Watch_Name</p>
+                                @if (Model.Original_Price < Model.Selling_Price)
+                                {
+                                    <p class="single-item-price">
+                                        <span>@Model.Selling_Price</span>
+                                    </p>
+                                }
+                                else
+                                {
+                                    <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
+                                    <p class="single-item-price">
+                                        <span class="flash-del">@Model.Original_Price</span>
+                                        <span class="flash-sale">@Model.Selling_Price</span>
+                                    </p>
+                                }
+
+                            </div>
+                            <div class="clearfix"></div>t
+                            <div class="space20">&nbsp;</div>
+                            <div class="single-item-desc">
+                                <p>@Model.Watch_Static</p>
+                            </div>
+                            <div class="space20">&nbsp;</div>
+                            <p>Số lượng:</p>
+                            <div class="single-item-options">
+                                <select class="wc-select" name="color">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <a class="add-to-cart" href="@Url.Action("index","shoppingcart")"><i class="fa fa-shopping-cart"></i></a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space40">&nbsp;</div>
+                    <div class="woocommerce-tabs">
+                        <ul class="tabs">
+                            <li><a href="#tab-description">Description</a></li>
+                            <li><a href="#tab-reviews">Reviews (0)</a></li>
+                        </ul>
+                        <div class="panel" id="tab-description">
+                            <p>@Model.Watch_Description</p>
+                        </div>
+                        <div class="panel" id="tab-reviews">
+                            <p>No Reviews</p>
+                        </div>
+                    </div>
+                    <div class="space50">&nbsp;</div>
+                </div>
+            </div>
+        </div> <!-- #content -->
+    </div> <!-- .container -->
+    <!-- #footer -->
+    <!-- .copyright -->
+    <!-- include js files -->
+
+

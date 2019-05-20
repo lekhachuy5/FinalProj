@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ClockUniverse.Contact
+@{
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -22,7 +23,8 @@
                     <h2>Gửi Yêu Cầu</h2>
                     <div class="space20">&nbsp;</div>
                     <div class="space20">&nbsp;</div>
-                    <form action="#" method="post" class="contact-form">
+                    @*<form action="@Url.Action("Create", "InformationManager")" method="post" class="contact-form">
+                        @Html.AntiForgeryToken()
                         <div class="form-block">
                             <input name="your-name" type="text" placeholder="Họ Tên *">
                         </div>
@@ -44,7 +46,71 @@
                         <div class="form-block">
                             <button type="submit" class="beta-btn primary">Gửi yêu cầu <i class="fa fa-chevron-right"></i></button>
                         </div>
-                    </form>
+                    </form>*@
+
+
+                    @using (Html.BeginForm("Create", "InformationManager"))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>Feedback Form</h4>
+                            <hr />
+                            @Html.ValidationSummary(true)                       
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Customer_Name,"Tên Khách Hàng", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Customer_Name)
+                                    @Html.ValidationMessageFor(model => model.Customer_Name)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Phone,"Số Điện Thoại", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Phone)
+                                    @Html.ValidationMessageFor(model => model.Phone)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email,"Email", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Email)
+                                    @Html.ValidationMessageFor(model => model.Email)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Address,"Địa Chỉ", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Address)
+                                    @Html.ValidationMessageFor(model => model.Address)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Title", "Tiêu Đề", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBox("Title")
+                                    @Html.ValidationMessage("Title")
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Message", "Nội Dung", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextArea("Message")
+                                    @Html.ValidationMessage("Message")
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
                 <div class="col-sm-4">
                     <h2>Thông tin liên hệ</h2>

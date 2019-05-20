@@ -1,6 +1,4 @@
-﻿@{
-    Layout = null;
-}
+﻿
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,16 +18,15 @@
     <link rel="stylesheet" title="style" href="/Content/css/huong-style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=vietnamese" rel="stylesheet">
-<style>
-    #searchform #s {
-        padding-right: 25px;
-        width: 101%;
-    }
-</style>
+    <style>
+        #searchform #s {
+            padding-right: 25px;
+            width: 101%;
+        }
+    </style>
 </head>
 
 <body>
-
     <div id="header">
         <div class="header-top">
             <div class="container">
@@ -50,8 +47,8 @@
                 <div class="pull-right beta-components space-left ov">
                     <div class="space10">&nbsp;</div>
                     <div class="beta-comp">
-                        <form role="search" method="get" id="searchform" action="/">
-                            <input type="text" value="" name="s" id="s" placeholder="Nhập từ khóa..." />
+                        <form role="search" method="get" id="searchform" action="@Url.Action("Search", "Home")">
+                            <input type="text" value="" name="text" id="s" placeholder="Nhập từ khóa..." />
                             <button class="fa fa-search" type="submit" id="searchsubmit"></button>
                         </form>
                     </div>
@@ -76,9 +73,8 @@
                         <li>
                             <a href="#">Sản phẩm</a>
                             <ul class="sub-menu">
-                                <li><a href="product_type.html">Sản phẩm 1</a></li>
-                                <li><a href="product_type.html">Sản phẩm 2</a></li>
-                                <li><a href="product_type.html">Sản phẩm 4</a></li>
+                                <li><a href="@Url.Action("ListItem", "ProductManager")?type=1">Nam</a></li>
+                                <li><a href="@Url.Action("ListItem", "ProductManager")?type=2">Nữ</a></li>
                             </ul>
                         </li>
                         <li><a href="@Url.Action("About","Home")">Giới thiệu</a></li>

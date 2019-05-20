@@ -10,37 +10,81 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Order_Detail</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Order_ID)
+<div class="form-horizontal">
+    @Html.HiddenFor(model => model.Watch_ID)
+    @Html.HiddenFor(model => model.Order_ID)
+    <div class="form-group fa-border " style="border-color:aquamarine; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+        <table class="table table-striped ">
+            <tr>
+                <td> Mã đơn hàng</td>
+                <td>
+                    @Model.Order_ID
+                </td>
+            </tr>
+            <tr>
+                <td> Họ tên khách hàng</td>
+                <td>
+                    @Model.Order.Customer_Name
+                </td>
+            </tr>
+            <tr>
+                <td> Email</td>
+                <td>
+                    @Model.Order.Customer_Email
+                </td>
+            </tr>
+            <tr>
+                <td> SDT</td>
+                <td>
+                    @Model.Order.Customer_Phone
+                </td>
+            </tr>
+            <tr>
+                <td> Địa chỉ</td>
+                <td>
+                    @Model.Order.Deliver_Address
+                </td>
+            </tr>
 
-        @Html.HiddenFor(model => model.Watch_ID)
+        </table>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Amount, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Amount)
-                @Html.ValidationMessageFor(model => model.Amount)
-            </div>
-        </div>
+    </div>
+    <div class="form-group">
+        <table class=" table table-bordered">
+            <tr style="background-color:orange">
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Price)
-                @Html.ValidationMessageFor(model => model.Price)
-            </div>
-        </div>
+            <tr>
+                <td>@Model.ProductTable.Watch_Name</td>
+                <td>
+                    @Html.EditorFor(m => m.Amount)
+                    @Html.ValidationMessageFor(m => m.Amount)
+                </td>
+                <td>@Model.ProductTable.Selling_Price</td>
+                <td>@(Model.Price =  Model.Amount * Model.ProductTable.Selling_Price) </td>
+            </tr>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+
+        </table>
+    </div>
+    <div class="col-lg-offset-10">
+       
+    </div>
+
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
         </div>
     </div>
+</div>
 }
 
 <div>
