@@ -220,7 +220,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\atlas.css" />
@@ -250,6 +259,14 @@
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\under-construction.min.css" />
     <Content Include="Content\css\yellow.css" />
+    <Content Include="Content\db\DataTables-1.10.18\images\sort_asc.png" />
+    <Content Include="Content\db\DataTables-1.10.18\images\sort_asc_disabled.png" />
+    <Content Include="Content\db\DataTables-1.10.18\images\sort_both.png" />
+    <Content Include="Content\db\DataTables-1.10.18\images\sort_desc.png" />
+    <Content Include="Content\db\DataTables-1.10.18\images\sort_desc_disabled.png" />
+    <Content Include="Content\db\dataTables.bootstrap.min.css" />
+    <Content Include="Content\db\datatables.css" />
+    <Content Include="Content\db\datatables.min.css" />
     <Content Include="Content\fabochart.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\css\huong-style.css" />
@@ -774,7 +791,16 @@
     <Content Include="Content\vendors\revolution-slider\images\gradient\g40.png" />
     <Content Include="Content\vroom.css" />
     <Content Include="Content\yellow.css" />
-    <Content Include="favicon.ico" />
+    <Content Include="Scripts\db\datatables.js" />
+    <Content Include="Scripts\db\datatables.min.js" />
+    <Content Include="Scripts\db\VNLanguage.js" />
+    <Content Include="Scripts\jsM\common-scripts.js" />
+    <Content Include="Scripts\jsM\DT_bootstrap.js" />
+    <Content Include="Scripts\jsM\editable-table.js" />
+    <Content Include="Scripts\jsM\jquery.dataTables.js" />
+    <Content Include="Scripts\jsM\jquery.dcjqaccordion.2.7.js" />
+    <Content Include="Scripts\jsM\jquery.scrollTo.min.js" />
+    <Content Include="Views\favicon.ico" />
     <Content Include="Content\fonts\digital-7-webfont.svg" />
     <Content Include="Content\fonts\digital-7_italic-webfont.svg" />
     <Content Include="Content\fonts\digital-7_mono-webfont.svg" />
@@ -1003,14 +1029,11 @@
     <Content Include="Views\ProductManager\Details.cshtml" />
     <Content Include="Views\ProductManager\Edit.cshtml" />
     <Content Include="Views\ProductManager\Index.cshtml" />
-    <Content Include="Views\OrderManager\Delete.cshtml" />
     <Content Include="Views\InformationManager\Delete.cshtml" />
     <Content Include="Views\InformationManager\Index.cshtml" />
     <Content Include="Views\InformationManager\Edit.cshtml" />
-    <Content Include="Views\OrderManager\Create.cshtml" />
     <Content Include="Views\OrderManager\Edit.cshtml" />
     <Content Include="Views\OrderManager\Details.cshtml" />
-    <Content Include="Views\OrderManager\Create2.cshtml" />
     <Content Include="Views\OrderManager\Index.cshtml" />
     <Content Include="Scripts\vendors\revolution-slider\assets\arrows.psd" />
     <Content Include="Scripts\vendors\revolution-slider\assets\bullets.psd" />
@@ -1024,6 +1047,7 @@
     <Content Include="Views\InformationManager\Details.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\ProductManager\ListItem.cshtml" />
+    <Content Include="Views\OrderManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
