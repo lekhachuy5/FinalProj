@@ -73,7 +73,7 @@ namespace ClockUniverse.Controllers
                     db.SaveChanges();
 
                     scope.Complete();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Home");
                 }
 
             return View(contact);

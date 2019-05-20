@@ -35,7 +35,7 @@
             {
                 <tr>
                     <td>
-                        @item.Order_ID
+                        HD@(item.Order_ID)
                     </td>
                     <td>
                         @item.Order.Customer_Name
@@ -44,7 +44,7 @@
                         @item.Order.Deliver_Address
                     </td>
                     <td>
-                        @item.Price
+                        @item.Price.ToString("N0")
                     </td>
                     <td>
                         @switch (@item.Order.Deliver_Status)
@@ -68,9 +68,8 @@
                         @Html.ActionLink("Chi tiết", "Details", new { id1 = item.Order_ID, id2 = item.Watch_ID }, new { @class = "btn btn-info" }) |
                         @if (item.Order.Deliver_Status == 1)
                         {
-                            @Html.ActionLink("Hủy", "Delete", new { id1 = item.Order_ID, id2 = item.Watch_ID }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Hủy", "Delete", new { id1 = item.Order_ID, id2 = item.Watch_ID }, new { @class="btn btn-warning"})
                         }
-
                     </td>
                 </tr>
 
@@ -79,13 +78,3 @@
 
     </table>
 </div>
-
-
-
-
-
-
-
-
-
-

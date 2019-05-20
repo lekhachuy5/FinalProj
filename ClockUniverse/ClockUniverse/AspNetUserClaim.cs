@@ -12,16 +12,13 @@ namespace ClockUniverse
     using System;
     using System.Collections.Generic;
     
-    public partial class ContactsDetail
+    public partial class AspNetUserClaim
     {
-        public int Feedback_ID { get; set; }
-        public int Contact_ID { get; set; }
-        public int Employee_ID { get; set; }
-        public string Title { get; set; }
-        public string Feedback_Detail { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public string Feedback_Reply { get; set; }
+        public int Id { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
+        public string User_Id { get; set; }
     
-        public virtual Contact Contact { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

@@ -164,6 +164,18 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Contact.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -182,6 +194,9 @@
     <Compile Include="Controllers\product_typesController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1032,9 +1047,7 @@
     <Content Include="Views\InformationManager\Delete.cshtml" />
     <Content Include="Views\InformationManager\Index.cshtml" />
     <Content Include="Views\InformationManager\Edit.cshtml" />
-    <Content Include="Views\OrderManager\Edit.cshtml" />
     <Content Include="Views\OrderManager\Details.cshtml" />
-    <Content Include="Views\OrderManager\Index.cshtml" />
     <Content Include="Scripts\vendors\revolution-slider\assets\arrows.psd" />
     <Content Include="Scripts\vendors\revolution-slider\assets\bullets.psd" />
     <Content Include="Scripts\vendors\revolution-slider\assets\small_arrows.psd" />
@@ -1047,6 +1060,8 @@
     <Content Include="Views\InformationManager\Details.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\OrderManager\Delete.cshtml" />
+    <Content Include="Views\OrderManager\Index.cshtml" />
+    <Content Include="Views\OrderManager\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
