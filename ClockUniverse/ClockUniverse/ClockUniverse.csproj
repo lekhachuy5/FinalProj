@@ -1031,7 +1031,6 @@
     <Content Include="Views\ProductManager\Index.cshtml" />
     <Content Include="Views\InformationManager\Delete.cshtml" />
     <Content Include="Views\InformationManager\Index.cshtml" />
-    <Content Include="Views\InformationManager\Detail.cshtml" />
     <Content Include="Views\InformationManager\Edit.cshtml" />
     <Content Include="Views\OrderManager\Edit.cshtml" />
     <Content Include="Views\OrderManager\Details.cshtml" />
@@ -1044,6 +1043,10 @@
     <Content Include="Scripts\vendors\revolution-slider\images\Thumbs.db" />
     <Content Include="Views\product_types\ListType.cshtml" />
     <Content Include="Views\products\product_detail.cshtml" />
+    <Content Include="Views\InformationManager\Create.cshtml" />
+    <Content Include="Views\InformationManager\Details.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\ProductManager\ListItem.cshtml" />
     <Content Include="Views\OrderManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -27,5 +27,21 @@ namespace ClockUniverse.Controllers
 
             return View();
         }
+        public ActionResult Search(string text)
+        {
+            var itemsz = db.ProductTables.Where(x => x.Watch_Name.ToLower().Contains(text.ToLower())).ToList();
+
+            if (itemsz.Count() > 0)
+            {
+                //ViewBag.Message = "";
+            }
+            else
+            {
+                ViewBag.Message = "No Item found";
+
+            }
+            ViewData["Item"] = itemsz;
+            return View(itemsz);
+        }
     }
 }

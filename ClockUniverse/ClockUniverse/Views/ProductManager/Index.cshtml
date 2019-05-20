@@ -4,10 +4,21 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutManage.cshtml";
 }
+<style>
+    img {
+        width: 100px;
+        height: 50px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 4px;
+    }
+</style>
 
 <h2>DANH SÁCH SẢN PHẨM</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm Sản Phẩm", "Create")
 </p>
 
 
@@ -61,27 +72,27 @@
                     @Html.DisplayFor(modelItem => item.Watch_Static)
                 </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Original_Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Selling_Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InStock)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductType.ProductType_Name)
-                </td>
-                <td>
-                    <img src="@Url.Action("Image", new { id = item.Watch_ID }) " />
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Watch_ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Watch_ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Watch_ID })
-                </td>
-            </tr>
-        }
+        <td>
+            @Html.DisplayFor(modelItem => item.Original_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Selling_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InStock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductType.ProductType_Name)
+        </td>
+        <td>
+           <img src="@Url.Action("Image", new { id = item.Watch_ID }) " />
+        </td>
+        <td>
+            @Html.ActionLink("Chi Tiết", "Details", new { id = item.Watch_ID }) |
+            @Html.ActionLink("Sửa", "Edit", new { id = item.Watch_ID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id = item.Watch_ID })
+        </td>
+    </tr>
+    }
     </tbody>
 </table>

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ClockUniverse;
+using System.Transactions;
 
 namespace ClockUniverse.Controllers
 {
@@ -54,14 +55,26 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Contact_ID,Customer_Name,Phone,Email,Address,Status")] Contact contact)
+        public ActionResult Create(Contact contact, string Title, string Feedback_Detail)
         {
             if (ModelState.IsValid)
-            {
-                db.Contacts.Add(contact);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                using (var scope = new TransactionScope())
+                {
+                    db.Contacts.Add(contact);
+                    db.SaveChanges();
+
+                    var detail = new ContactsDetail();
+                    detail.Title = Title;
+                    detail.Feedback_Detail = Feedback_Detail;
+                    detail.Feedback_ID = contact.Contact_ID;
+                    detail.Date = DateTime.Now;
+                    detail.Contact_ID = contact.Contact_ID;
+                    db.ContactsDetails.Add(detail);
+                    db.SaveChanges();
+
+                    scope.Complete();
+                    return RedirectToAction("Index");
+                }
 
             return View(contact);
         }
