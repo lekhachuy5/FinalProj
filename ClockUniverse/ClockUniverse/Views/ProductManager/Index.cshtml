@@ -10,10 +10,16 @@
         height: 50px;
     }
 
+    .img2 {
+        width: 0px;
+        height: 0px;
+    }
+  
     h2 {
         text-align: center;
         margin-top: 4px;
     }
+
 </style>
 
 <h2>DANH SÁCH SẢN PHẨM</h2>
@@ -89,7 +95,9 @@
             @Html.DisplayFor(modelItem => item.ProductType.ProductType_Name)
         </td>
         <td>
-           <img src="@Url.Action("Image", new { id = item.Watch_ID }) " />
+            <img src="@Url.Action("Image", new { id = item.Watch_ID }) " />
+            <img class="img2" src="@Url.Action("Image1", new { id = item.Watch_ID }) " />
+            <img class="img2" src="@Url.Action("Image2", new { id = item.Watch_ID }) " />
         </td>
         <td>
             @Html.ActionLink("Chi Tiết", "Details", new { id = item.Watch_ID }) |
