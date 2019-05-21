@@ -12,6 +12,24 @@
     .ribbon-wrapper {
         right: 349px;
     }
+    .tong {
+        width: 201px;
+        height: 48px;
+        background: #007bff;
+        color: white;
+        margin-top: 23px;
+        border-radius: 6px;
+        font-size: 31px;
+    }
+    i.fas.fa-shopping-cart {
+        margin-top: 10px;
+        margin-left: 22px;
+    }
+    input#btnGioHang {
+        margin-top: -10px;
+        font-size: 17px;
+    }
+
 </style>
 
     <div class="container">
@@ -20,7 +38,7 @@
                 <div class="col-sm-9">
                     <div class="row">
                         <div class="col-sm-8">
-                            <img src="/Content/images/products/6.jpg" alt="">
+                            <img src="@Url.Content("~/productmanager/Image/"+Model.Watch_ID)" alt="" style="width: 363px;height: 400px;">
                         </div>
                         <div class="col-sm-4">
                             <div class="single-item-body">
@@ -44,19 +62,44 @@
                             <div class="clearfix"></div>t
                             <div class="space20">&nbsp;</div>
                             <div class="single-item-desc">
+                                @if (Model.InStock > 0)
+                                {<p>
+                                Còn hàng
+</p>
+                                }
+                                else {
+                                    <p>
+                                        Hết hàng
+                                    </p>
+                                }</div>
+                            <div class="single-item-desc">
                                 <p>@Model.Watch_Static</p>
                             </div>
                             <div class="space20">&nbsp;</div>
                             <p>Số lượng:</p>
                             <div class="single-item-options">
-                                <select class="wc-select" name="color">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                                <a class="add-to-cart" href="@Url.Action("index","shoppingcart")"><i class="fa fa-shopping-cart"></i></a>
+
+                                @using (Html.BeginForm("addShoppingCart", "ShoppingCart", new { @iMaSP = Model.Watch_ID, @strUrl = Request.Url.ToString() }))
+                                {
+
+                                    @Html.TextBox("txtSoLuong", 1, new { type = "number" })
+                                    @Html.ValidationMessage("txtSoLuong")
+                                
+                                    <i class="fas fa-shopping-cart"></i>
+                                    if (Model.InStock <= 0)
+                                    {
+                                        <input type="submit" value="CHỌN MUA" id="btnGioHang" class="btn btn-primary btn-lg disabled" onclick=" confirm('sản phẩm hết hàng');" />
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ShoppingCart", "ShoppingCart")" class="tong">
+                                            <input type="submit" value="CHỌN MUA" id="btnGioHang" class="btn btn-primary btn-lg" />
+                                        </a>
+                                    }
+
+
+                                }
+
                                 <div class="clearfix"></div>
                             </div>
                         </div>
@@ -83,4 +126,36 @@
     <!-- .copyright -->
     <!-- include js files -->
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".numberinput").forceNumeric();
+        });
 
+        // forceNumeric() plug-in implementation
+        jQuery.fn.forceNumeric = function () {
+            return this.each(function () {
+                $(this).keydown(function (e) {
+                    var key = e.which || e.keyCode;
+
+                    if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
+                        // numbers
+                        key >= 48 && key <= 57 ||
+                        // Numeric keypad
+                        key >= 96 && key <= 105 ||
+                        // comma, period and minus, . on keypad
+                        key == 190 || key == 188 || key == 109 || key == 110 ||
+                        // Backspace and Tab and Enter
+                        key == 8 || key == 9 || key == 13 ||
+                        // Home and End
+                        key == 35 || key == 36 ||
+                        // left and right arrows
+                        key == 37 || key == 39 ||
+                        // Del and Ins
+                        key == 46 || key == 45)
+                        return true;
+
+                    return false;
+                });
+            });
+        }
+    </script>

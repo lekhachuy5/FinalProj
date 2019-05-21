@@ -19,7 +19,7 @@ namespace ClockUniverse {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resource1 {
@@ -57,6 +57,24 @@ namespace ClockUniverse {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Số lượng phải lớn hơn 0.
+        /// </summary>
+        internal static string AmountLess0 {
+            get {
+                return ResourceManager.GetString("AmountLess0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Số lượng đặt vượt quá tồn kho.
+        /// </summary>
+        internal static string OverInStock {
+            get {
+                return ResourceManager.GetString("OverInStock", resourceCulture);
             }
         }
         

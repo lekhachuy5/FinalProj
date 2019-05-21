@@ -16,21 +16,9 @@ namespace ClockUniverse.Controllers
 
         // GET: /ProductManager/
 
-        public ActionResult Index(string id)
+        public ActionResult Index()
         {
-            
-            var pro = from o in db.ProductTables select o;
-           
-
-            if (!string.IsNullOrEmpty(id))
-            {
-               
-                var strI = Convert.ToInt32(id.Trim());
-                pro = db.ProductTables.Where(o => o.Watch_ID == strI);
-            }
-
-            ViewBag.SearchTerm = id;
-            return View(pro);
+            return View(db.ProductTables.ToList());
         }
 
         // GET: /ProductManager/Details/5
