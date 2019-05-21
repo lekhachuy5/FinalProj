@@ -115,11 +115,9 @@
                 <div class="cart-totals pull-right">
 
                     <div class="cart-totals-row"><h5 class="cart-total-title">Cart Totals</h5></div>
-                    @foreach (var item in Model)
-                    {
-                        <div class="cart-totals-row"><span>Cart Subtotal:</span> <span> @String.Format("{0:0,0}", item.thanhTien)</span></div>
-                    }
 
+
+                    <div class="cart-totals-row"><span>Cart Subtotal:</span> <span>@Html.Action("_TotalPartial", "ShoppingCart")</span></div>
                     <div class="cart-totals-row"><span>Shipping:</span> <span>Free Shipping</span></div>
                     <div class="cart-totals-row"><span>Order Total:</span> <span>$188.00</span></div>
 
@@ -128,9 +126,11 @@
             </div>
             <tr>
                 <td colspan="6" style="text-align:right; color:blue">
-                    @using (Html.BeginForm("DatHang","ShoppingCart"))
+                    @using (Html.BeginForm("index", "Checkout"))
                     {
-                        <input type="submit" value="Dat hang"/>
+                        <a href="@Url.Action("Index","Checkout")">
+                            <input type="submit" value="Dat hang" />
+                        </a>
                     }
                 </td>
             </tr>

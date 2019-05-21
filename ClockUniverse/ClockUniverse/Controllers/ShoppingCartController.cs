@@ -13,11 +13,11 @@ namespace ClockUniverse.Controllers
     {
         CsK23T3bEntities db = new CsK23T3bEntities();
         // get Shoppping Cart
-        
+
         public List<ShoppingCart> GetShoppingCart()
         {
             List<ShoppingCart> lstcart = Session["GioHang"] as List<ShoppingCart>;
-            if(lstcart == null)
+            if (lstcart == null)
             {
                 // Neu gio hang chua ton tai thi minh tien hang tao gio hang
                 lstcart = new List<ShoppingCart>();
@@ -26,9 +26,16 @@ namespace ClockUniverse.Controllers
             return lstcart;
         }
         // Them gio hang
-        public ActionResult addShoppingCart (int iMaSP, string strUrl)
+        public ActionResult addShoppingCart(int iMaSP, string strUrl, int txtSoLuong)
         {
+
             ProductTable product = db.ProductTables.SingleOrDefault(n => n.Watch_ID == iMaSP);
+            
+            if (txtSoLuong <= 0 || txtSoLuong.ToString().Trim().Equals(null))
+            {
+                txtSoLuong = 1;
+            }
+
             if (product == null)
             {
                 Response.StatusCode = 404;
@@ -37,20 +44,25 @@ namespace ClockUniverse.Controllers
             // Lấy ra session giỏ hàng
             List<ShoppingCart> lstCart = GetShoppingCart();
             // Kiểm tra sản phẩm này đã tồn tại trong session[giohang] chưa
-            ShoppingCart sp = lstCart.Find(n=>n.iMaSP==iMaSP);
-            if(sp == null)
+            ShoppingCart sp = lstCart.Find(n => n.iMaSP == iMaSP);
+
+            if (sp == null)
             {
 
                 sp = new ShoppingCart(iMaSP);
-                // Add san pham vao list
+                sp.soLuong = txtSoLuong;
                 lstCart.Add(sp);
                 return Redirect(strUrl);
             }
             else
             {
-                sp.soLuong++;
+
+                sp.soLuong = sp.soLuong + txtSoLuong;
+
                 return Redirect(strUrl);
             }
+
+
         }
         // Cap nhat gio hang
         public ActionResult UpdateShoppingCart(int iMaSP, FormCollection f)
@@ -68,16 +80,16 @@ namespace ClockUniverse.Controllers
             // Kiem tra san pham co ton tai tron session
             ShoppingCart sp = lstCart.SingleOrDefault(n => n.iMaSP == iMaSP);
             // Neu ton tai thi cho sua so luong
-            if(sp != null)
+            if (sp != null)
             {
                 sp.soLuong = int.Parse(f["txtSoLuong"].ToString());
-               
+
             }
             return RedirectToAction("ShoppingCart");
 
         }
         // Xoa gio hang
-        public ActionResult DeleteShoppingCart (int iMaSP)
+        public ActionResult DeleteShoppingCart(int iMaSP)
         {
             // Kiem tra ma san pham
             ProductTable product = db.ProductTables.SingleOrDefault(n => n.Watch_ID == iMaSP);
@@ -105,10 +117,13 @@ namespace ClockUniverse.Controllers
         //Xay dung trang gio hang
         public ActionResult ShoppingCart()
         {
+            
+            
             if (Session["GioHang"] == null)
             {
                 return RedirectToAction("Index", "Home");
             }
+
             List<ShoppingCart> lstCart = GetShoppingCart();
             return View(lstCart);
         }
@@ -117,7 +132,7 @@ namespace ClockUniverse.Controllers
         {
             int iSumAmount = 0;
             List<ShoppingCart> lstCart = Session["GioHang"] as List<ShoppingCart>;
-            if(lstCart != null)
+            if (lstCart != null)
             {
                 iSumAmount = lstCart.Sum(n => n.soLuong);
 
@@ -129,27 +144,31 @@ namespace ClockUniverse.Controllers
         {
             double dSumPrice = 0;
             List<ShoppingCart> lstCart = Session["GioHang"] as List<ShoppingCart>;
-            if(lstCart != null)
+            if (lstCart != null)
             {
                 dSumPrice += lstCart.Sum(n => n.thanhTien);
             }
             return dSumPrice;
         }
+       
+    
         public ActionResult Index()
         {
-<<<<<<< HEAD
+
             ViewBag.Message = "Your application description page.";
 
-=======
-            
->>>>>>> 6b663129cacaa2b3c718800bfec3eafd4936d29c
+
+
+
             return View();
         }
         // Tao partial gio hang
         public ActionResult CartPartial()
         {
-            if(SumAmount() == 0)
+            if (SumAmount() == 0)
             {
+                ViewBag.SumAmount = 0;
+                ViewBag.SumPrice = 0;
                 return PartialView();
             }
             ViewBag.TongSoLuong = SumAmount();
@@ -182,16 +201,28 @@ namespace ClockUniverse.Controllers
             db.Orders.Add(order);
             db.SaveChanges();
             // Them chi tiet don hang
-            foreach(var item in cart)
+            foreach (var item in cart)
             {
                 Order_Detail order_Detail = new Order_Detail();
                 order_Detail.Order_ID = order.Order_ID;
                 order_Detail.Watch_ID = item.iMaSP;
-                order_Detail.Amount = (int)item.donGia;
+                order_Detail.Amount = (int)item.soLuong;
                 db.Order_Detail.Add(order_Detail);
             }
             db.SaveChanges();
-            return RedirectToAction("index","Home");
+            return RedirectToAction("index", "Home");
+        }
+        public ActionResult _TotalPartial()
+        {
+            if (SumAmount() == 0)
+            {
+                ViewBag.SumAmount = 0;
+                ViewBag.SumPrice = 0;
+                return PartialView();
+            }
+            ViewBag.TongSoLuong = SumAmount();
+            ViewBag.TongTien = SumPrice();
+            return PartialView();
         }
     }
 }

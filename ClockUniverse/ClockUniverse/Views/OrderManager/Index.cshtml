@@ -65,7 +65,7 @@
                     </td>
                     <td>
                         @Html.ActionLink("Cập nhật", "Edit", new { id1 = item.Order_ID, id2 = item.Watch_ID }, new { @class = " btn btn-primary" }) |
-                        @Html.ActionLink("Chi tiết", "Details", new { id1 = item.Order_ID, id2 = item.Watch_ID }, new { @class = "btn btn-info" }) |
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.Order_ID}, new { @class = "btn btn-info" }) |
                         @if (item.Order.Deliver_Status == 1)
                         {
                             @Html.ActionLink("Hủy", "Delete", new { id1 = item.Order_ID, id2 = item.Watch_ID }, new { @class="btn btn-warning"})

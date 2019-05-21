@@ -76,11 +76,10 @@
                                 <div class="col-sm-3">
                                     <div class="single-item">
                                         <div class="single-item-header">
-<<<<<<< HEAD
-                                            <a href="@Url.Action("product_detail","products", new { @Watch_ID = item.Watch_ID})"><img src="@Url.Content("~/productmanager/Image/"+item.Watch_ID)" alt=""></a>
-=======
-                                            <a href="@Url.Action("product_detail", "products", new { @Watch_ID = item.Watch_ID })"><img src="/Content/images/products/1.jpg" alt=""></a>
->>>>>>> 6b663129cacaa2b3c718800bfec3eafd4936d29c
+
+                                            <a href="@Url.Action("product_detail","products", new { @Watch_ID = item.Watch_ID})"><img src="@Url.Content("~/productmanager/Image/"+item.Watch_ID)" alt="" style="width:260px;height:280px"></a>
+
+                                            
                                         </div>
                                         @if (item.Original_Price < item.Selling_Price)
                                         {

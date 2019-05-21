@@ -7,7 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Runtime.Caching;
-using ClockUniverse;
+using ClockUniverse.Controllers;
+using ClockUniverse.Models;
 using System.Transactions;
 namespace ClockUniverse.Controllers
 {
@@ -15,6 +16,17 @@ namespace ClockUniverse.Controllers
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();
         // GET: /OrderManager/
+        public List<ShoppingCart> GetShoppingCart()
+        {
+            List<ShoppingCart> lstcart = Session["GioHang"] as List<ShoppingCart>;
+            if (lstcart == null)
+            {
+                // Neu gio hang chua ton tai thi minh tien hang tao gio hang
+                lstcart = new List<ShoppingCart>();
+                Session["GioHang"] = lstcart;
+            }
+            return lstcart;
+        }
         public ActionResult Index()
         {
             var model = db.Order_Detail.ToList();
@@ -23,13 +35,14 @@ namespace ClockUniverse.Controllers
         }
 
         // GET: /OrderManager/Details/5
-        public ActionResult Details(int? id1, int? id2)
+        public ActionResult Details(int? id)
         {
-            if (id1 == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order_Detail order = db.Order_Detail.Find(id1, id2);
+            var order = db.Orders.Find(id);
+
             if (order == null)
             {
                 return HttpNotFound();
@@ -168,6 +181,46 @@ namespace ClockUniverse.Controllers
 
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: /InformationManager/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Order order)
+        {
+            if (ModelState.IsValid)
+            {
+                List<ShoppingCart> cart = GetShoppingCart();
+                order.Order_Date = DateTime.Now;
+                order.Delivery_Date = DateTime.Now.AddDays(3);
+                order.Deliver_Status = 1;
+                
+                db.Orders.Add(order);
+               
+                foreach (var item in cart)
+                {
+                    Order_Detail order_Detail = new Order_Detail();
+                    order_Detail.Order_ID = order.Order_ID;
+                    order_Detail.Watch_ID = item.iMaSP;
+                    order_Detail.Amount = (int)item.soLuong;
+                    order_Detail.Price =  Convert.ToDecimal(item.thanhTien);
+                    db.Order_Detail.Add(order_Detail);
+                    order.Total_Price += Convert.ToDecimal(item.thanhTien);
+                    db.Orders.Add(order);
+                }
+                Session["GioHang"] = null;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+               
+
+            return View(order);
         }
 
         protected override void Dispose(bool disposing)

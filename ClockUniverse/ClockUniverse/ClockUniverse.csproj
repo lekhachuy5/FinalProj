@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Orderdetail.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -1042,13 +1043,11 @@
     <Content Include="Views\Shared\_LayoutManage.cshtml" />
     <Content Include="Views\ProductManager\Create.cshtml" />
     <Content Include="Views\ProductManager\Delete.cshtml" />
-    <Content Include="Views\ProductManager\Details.cshtml" />
     <Content Include="Views\ProductManager\Edit.cshtml" />
     <Content Include="Views\ProductManager\Index.cshtml" />
     <Content Include="Views\InformationManager\Delete.cshtml" />
     <Content Include="Views\InformationManager\Index.cshtml" />
     <Content Include="Views\InformationManager\Edit.cshtml" />
-    <Content Include="Views\OrderManager\Details.cshtml" />
     <Content Include="Scripts\vendors\revolution-slider\assets\arrows.psd" />
     <Content Include="Scripts\vendors\revolution-slider\assets\bullets.psd" />
     <Content Include="Scripts\vendors\revolution-slider\assets\small_arrows.psd" />
@@ -1061,15 +1060,15 @@
     <Content Include="Views\InformationManager\Details.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\ProductManager\ListItem.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\ShoppingCart\ShoppingCart.cshtml" />
     <Content Include="Views\ShoppingCart\CartPartial.cshtml" />
     <Content Include="Views\ShoppingCart\EditShoppingCart.cshtml" />
-=======
     <Content Include="Views\OrderManager\Delete.cshtml" />
     <Content Include="Views\OrderManager\Index.cshtml" />
     <Content Include="Views\OrderManager\Edit.cshtml" />
->>>>>>> 6b663129cacaa2b3c718800bfec3eafd4936d29c
+    <Content Include="Views\OrderManager\Create.cshtml" />
+    <Content Include="Views\ShoppingCart\_TotalPartial.cshtml" />
+    <Content Include="Views\OrderManager\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

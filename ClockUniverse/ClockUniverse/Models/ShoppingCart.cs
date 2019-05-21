@@ -14,11 +14,13 @@ namespace ClockUniverse.Models
         public string Image { get; set; }
         public double donGia { get; set; }
         public int soLuong { get; set; }
+        public int TonKho { get; set; }
         public double thanhTien
         {
             get { return soLuong * donGia; }
 
         }
+       
         // Ham tạo cho giỏ hàng
         public ShoppingCart(int MaSP)
         {
