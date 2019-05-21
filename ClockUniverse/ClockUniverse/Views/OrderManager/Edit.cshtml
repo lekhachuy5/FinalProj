@@ -63,6 +63,7 @@
                     <th>Số lượng</th>
                     <th>Đơn giá</th>
                     <th>Thành tiền</th>
+                    <th>Tình trạng</th>
                 </tr>
 
                 <tr>
@@ -73,6 +74,23 @@
                     </td>
                     <td>@Model.ProductTable.Selling_Price.ToString("N0")</td>
                     <td>@((Model.Price = Model.Amount * Model.ProductTable.Selling_Price).ToString("N0"))</td>
+                    <td>
+                        @switch (@Model.Order.Deliver_Status)
+                        {
+                            case 1:
+                                <div>Đang xử lý</div>
+                                break;
+                            case 2:
+                                <div>Đã tiếp nhận</div>
+                                break;
+                            case 3:
+                                <div>Đang giao hàng</div>
+                                break;
+                            case 4:
+                                <div>Đã giao hàng</div>
+                                break;
+                        }
+                    </td>
                 </tr>
 
 
@@ -84,6 +102,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
+                @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
             </div>
         </div>
     </div>
