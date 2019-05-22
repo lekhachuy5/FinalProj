@@ -1072,11 +1072,11 @@
     <Content Include="Views\ShoppingCart\CartPartial.cshtml" />
     <Content Include="Views\ShoppingCart\EditShoppingCart.cshtml" />
     <Content Include="Views\OrderManager\Delete.cshtml" />
-    <Content Include="Views\OrderManager\Index.cshtml" />
-    <Content Include="Views\OrderManager\Edit.cshtml" />
     <Content Include="Views\OrderManager\Create.cshtml" />
     <Content Include="Views\ShoppingCart\_TotalPartial.cshtml" />
     <Content Include="Views\OrderManager\Details.cshtml" />
+    <Content Include="Views\OrderManager\Index.cshtml" />
+    <Content Include="Views\OrderManager\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

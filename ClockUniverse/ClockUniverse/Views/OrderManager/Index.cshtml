@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ClockUniverse.Order_Detail>
+﻿@model IEnumerable<ClockUniverse.Order>
 
 @{
     /**/
@@ -27,6 +27,9 @@
                 <th>
                     Tình trạng
                 </th>
+                <th>
+                    Ngày cập nhật
+                </th>
                 <th></th>
             </tr>
         </thead>
@@ -38,16 +41,16 @@
                         HD@(item.Order_ID)
                     </td>
                     <td>
-                        @item.Order.Customer_Name
+                        @item.Customer_Name
                     </td>
                     <td>
-                        @item.Order.Deliver_Address
+                        @item.Deliver_Address
                     </td>
                     <td>
-                        @item.Price.ToString("N0")
+                        @item.Total_Price.ToString("N0")
                     </td>
                     <td>
-                        @switch (@item.Order.Deliver_Status)
+                        @switch (@item.Deliver_Status)
                         {
                             case 1:
                                 <div>Đang xử lý</div>
@@ -64,11 +67,14 @@
                         }
                     </td>
                     <td>
-                        @Html.ActionLink("Cập nhật", "Edit", new { id1 = item.Order_ID, id2 = item.Watch_ID }, new { @class = " btn btn-primary" }) |
-                        @Html.ActionLink("Chi tiết", "Details", new { id = item.Order_ID}, new { @class = "btn btn-info" }) |
-                        @if (item.Order.Deliver_Status == 1)
+                        @item.Order_ChangeDate
+                    </td>
+                    <td>
+                        @Html.ActionLink("Cập nhật", "Edit", new { id = item.Order_ID}, new { @class = " btn btn-primary" }) |
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.Order_ID }, new { @class = "btn btn-info" }) |
+                        @if (item.Deliver_Status == 1)
                         {
-                            @Html.ActionLink("Hủy", "Delete", new { id1 = item.Order_ID, id2 = item.Watch_ID }, new { @class="btn btn-warning"})
+                            @Html.ActionLink("Hủy", "Delete", new { id = item.Order_ID}, new { @class = "btn btn-warning" })
                         }
                     </td>
                 </tr>

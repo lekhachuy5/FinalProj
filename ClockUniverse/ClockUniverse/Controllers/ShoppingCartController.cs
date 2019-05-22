@@ -30,7 +30,7 @@ namespace ClockUniverse.Controllers
         {
 
             ProductTable product = db.ProductTables.SingleOrDefault(n => n.Watch_ID == iMaSP);
-            
+
             if (txtSoLuong <= 0 || txtSoLuong.ToString().Trim().Equals(null))
             {
                 txtSoLuong = 1;
@@ -64,6 +64,8 @@ namespace ClockUniverse.Controllers
 
 
         }
+
+        
         // Cap nhat gio hang
         public ActionResult UpdateShoppingCart(int iMaSP, FormCollection f)
         {
@@ -117,8 +119,8 @@ namespace ClockUniverse.Controllers
         //Xay dung trang gio hang
         public ActionResult ShoppingCart()
         {
-            
-            
+
+
             if (Session["GioHang"] == null)
             {
                 return RedirectToAction("Index", "Home");
@@ -150,8 +152,8 @@ namespace ClockUniverse.Controllers
             }
             return dSumPrice;
         }
-       
-    
+
+
         public ActionResult Index()
         {
 

@@ -70,6 +70,15 @@ namespace ClockUniverse {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Trường dữ liệu này không được để trống.
+        /// </summary>
+        internal static string nullname {
+            get {
+                return ResourceManager.GetString("nullname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Số lượng đặt vượt quá tồn kho.
         /// </summary>
         internal static string OverInStock {

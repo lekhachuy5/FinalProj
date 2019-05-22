@@ -4,8 +4,12 @@
     ViewBag.Title = "ShoppingCart";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>ShoppingCart</h2>
+<style>
+    img.pull-left {
+        width: 120px;
+        height: 91px;
+    }
+</style>
 
 
     <!-- #header -->
@@ -30,45 +34,52 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr class="cart_item">
-                                <td class="product-name">
-                                    <div class="media">
-                                        <img class="pull-left" src="@Url.Content("~/productmanager/Image/"+item.iMaSP)" alt="">
-                                        <div class="media-body">
-                                            <p class="font-large table-title">@item.TenSP</p>
-                                            @if(@item.type==0){
+                        <tr class="cart_item">
+                            <td class="product-name">
+                                <div class="media">
+                                    <img class="pull-left" src="@Url.Content("~/productmanager/Image/"+item.iMaSP)" alt="">
+                                    <div class="media-body">
+                                        <p class="font-large table-title">@item.TenSP</p>
+                                        @if (@item.type == 0)
+                                        {
                                             <p class="table-option">Nam</p>
-                                            }else{
+                                        }
+                                        else
+                                        {
                                             <p class="table-option">Nu</p>
-                                            }
-                                        </div>
+                                        }
                                     </div>
-                                </td>
-                                <td class="product-price">
-                                    <span class="amount">
-                                        @string.Format("{0:0,0}", item.donGia.ToString()) VND
-                                    </span>
-                                </td>
-                                <td class="product-status">
-                                    In Stock
-                                </td>
-                                <td class="product-quantity">
-                                    <p>
-                                        @item.soLuong
-                                    </p>
-                                      
-                                </td>
-                                <td class="product-subtotal">
-                                    <span class="amount">
-                                        @string.Format("{0:0,0}", item.thanhTien) VND
-                                    </span>
-                                </td>
-                                <td class="product-remove">
-                                    <a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
-                                </td>
+                                </div>
+                            </td>
+                            <td class="product-price">
+                                <span class="amount">
+                                    @string.Format("{0:0,0}", item.donGia.ToString()) VND
+                                </span>
+                            </td>
+                            <td class="product-status">
+                                Còn hàng
+                            </td>
+                            <td class="product-quantity">
+                                <p>
+                                    @item.soLuong
+                                </p>
 
-                               
-                            </tr>
+                            </td>
+                            <td class="product-subtotal">
+                                <span class="amount">
+                                    @string.Format("{0:0,0}", item.thanhTien) VND
+                                </span>
+                            </td>
+                            <td class="product-remove">
+                                <a href="#" class="remove" title="Remove this item">
+                                    @Html.ActionLink("Xóa", "DeleteShoppingCart", new { @iMaSP = item.iMaSP })
+                                    
+
+                                </a>
+                            </td>
+
+
+                        </tr>
                         }
                             <tr>
                                 <td colspan="6" style="text-align:right">
