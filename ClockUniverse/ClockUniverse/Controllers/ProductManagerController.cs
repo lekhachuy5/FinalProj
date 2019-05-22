@@ -150,9 +150,9 @@ namespace ClockUniverse.Controllers
 
         private void ValidateClock(ProductTable model)
         {
-            if (model.Original_Price == 0 ) 
+            if (model.Original_Price == 0)
                 ModelState.AddModelError("Original_Price", Resource1.priceLess0);
-            
+
         }
 
         // GET: /ProductManager/Delete/5
@@ -177,11 +177,18 @@ namespace ClockUniverse.Controllers
         {
             ProductTable producttable = db.ProductTables.Find(id);
 
-            db.ProductTables.Remove(producttable);
-            db.SaveChanges();
-
-
-            return RedirectToAction("Index");
+            var rs = db.Order_Detail.Where(p => p.Watch_ID == id);
+            if (rs.Count() != 0)
+            {
+                ModelState.AddModelError("Watch_ID", "Sản phẩm này đang được sử dụng");
+            }
+            else
+            {
+                db.ProductTables.Remove(producttable);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(producttable);
         }
 
         protected override void Dispose(bool disposing)
@@ -192,6 +199,6 @@ namespace ClockUniverse.Controllers
             }
             base.Dispose(disposing);
         }
-       
+
     }
 }
