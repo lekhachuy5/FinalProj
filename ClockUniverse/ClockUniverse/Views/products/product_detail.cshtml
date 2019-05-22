@@ -10,7 +10,7 @@
         margin-left: 125px;
     }
     .ribbon-wrapper {
-        right: 349px;
+        right: 442px;
     }
     .tong {
         width: 201px;
@@ -21,62 +21,139 @@
         border-radius: 6px;
         font-size: 31px;
     }
+
     i.fas.fa-shopping-cart {
-        margin-top: 10px;
-        margin-left: 22px;
+        position: relative;
+        top: 5px;
+        left: 43px;
+        font-size: 23px;
+        color: white;
+        cursor: pointer;
+    }
+    p.single-item-title {
+        font-size: 27px;
+        margin-bottom: 16px;
+        font-weight: 500;
+    }
+    b#giaNiemYet {
+        font-size: 13px;
+        color: #737373;
+    }
+    span.flash-del1 {
+        font-size: 13px;
+        color: #737373;
+    }
+    .single-item-desc {
+        font-size: 13px;
+        color: #737373;
+        margin-bottom: 17px;
+    }
+    span#TinhTrang {
+        color: red;
+        font-size: 15px;
+        font-weight: 500;
+    }
+    .single-item-desc.lala {
+        padding: 20px 1px;
+        color: #333;
+        height: 300px;
+    }
+    .flash-sale {
+        color: #ff3425;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: -15px;
+        display: block;
+    }
+    li.active {
+        width: 60%;
+        text-align: center;
+        border-bottom: 1px solid black;
+    }
+    li {
+        width: 155px;
+        text-align: center;
+    }
+    span#nameTT {
+        font-weight: 400;
+    }
+    .single-item-price {
+        font-size: 20px;
+        color: #000;
+    }
+    input#txtSoLuong {
+        width: 55px;
+        font-size: 18px;
+        height: 28px;
+    }
+    #sl {
+        font-size: 13px;
+        color: #737373;
+    }
+    #giaGoc {
+        color: #ff3425;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        display: block;
     }
     input#btnGioHang {
-        margin-top: -10px;
-        font-size: 17px;
+        width: 170px;
+        padding-left: 43px;
     }
-
 </style>
 
     <div class="container">
         <div id="content">
             <div class="row">
-                <div class="col-sm-9">
+                <div class="col-sm-10">
                     <div class="row">
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <img src="@Url.Content("~/productmanager/Image/"+Model.Watch_ID)" alt="" style="width: 363px;height: 400px;">
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
                             <div class="single-item-body">
                                 <p class="single-item-title">@Model.Watch_Name</p>
-                                @if (Model.Original_Price < Model.Selling_Price)
+                                @if (Model.Original_Price <= Model.Selling_Price)
                                 {
-                                    <p class="single-item-price">
-                                        <span>@Model.Selling_Price</span>
+                                    <p class="single-item-price" id="giaGoc">
+                                        <span>@Model.Selling_Price ₫</span>
                                     </p>
                                 }
                                 else
                                 {
                                     <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
                                     <p class="single-item-price">
-                                        <span class="flash-del">@Model.Original_Price</span>
-                                        <span class="flash-sale">@Model.Selling_Price</span>
+                                        <span class="flash-sale">@Model.Selling_Price ₫</span> <br>
+                                        <b id="giaNiemYet">Giá niêm yết: </b> <span class="flash-del1">@Model.Original_Price ₫</span> <br />
                                     </p>
                                 }
 
                             </div>
-                            <div class="clearfix"></div>t
-                            <div class="space20">&nbsp;</div>
+                            <div class="clearfix"></div>
+
                             <div class="single-item-desc">
                                 @if (Model.InStock > 0)
-                                {<p>
-                                Còn hàng
-</p>
+                                {
+                                    <span id="nameTT">
+                                        Tình trạng:
+                                    </span>
+                                    <span id="TinhTrang">
+                                        Còn hàng
+                                    </span>
                                 }
-                                else {
-                                    <p>
+                                else
+                                {
+                                    <span id="nameTT">
+                                        Tình trạng:
+                                    </span>
+                                    <span id="TinhTrang">
                                         Hết hàng
-                                    </p>
-                                }</div>
-                            <div class="single-item-desc">
-                                <p>@Model.Watch_Static</p>
+                                    </span>
+                                }
                             </div>
-                            <div class="space20">&nbsp;</div>
-                            <p>Số lượng:</p>
+
+                            <p id="sl">Số lượng:</p>
                             <div class="single-item-options">
 
                                 @using (Html.BeginForm("addShoppingCart", "ShoppingCart", new { @iMaSP = Model.Watch_ID, @strUrl = Request.Url.ToString() }))
@@ -84,39 +161,44 @@
 
                                     @Html.TextBox("txtSoLuong", 1, new { type = "number" })
                                     @Html.ValidationMessage("txtSoLuong")
-                                
-                                    <i class="fas fa-shopping-cart"></i>
+
+
                                     if (Model.InStock <= 0)
                                     {
-                                        <input type="submit" value="CHỌN MUA" id="btnGioHang" class="btn btn-primary btn-lg disabled" onclick=" confirm('sản phẩm hết hàng');" />
+
+                                        <i class="fas fa-shopping-cart"></i><input type="submit" value="CHỌN MUA" id="btnGioHang" class="btn btn-primary btn-lg disabled" />
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("ShoppingCart", "ShoppingCart")" class="tong">
-                                            <input type="submit" value="CHỌN MUA" id="btnGioHang" class="btn btn-primary btn-lg" />
+                                        <a href="@Url.Action("ShoppingCart", "ShoppingCart")">
+                                            <i class="fas fa-shopping-cart"></i><input type="submit" value="CHỌN MUA" id="btnGioHang" class="btn btn-primary btn-lg" />
                                         </a>
                                     }
+
 
 
                                 }
 
                                 <div class="clearfix"></div>
                             </div>
+
+                            <div class="single-item-desc lala">
+                                <div class="woocommerce-tabs">
+                                    <ul class="tabs">
+                                        <li><a href="#tab-description">Thông tin</a></li>
+                                        <li><a href="#tab-reviews">Mô Tả</a></li>
+                                    </ul>
+                                    <div class="panel" id="tab-description">
+                                        <p>@Model.Watch_Description</p>
+                                    </div>
+                                    <div class="panel" id="tab-reviews">
+                                        <p>@Model.Watch_Static</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="space40">&nbsp;</div>
-                    <div class="woocommerce-tabs">
-                        <ul class="tabs">
-                            <li><a href="#tab-description">Description</a></li>
-                            <li><a href="#tab-reviews">Reviews (0)</a></li>
-                        </ul>
-                        <div class="panel" id="tab-description">
-                            <p>@Model.Watch_Description</p>
-                        </div>
-                        <div class="panel" id="tab-reviews">
-                            <p>No Reviews</p>
-                        </div>
-                    </div>
+
                     <div class="space50">&nbsp;</div>
                 </div>
             </div>

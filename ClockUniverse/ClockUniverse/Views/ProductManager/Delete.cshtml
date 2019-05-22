@@ -102,9 +102,14 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Xóa Sản Phẩm" class="btn btn-default" />
-            </div>
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Xóa Sản Phẩm" class="btn btn-default" onclick="myFunction()" />
+        <script>
+            function myFunction() {
+                confirm("Ban da xoa san pham");
+            }
+        </script>
+    </div>
             }
     </div>
 
