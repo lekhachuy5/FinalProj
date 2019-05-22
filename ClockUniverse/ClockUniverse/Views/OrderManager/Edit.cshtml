@@ -1,4 +1,4 @@
-﻿@model ClockUniverse.Order_Detail
+﻿@model ClockUniverse.Order
 
 @{
     ViewBag.Title = "Edit";
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        @Html.HiddenFor(model => model.Watch_ID)
+
         @Html.HiddenFor(model => model.Order_ID)
         <div class="form-group fa-border " style="border-color:aquamarine; font-family:Arial;font-size: 20px ">
             <table class="table table-striped ">
@@ -25,32 +25,32 @@
                 <tr>
                     <td> Họ tên khách hàng</td>
                     <td>
-                        @Model.Order.Customer_Name
+                        @Model.Customer_Name
                     </td>
                 </tr>
                 <tr>
                     <td> Email</td>
                     <td>
-                        @Model.Order.Customer_Email
+                        @Model.Customer_Email
                     </td>
                 </tr>
                 <tr>
                     <td> SDT</td>
                     <td>
-                        @Model.Order.Customer_Phone
+                        @Model.Customer_Phone
                     </td>
                 </tr>
                 <tr>
                     <td> Địa chỉ</td>
                     <td>
-                        @Model.Order.Deliver_Address
+                        @Model.Deliver_Address
                     </td>
                 </tr>
                 <tr>
                     <td> Tình trạng</td>
                     <td>
                         @Html.DropDownList("Deliver_Status", (SelectList)ViewBag.DS)
-                        <span>@Html.ValidationMessage("Deliver_Status")</span>
+                        @Html.ValidationMessage("Deliver_Status")
                     </td>
                 </tr>
             </table>
@@ -64,26 +64,31 @@
                     <th>Đơn giá</th>
                     <th>Thành tiền</th>
                 </tr>
+                @foreach (var item in Model.Order_Detail)
+                {
+                    <tr>
+                        <td>@item.ProductTable.Watch_Name</td>
+                        <td>
+                            @item.Amount
+                        </td>
+                        <td>@item.ProductTable.Selling_Price.ToString("N0")</td>
+                        <td>@item.Price.ToString("N0")</td>
 
-                <tr>
-                    <td>@Model.ProductTable.Watch_Name</td>
-                    <td>
-                        @Html.TextBox("Amount", null, new { @class = "numberinput" })
-                        @Html.ValidationMessage("Amount")
-                    </td>
-                    <td>@Model.ProductTable.Selling_Price.ToString("N0")</td>
-                    <td>@((Model.Price = Model.Amount * Model.ProductTable.Selling_Price).ToString("N0"))</td>
-                </tr>
-
+                    </tr>
+                }
 
             </table>
         </div>
+        <div class="col-lg-offset" style="border-bottom:double; border-top:double">
+            <p style="text-align:right; font-family:Arial; font-size: 20px">  Tổng hóa đơn: @Model.Total_Price.ToString("N0")</p>
+        </div>
         <div class="col-lg-offset-10">
-
+            Ngày cập nhật :@Model.Order_ChangeDate
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
+                @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
             </div>
         </div>
     </div>
