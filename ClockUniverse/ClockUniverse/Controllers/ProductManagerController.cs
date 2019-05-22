@@ -179,9 +179,19 @@ namespace ClockUniverse.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ProductTable producttable = db.ProductTables.Find(id);
-            db.ProductTables.Remove(producttable);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+
+            var rs = db.Order_Detail.Where(p => p.Watch_ID == id);
+            if (rs.Count() != 0)
+            {
+                ModelState.AddModelError("Watch_ID", "Sản phẩm này đang được sử dụng");
+            }
+            else
+            {
+                db.ProductTables.Remove(producttable);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(producttable);
         }
 
         protected override void Dispose(bool disposing)
