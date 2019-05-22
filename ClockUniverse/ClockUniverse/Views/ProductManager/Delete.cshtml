@@ -6,108 +6,87 @@
 }
 
 <style>
-    img {
-        width: 150px;
-        height: 150px
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 20px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
     }
 
     th {
-        text-align: center;
+        font-size: 2.0em;
     }
 
-    td {
+    tr:hover {
+        background-color: #cacaca;
+    }
+
+    h2 {
         text-align: center;
+        margin-top: 4px;
+    }
+
+    img {
+        width: 300px;
+        height: 150px;
     }
 </style>
 
-<h2 style="text-align: center; font-weight:bold; font-size: xx-large ">Xóa Sản Phẩm</h2>
+<body>
 
-<h3>Bạn có chắc chắn muốn xóa sản phẩm này?</h3>
-<div>
-    <h4 style="font-weight: bold">Thông Tin Sản Phẩm.</h4>
-    <hr />
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>
-                    Tên Đồng Hồ
-                </th>
+    <h2>XÁC NHẬN XÓA SẢN PHẨM</h2>
 
-                <th>
-                    Mô Tả Đồng Hồ
-                </th>
+    <table class="table table-bordered success">
+        <tr>
+            <th>Tên Đồng Hồ</th>
+            <td>@Html.DisplayFor(model => model.Watch_Name)</td>
+        </tr>
+        <tr>
+            <th>Mô Tả Đồng Hồ</th>
+            <td>@Html.DisplayFor(model => model.Watch_Description)</td>
+        </tr>
+        <tr>
+            <th>Thông Số Đồng Hồ</th>
+            <td>@Html.DisplayFor(model => model.Watch_Static)</td>
+        </tr>
+        <tr>
+            <th>Giá Niêm Yết</th>
+            <td>@Model.Original_Price.ToString("N0") VNĐ</td>
+        </tr>
+        <tr>
+            <th>Giá Khuyến Mãi</th>
+            <td>@Model.Selling_Price.ToString("N0") VNĐ</td>
+        </tr>
+        <tr>
+            <th>Số Lượng</th>
+            <td>@Html.DisplayFor(model => model.InStock)</td>
+        </tr>
+        <tr>
+            <th>Loại Đồng Hồ</th>
+            <td>@Html.DisplayFor(model => model.ProductType.ProductType_Name)</td>
+        </tr>
+        <tr>
+            <th>Hình Ảnh Đồng Hồ</th>
+            <td>
+                <img src="@Url.Action("Image", new { id = Model.Watch_ID }) " />
+                <img src="@Url.Action("Image1", new { id = Model.Watch_ID }) " />
+                <img src="@Url.Action("Image2", new { id = Model.Watch_ID }) " />
+            </td>
+        </tr>
 
-                <th>
-                    Thông Số Đồng Hồ
-                </th>
-
-                <th>
-                    Giá Niêm Yết
-                </th>
-
-                <th>
-                    Giá Khuyến Mãi
-                </th>
-
-                <th>
-                    Số Lượng
-                </th>
-
-                <th>
-                    Loại Đồng Hồ
-                </th>
-
-                <th>
-                    Hình Ảnh
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    @Html.DisplayFor(model => model.Watch_Name)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(model => model.Watch_Description)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(model => model.Watch_Static)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(model => model.Original_Price)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(model => model.Selling_Price)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(model => model.InStock)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(model => model.ProductType.ProductType_Name)
-                </td>
-
-                <td>
-                    <img src="@Url.Action("Image", new { id = Model.Watch_ID}) " />
-                </td>
-            </tr>
-        </tbody>
     </table>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Xóa Sản Phẩm" class="btn btn-default" />
-            </div>
-            }
-    </div>
+</body>
 
-<div>
-    @Html.ActionLink("Trở Về Danh Sách", "Index")
-</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<p>
+    <input type="submit" value="Xóa Sản Phẩm" class="btn btn-default" />
+    @Html.ActionLink("Quay Lại", "Index", null, new { @class = "btn btn-default" })
+</p>
+}

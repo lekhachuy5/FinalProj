@@ -52,34 +52,30 @@ namespace ClockUniverse.Controllers
         {
 
             ValidateClock(producttable);
-            
-            
-                if (ModelState.IsValid)
+
+
+            if (ModelState.IsValid)
+            {
+                using (var scope = new TransactionScope())
                 {
-                    using (var scope = new TransactionScope())
-                    {
 
-                        // add model to database
-                        db.ProductTables.Add(producttable);
-                        db.SaveChanges();
-                        // save file to app_data
-                        var path = Server.MapPath("~/App_Data");
-                        path = System.IO.Path.Combine(path, producttable.Watch_ID.ToString());
-                        Request.Files["Image"].SaveAs(path + "_0");
-                        Request.Files["Image1"].SaveAs(path + "_1");
-                        Request.Files["Image2"].SaveAs(path + "_2");
-                        // all done successfully
-                        scope.Complete();
-                        return RedirectToAction("Index");
-                    }
+                    // add model to database
+                    db.ProductTables.Add(producttable);
+                    db.SaveChanges();
+                    // save file to app_data
+                    var path = Server.MapPath("~/App_Data");
+                    path = System.IO.Path.Combine(path, producttable.Watch_ID.ToString());
+                    Request.Files["Image"].SaveAs(path + "_0");
+                    Request.Files["Image1"].SaveAs(path + "_1");
+                    Request.Files["Image2"].SaveAs(path + "_2");
+                    // all done successfully
+                    scope.Complete();
+                    return RedirectToAction("Index");
                 }
-            
-          
+            }
+            ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", producttable.WatchType_ID);
+            return View("Create", producttable);
 
-
-                //ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", model.WatchType_ID.ToString());
-                return View("Create", producttable);
-            
         }
 
         // GET: /ProductManager/Edit/5
@@ -124,7 +120,7 @@ namespace ClockUniverse.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            //ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", producttable.WatchType_ID);
+            ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", producttable.WatchType_ID);
             return View("Edit", producttable);
         }
 
@@ -154,8 +150,9 @@ namespace ClockUniverse.Controllers
 
         private void ValidateClock(ProductTable model)
         {
-            if (model.Original_Price <= 0 && model.Selling_Price <= 0 )
-                ModelState.AddModelError("price", Resource1.priceLess0);
+            if (model.Original_Price == 0 ) 
+                ModelState.AddModelError("Original_Price", Resource1.priceLess0);
+            
         }
 
         // GET: /ProductManager/Delete/5
@@ -179,8 +176,11 @@ namespace ClockUniverse.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ProductTable producttable = db.ProductTables.Find(id);
+
             db.ProductTables.Remove(producttable);
             db.SaveChanges();
+
+
             return RedirectToAction("Index");
         }
 
@@ -192,13 +192,6 @@ namespace ClockUniverse.Controllers
             }
             base.Dispose(disposing);
         }
-        [HttpGet]
-        public ActionResult ListItem(int type)
-        {
-            var itemlist = db.ProductTables.Where(x => x.WatchType_ID == type).Select(x => new { x.Watch_Name, x.Watch_Description, x.Selling_Price }).ToList();
-            ViewBag.itemList = itemlist;
-            ViewBag.type = type;
-            return View();
-        }
+       
     }
 }
