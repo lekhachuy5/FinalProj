@@ -51,7 +51,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Original_Price, "Giá Niêm Y8ết", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Original_Price, "Giá Niêm Yết", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Original_Price, null, new { @class = "numberinput" })
                 @Html.ValidationMessageFor(model => model.Original_Price)
@@ -85,13 +85,13 @@
         <div class="form-group">
             <label for="1339" class="control-label col-md-2">Hình Ảnh</label>
             <div class="col-md-10">
-                <input type="file" name="Image" id="1339" onchange="readIMG(this)" />
+                <input type="file" name="Image" id="1339" onchange="readIMG(this)" required />
                 <img src="@Url.Content("/ProductManager/Image/"+Model.Watch_ID)" id="Demo" />
 
-                <input type="file" name="Image1" id="1339" onchange="readIMG(this)" />
+                <input type="file" name="Image1" id="1339" onchange="readIMG(this)" required />
                 <img src="@Url.Content("/ProductManager/Image1/"+Model.Watch_ID)" id="Demo" />
 
-                <input type="file" name="Image2" id="1339" onchange="readIMG(this)" />
+                <input type="file" name="Image2" id="1339" onchange="readIMG(this)" required />
                 <img src="@Url.Content("/ProductManager/Image2/"+Model.Watch_ID)" id="Demo" />
 
             </div>
