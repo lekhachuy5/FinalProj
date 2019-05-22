@@ -85,8 +85,8 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-<p>
-    <input type="submit" value="Xóa Sản Phẩm" class="btn btn-default" />
-    @Html.ActionLink("Quay Lại", "Index", null, new { @class = "btn btn-default" })
-</p>
+    <p>
+        <input type="submit" value="Xóa Sản Phẩm" class="btn btn-default" />
+        @Html.ActionLink("Quay Lại", "Index", null, new { @class = "btn btn-default" })
+    </p>
 }
