@@ -1,4 +1,4 @@
-﻿@model  ClockUniverse.Order_Detail
+﻿@model  ClockUniverse.Order
 
 @{
     ViewBag.Title = "Delete";
@@ -21,25 +21,25 @@
             <tr>
                 <td> Họ tên khách hàng</td>
                 <td>
-                    @Model.Order.Customer_Name
+                    @Model.Customer_Name
                 </td>
             </tr>
             <tr>
                 <td> Email</td>
                 <td>
-                    @Model.Order.Customer_Email
+                    @Model.Customer_Email
                 </td>
             </tr>
             <tr>
                 <td> SDT</td>
                 <td>
-                    @Model.Order.Customer_Phone
+                    @Model.Customer_Phone
                 </td>
             </tr>
             <tr>
                 <td> Địa chỉ</td>
                 <td>
-                    @Model.Order.Deliver_Address
+                    @Model.Deliver_Address
                 </td>
             </tr>
         </table>
@@ -53,19 +53,23 @@
                 <th>Đơn giá</th>
                 <th>Thành tiền</th>
             </tr>
-
-            <tr>
-                <td>@Model.ProductTable.Watch_Name</td>
-                <td>@Model.Amount</td>
-                <td>@Model.ProductTable.Selling_Price.ToString("N0")</td>
-                <td>@Model.Price.ToString("N0") </td>
-            </tr>
-
+            @foreach (var item in Model.Order_Detail)
+            {
+                <tr>
+                    <td>@item.ProductTable.Watch_Name</td>
+                    <td>@item.Amount</td>
+                    <td>@item.ProductTable.Selling_Price.ToString("N0")</td>
+                    <td>@item.Price.ToString("N0") </td>
+                </tr>
+            }
 
         </table>
     </div>
+    <div class="col-lg-offset" style="border-bottom:double; border-top:double">
+        <p style="text-align:right; font-family:Arial; font-size: 20px">  Tổng hóa đơn: @Model.Total_Price.ToString("N0")</p>
+    </div>
     <div class="col-lg-offset-10">
-       
+        Ngày cập nhật :@Model.Order_ChangeDate
     </div>
 
     @using (Html.BeginForm())

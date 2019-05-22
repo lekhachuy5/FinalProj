@@ -7,7 +7,7 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm("Create","OrderManager"))
+@using (Html.BeginForm("Create", "OrderManager"))
 {
     @Html.AntiForgeryToken()
 
@@ -15,41 +15,42 @@
         <h4>Order</h4>
         <hr />
         @Html.ValidationSummary(true)
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Customer_Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Customer_Name)
-                @Html.ValidationMessageFor(model => model.Customer_Name)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Customer_Name, "Họ tên khách hàng", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Customer_Name)
+                    @Html.ValidationMessageFor(model => model.Customer_Name)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Customer_Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Customer_Phone)
-                @Html.ValidationMessageFor(model => model.Customer_Phone)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Customer_Phone, "Số điện thoại", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Customer_Phone)
+                    @Html.ValidationMessageFor(model => model.Customer_Phone)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Customer_Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Customer_Email)
-                @Html.ValidationMessageFor(model => model.Customer_Email)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Customer_Email, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Customer_Email)
+                    @Html.ValidationMessageFor(model => model.Customer_Email)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Deliver_Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Deliver_Address)
-                @Html.ValidationMessageFor(model => model.Deliver_Address)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Deliver_Address, "Địa chỉ giao hàng", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Deliver_Address)
+                    @Html.ValidationMessageFor(model => model.Deliver_Address)
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
         </div>
     </div>
