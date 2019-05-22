@@ -33,52 +33,54 @@
             height: 150px;
         }
     </style>
-</head>
-<body>
-    <h2>THÔNG TIN SẢN PHẨM</h2>
-    <table class="table table-bordered success">
-        <tr>
-            <th>Tên Đồng Hồ</th>
-            <td>@Html.DisplayFor(model => model.Watch_Name)</td>
-        </tr>
-        <tr>
-             <th>Mô Tả Đồng Hồ</th>
-             <td>@Html.DisplayFor(model => model.Watch_Description)</td>
-        </tr>
-        <tr>
-             <th>Thông Số Đồng Hồ</th>
-             <td>@Html.DisplayFor(model => model.Watch_Static)</td>
-        </tr>
-        <tr>
-             <th>Giá Niêm Yết</th>
-             <td>@Html.DisplayFor(model => model.Original_Price)</td>
-        </tr>
-        <tr>
-             <th>Giá Khuyến Mãi</th>
-             <td>@Html.DisplayFor(model => model.Selling_Price)</td>
-        </tr>
-        <tr>
-             <th>Số Lượng</th>
-             <td>@Html.DisplayFor(model => model.InStock)</td>
-        </tr>
-        <tr>
-             <th>Loại Đồng Hồ</th>
-             <td>@Html.DisplayFor(model => model.ProductType.ProductType_Name)</td>
-        </tr>
-        <tr>
-             <th>Hình Ảnh Đồng Hồ</th>
-             <td>
-                 <img src="@Url.Action("Image", new { id = Model.Watch_ID }) " />
-                 <img src="@Url.Action("Image1", new { id = Model.Watch_ID }) " />
-                 <img src="@Url.Action("Image2", new { id = Model.Watch_ID }) " />
-             </td>
-        </tr>
 
-    </table>
+    <body>
 
-</body>
+        <h2>THÔNG TIN SẢN PHẨM</h2>
+
+        <table class="table table-bordered success">
+            <tr>
+                <th>Tên Đồng Hồ</th>
+                <td>@Html.DisplayFor(model => model.Watch_Name)</td>
+            </tr>
+            <tr>
+                <th>Mô Tả Đồng Hồ</th>
+                <td>@Html.DisplayFor(model => model.Watch_Description)</td>
+            </tr>
+            <tr>
+                <th>Thông Số Đồng Hồ</th>
+                <td>@Html.DisplayFor(model => model.Watch_Static)</td>
+            </tr>
+            <tr>
+                <th>Giá Niêm Yết</th>
+                <td>@Model.Original_Price.ToString("N0") VNĐ</td>
+            </tr>
+            <tr>
+                <th>Giá Khuyến Mãi</th>
+                <td>@Model.Selling_Price.ToString("N0") VNĐ</td>
+            </tr>
+            <tr>
+                <th>Số Lượng</th>
+                <td>@Html.DisplayFor(model => model.InStock)</td>
+            </tr>
+            <tr>
+                <th>Loại Đồng Hồ</th>
+                <td>@Html.DisplayFor(model => model.ProductType.ProductType_Name)</td>
+            </tr>
+            <tr>
+                <th>Hình Ảnh Đồng Hồ</th>
+                <td>
+                        <img src="@Url.Action("Image", new { id = Model.Watch_ID }) " />
+                        <img src="@Url.Action("Image1", new { id = Model.Watch_ID }) " />
+                        <img src="@Url.Action("Image2", new { id = Model.Watch_ID }) " />
+
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
 
     <p>
-        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.Watch_ID }) |
-        @Html.ActionLink("Trở về Danh Sách", "Index")
+        @Html.ActionLink("Quay Lại", "Index", null, new { @class = "btn btn-default" })
     </p>
