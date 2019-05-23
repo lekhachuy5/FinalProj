@@ -100,7 +100,7 @@
           <Property Name="Order_Date" Type="datetime" Nullable="false" />
           <Property Name="Delivery_Date" Type="datetime" Nullable="false" />
           <Property Name="Customer_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Customer_Phone" Type="int" Nullable="false" />
+          <Property Name="Customer_Phone" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Customer_Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Deliver_Address" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Deliver_Status" Type="int" Nullable="false" />
@@ -369,7 +369,7 @@
           <Property Name="Order_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="None" />
           <Property Name="Delivery_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="None" />
           <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Customer_Phone" Type="Int32" Nullable="false" />
+          <Property Name="Customer_Phone" Type="String" Nullable="false" />
           <Property Name="Customer_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Deliver_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Deliver_Status" Type="Int32" Nullable="false" />
@@ -635,9 +635,9 @@
           <EntitySetMapping Name="Contacts">
             <EntityTypeMapping TypeName="CsK23T3bModel.Contact">
               <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Contact_ID" ColumnName="Contact_ID" />
                 <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Status" ColumnName="Status" />

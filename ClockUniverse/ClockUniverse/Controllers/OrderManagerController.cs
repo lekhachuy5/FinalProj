@@ -103,10 +103,6 @@ namespace ClockUniverse.Controllers
 
                 return RedirectToAction("Index");
             }
-
-
-
-
             ViewBag.DS = new SelectList(
             new List<SelectListItem>
              {
@@ -117,11 +113,6 @@ namespace ClockUniverse.Controllers
             }, "Value", "Text");
 
             return View(order);
-        }
-        private void ValidateClock(Order_Detail model)
-        {
-            if (model.Amount <= 0)
-                ModelState.AddModelError("Amount", Resource1.AmountLess0);
         }
 
         // GET: /OrderManager/Delete/5
@@ -170,6 +161,7 @@ namespace ClockUniverse.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Order order)
         {
+            
             if (ModelState.IsValid)
             {
                 List<ShoppingCart> cart = GetShoppingCart();
@@ -195,11 +187,11 @@ namespace ClockUniverse.Controllers
                 }
                 Session["GioHang"] = null;
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index","Home");
             }
 
 
-            return View(order);
+            return View("~/Views/CheckOut/Index.cshtml");
         }
 
         protected override void Dispose(bool disposing)

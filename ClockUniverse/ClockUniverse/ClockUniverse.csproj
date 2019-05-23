@@ -593,6 +593,10 @@
     <Content Include="Content\images\works\8.jpg" />
     <Content Include="Content\images\works\9.jpg" />
     <Content Include="Content\jqvmap.css" />
+    <Content Include="Content\orderstatus\Done.jpg" />
+    <Content Include="Content\orderstatus\Ondeliver.jpg" />
+    <Content Include="Content\orderstatus\Process.jpg" />
+    <Content Include="Content\orderstatus\Received.jpg" />
     <Content Include="Content\popuo-box.css" />
     <Content Include="Content\red.css" />
     <Content Include="Content\rs-plugin\assets\arrowleft.png" />
@@ -817,6 +821,8 @@
     <Content Include="Scripts\jsM\jquery.dataTables.js" />
     <Content Include="Scripts\jsM\jquery.dcjqaccordion.2.7.js" />
     <Content Include="Scripts\jsM\jquery.scrollTo.min.js" />
+    <Content Include="Scripts\nicescroll\jquery.nicescroll.js" />
+    <Content Include="Scripts\nicescroll\jquery.nicescroll.min.js" />
     <Content Include="Views\favicon.ico" />
     <Content Include="Content\fonts\digital-7-webfont.svg" />
     <Content Include="Content\fonts\digital-7_italic-webfont.svg" />
@@ -926,7 +932,6 @@
     <Content Include="Scripts\jsM\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jsM\jquery.flexisel.js" />
     <Content Include="Scripts\jsM\jquery.flot.min.js" />
-    <Content Include="Scripts\jsM\jquery.nicescroll.js" />
     <Content Include="Scripts\jsM\scripts.js" />
     <Content Include="Scripts\jsM\skycons.js" />
     <Content Include="Scripts\jsM\uisearch.js" />
@@ -1063,7 +1068,6 @@
     <Content Include="Views\ShoppingCart\CartPartial.cshtml" />
     <Content Include="Views\ShoppingCart\EditShoppingCart.cshtml" />
     <Content Include="Views\OrderManager\Delete.cshtml" />
-    <Content Include="Views\OrderManager\Create.cshtml" />
     <Content Include="Views\ShoppingCart\_TotalPartial.cshtml" />
     <Content Include="Views\OrderManager\Details.cshtml" />
     <Content Include="Views\OrderManager\Index.cshtml" />

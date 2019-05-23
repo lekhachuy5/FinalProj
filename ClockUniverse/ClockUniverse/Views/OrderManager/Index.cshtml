@@ -70,11 +70,15 @@
                         @item.Order_ChangeDate
                     </td>
                     <td>
-                        @Html.ActionLink("Cập nhật", "Edit", new { id = item.Order_ID}, new { @class = " btn btn-primary" }) |
+                        @Html.ActionLink("Cập nhật", "Edit", new { id = item.Order_ID }, new { @class = " btn btn-primary" }) |
                         @Html.ActionLink("Chi tiết", "Details", new { id = item.Order_ID }, new { @class = "btn btn-info" }) |
-                        @if (item.Deliver_Status == 1)
+                        @if (item.Deliver_Status != 1)
                         {
-                            @Html.ActionLink("Hủy", "Delete", new { id = item.Order_ID}, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Hủy", "Delete", new { id = item.Order_ID }, new { @class = "btn btn-default disabled" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Hủy", "Delete", new { id = item.Order_ID }, new { @class = "btn btn-warning" })
                         }
                     </td>
                 </tr>

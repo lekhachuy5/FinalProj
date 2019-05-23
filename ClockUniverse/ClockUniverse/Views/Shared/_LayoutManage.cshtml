@@ -62,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <section>
 
         <!-- left side start-->
-        <div class="left-side sticky-left-side">
+        <div class="left-side sticky-left-side" >
 
             <!--logo and iconic logo start-->
             <div class="logo">
@@ -76,10 +76,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="left-side-inner">
 
                 <!--sidebar nav start-->
-                <ul class="nav nav-pills nav-stacked custom-nav">
+                <ul class="nav nav-pills nav-stacked custom-nav" >
 
 
-                    <li><a href="@Url.Action("Index","ProductManager")"><span>Sản phẩm</span><i class="glyphicon glyphicon-th-large"></i></a></li>
+                    <li><a href="@Url.Action("Index","ProductManager")"><i class="glyphicon glyphicon-th-large"></i><span>PRODUCTS</span></a></li>
+
                     <li>
                         <a href="@Url.Action("Index","OrderManager")"><i class="glyphicon glyphicon-th-list"></i><span>Hóa đơn</span></a>
                     </li>
@@ -167,13 +168,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!--footer section end-->
     </section>
     <!-- Bootstrap Core JavaScript -->
-    <script src="http://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
+
+
+
+
+    
+    <script src="/Scripts/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="/Scripts/nicescroll/jquery.nicescroll.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="~/Scripts/db/datatables.js"></script>
+    <script src="/Scripts/db/datatables.js"></script>
     <script src="/Scripts/db/VNLanguage.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/Scripts/jsM/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".numberinput").forceNumeric();
