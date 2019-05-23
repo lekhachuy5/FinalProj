@@ -9,9 +9,27 @@
         text-align: center;
     }
 
-    h4 {
-        font-size: x-large;
+    .control-label.col-md-2 {
+        font-size: larger;
         font-weight: bold;
+    }
+
+    .field-validation-error {
+        color: red;
+    }
+
+    .col-md-10 {
+        margin-top: 7px;
+    }
+    
+    #Watch_Description {
+        width: 823px;
+        height: 82px;
+    }
+
+    #Watch_Static{
+        width: 823px;
+        height: 82px;
     }
 </style>
 
@@ -37,7 +55,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Watch_Description, "Mô Tả Đồng Hồ", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextArea("Watch_Description", String.Empty)
+                @Html.TextArea("Watch_Description")
                 @Html.ValidationMessageFor(model => model.Watch_Description)
             </div>
         </div>
@@ -45,7 +63,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Watch_Static, "Thông Số Đồng Hồ", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextArea("Watch_Static", String.Empty)
+                @Html.TextArea("Watch_Static")
                 @Html.ValidationMessageFor(model => model.Watch_Static)
             </div>
         </div>
@@ -85,13 +103,13 @@
         <div class="form-group">
             <label for="1339" class="control-label col-md-2">Hình Ảnh</label>
             <div class="col-md-10">
-                <input type="file" name="Image" id="1339" onchange="readIMG(this)" required />
+                <input type="file" style="color:red" name="Image" id="1339" onchange="readIMG(this)"  />
                 <img src="@Url.Content("/ProductManager/Image/"+Model.Watch_ID)" id="Demo" />
 
-                <input type="file" name="Image1" id="1339" onchange="readIMG(this)" required />
+                <input type="file" style="color:red"  name="Image1" id="1339" onchange="readIMG(this)" />
                 <img src="@Url.Content("/ProductManager/Image1/"+Model.Watch_ID)" id="Demo" />
 
-                <input type="file" name="Image2" id="1339" onchange="readIMG(this)" required />
+                <input type="file" style="color:red" name="Image2" id="1339" onchange="readIMG(this)" />
                 <img src="@Url.Content("/ProductManager/Image2/"+Model.Watch_ID)" id="Demo" />
 
             </div>
