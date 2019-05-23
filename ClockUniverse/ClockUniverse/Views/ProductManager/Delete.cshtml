@@ -80,17 +80,29 @@
 
     </table>
 
-    <div class="col" style="color:red; text-align:center ; font-size: 30px">
-        @Html.ValidationMessageFor(m => m.Watch_ID)
+<<<<<<< HEAD
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Xóa Sản Phẩm" class="btn btn-default" onclick="myFunction()" />
+        <script>
+            function myFunction() {
+                confirm("Ban da xoa san pham");
+            }
+        </script>
     </div>
-
+            }
+    </div>
+=======
 </body>
+>>>>>>> f326d5ac1737a57a081e65be5a162c3657931daa
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Xóa Sản Phẩm" class="btn btn-default" />
-        @Html.ActionLink("Quay Lại", "Index", null, new { @class = "btn btn-default" })
-    </p>
+<p>
+    <input type="submit" value="Xóa Sản Phẩm" class="btn btn-default" />
+    @Html.ActionLink("Quay Lại", "Index", null, new { @class = "btn btn-default" })
+</p>
 }
