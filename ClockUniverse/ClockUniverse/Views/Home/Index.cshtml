@@ -139,7 +139,9 @@
                                             <div class="single-item-body">
                                                 <p class="single-item-title">@item.Watch_Name</p>
                                                 <p class="single-item-price">
-                                                    <span>@item.Selling_Price</span>
+                                                    <span>
+                                                        @String.Format("{0:0,0}", item.Selling_Price)
+                                                    </span>
                                                 </p>
                                             </div>
                                         }
@@ -149,8 +151,8 @@
                                             <div class="single-item-body">
                                                 <p class="single-item-title">@item.Watch_Name</p>
                                                 <p class="single-item-price">
-                                                    <span class="flash-del">@item.Original_Price</span>
-                                                    <span class="flash-sale">@item.Selling_Price</span>
+                                                    <span class="flash-del">@String.Format("{0:0,0}", item.Original_Price)</span>
+                                                    <span class="flash-sale">@String.Format("{0:0,0}", item.Selling_Price)</span>
                                                 </p>
                                             </div>
                                         }

@@ -117,15 +117,15 @@
                                 @if (Model.Original_Price <= Model.Selling_Price)
                                 {
                                     <p class="single-item-price" id="giaGoc">
-                                        <span>@Model.Selling_Price ₫</span>
+                                        <span>@String.Format("{0:0,0}", Model.Selling_Price) ₫</span>
                                     </p>
                                 }
                                 else
                                 {
                                     <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
                                     <p class="single-item-price">
-                                        <span class="flash-sale">@Model.Selling_Price ₫</span> <br>
-                                        <b id="giaNiemYet">Giá niêm yết: </b> <span class="flash-del1">@Model.Original_Price ₫</span> <br />
+                                        <span class="flash-sale">@String.Format("{0:0,0}", Model.Selling_Price) ₫</span> <br>
+                                        <b id="giaNiemYet">Giá niêm yết: </b> <span class="flash-del1">@String.Format("{0:0,0}", Model.Original_Price) ₫</span> <br />
                                     </p>
                                 }
 
