@@ -17,10 +17,10 @@
                 ID
             </th>
             <th>
-                Họ tên Liên Hệ
+                Họ tên Khách Hàng
             </th>
             <th>
-                SDT
+                Số Điện Thoại
             </th>
             <th>
                 Email
@@ -29,9 +29,11 @@
                 Địa chỉ
             </th>
             <th>
-                Tình trạng
+                Tình trạng Xử Lý
             </th>
-            <th></th>
+            <th>
+
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -54,12 +56,21 @@
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @switch (@item.Status)
+                    {
+                        case 1:
+                            <div>Chưa xử lý</div>
+                            break;
+                        case 2:
+                            <div>Đã xử lý</div>
+                            break;
+                       
+                           
+                    }
                 </td>
                 <td>
-                    @Html.ActionLink("Cập nhật", "Edit", new { id = item.Contact_ID }) |
-                    @Html.ActionLink("Chi tiết", "Details", new { id = item.Contact_ID }) |
-                    @Html.ActionLink("Xóa", "Delete", new { id = item.Contact_ID })
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.Contact_ID })
+                    
                 </td>
             </tr>
         }
