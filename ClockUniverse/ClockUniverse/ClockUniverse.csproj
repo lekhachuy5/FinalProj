@@ -1081,6 +1081,7 @@
     <Content Include="Views\ProductManager\Details.cshtml" />
     <Content Include="Views\InformationManager\Details.cshtml" />
     <Content Include="Views\InformationManager\Edit.cshtml" />
+    <Content Include="Views\products\ListItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
