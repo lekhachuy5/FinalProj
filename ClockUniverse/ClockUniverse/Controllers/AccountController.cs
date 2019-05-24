@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
+using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
@@ -13,8 +15,14 @@ using ClockUniverse.Models;
 namespace ClockUniverse.Controllers
 {
     [Authorize]
+    
     public class AccountController : Controller
     {
+        private CsK23T3bEntities db = new CsK23T3bEntities();
+        public ActionResult Index()
+        {
+            return View(db.AspNetUsers.ToList());
+        }
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
@@ -63,19 +71,22 @@ namespace ClockUniverse.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize]
         public ActionResult Register()
         {
+            ViewBag.Role = new SelectList(db.AspNetRoles,"ID","Name");
             return View();
+            
         }
 
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            AspNetRole mod = new AspNetRole();
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser() { UserName = model.UserName };
@@ -83,14 +94,14 @@ namespace ClockUniverse.Controllers
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Manage","Acount");
                 }
                 else
                 {
                     AddErrors(result);
                 }
             }
-
+            ViewBag.Role = new SelectList(db.AspNetRoles, "ID", "Name",mod.Id);
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -119,7 +130,7 @@ namespace ClockUniverse.Controllers
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Bạn đã thay đổi mật khẩu"
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : message == ManageMessageId.Error ? "An error has occurred."
@@ -290,7 +301,7 @@ namespace ClockUniverse.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //
