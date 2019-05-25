@@ -16,13 +16,15 @@
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
-        th{
-            font-size: 2.0em;
 
+        th {
+            font-size: 2.0em;
         }
+
         tr:hover {
             background-color: #cacaca;
         }
+
         h2 {
             text-align: center;
             margin-top: 4px;
@@ -31,6 +33,11 @@
         img {
             width: 300px;
             height: 150px;
+        }
+
+        textarea {
+            width: 1600px;
+            height: 100px;
         }
     </style>
 
@@ -45,11 +52,15 @@
             </tr>
             <tr>
                 <th>Mô Tả Đồng Hồ</th>
-                <td>@Html.DisplayFor(model => model.Watch_Description)</td>
+                <td> 
+                    <textarea disabled>@Html.DisplayFor(model =>model.Watch_Description)</textarea> 
+                </td>
             </tr>
             <tr>
                 <th>Thông Số Đồng Hồ</th>
-                <td>@Html.DisplayFor(model => model.Watch_Static)</td>
+                <td>
+                    <textarea disabled>@Html.DisplayFor(model =>model.Watch_Static)</textarea>
+                </td>
             </tr>
             <tr>
                 <th>Giá Niêm Yết</th>
@@ -70,9 +81,9 @@
             <tr>
                 <th>Hình Ảnh Đồng Hồ</th>
                 <td>
-                        <img src="@Url.Action("Image", new { id = Model.Watch_ID }) " />
-                        <img src="@Url.Action("Image1", new { id = Model.Watch_ID }) " />
-                        <img src="@Url.Action("Image2", new { id = Model.Watch_ID }) " />
+                    <img src="@Url.Action("Image", new { id = Model.Watch_ID }) " />
+                    <img src="@Url.Action("Image1", new { id = Model.Watch_ID }) " />
+                    <img src="@Url.Action("Image2", new { id = Model.Watch_ID }) " />
 
                 </td>
             </tr>

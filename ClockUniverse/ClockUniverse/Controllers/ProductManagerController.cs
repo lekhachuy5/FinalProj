@@ -152,7 +152,7 @@ namespace ClockUniverse.Controllers
         {
             if (model.Original_Price == 0)
                 ModelState.AddModelError("Original_Price", Resource1.priceLess0);
-
+            
         }
 
         // GET: /ProductManager/Delete/5

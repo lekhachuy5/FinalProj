@@ -21,7 +21,7 @@ namespace ClockUniverse
     
         public int Contact_ID { get; set; }
         public string Customer_Name { get; set; }
-        public Nullable<int> Phone { get; set; }
+        public string Phone { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
         public int Status { get; set; }

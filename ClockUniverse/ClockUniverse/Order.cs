@@ -23,7 +23,7 @@ namespace ClockUniverse
         public System.DateTime Order_Date { get; set; }
         public System.DateTime Delivery_Date { get; set; }
         public string Customer_Name { get; set; }
-        public int Customer_Phone { get; set; }
+        public string Customer_Phone { get; set; }
         public string Customer_Email { get; set; }
         public string Deliver_Address { get; set; }
         public int Deliver_Status { get; set; }
