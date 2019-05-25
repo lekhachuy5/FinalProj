@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using ClockUniverse.Models;
 namespace ClockUniverse.Controllers
 {
-    [Authorize]
+    
     public class OrderManagerController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();

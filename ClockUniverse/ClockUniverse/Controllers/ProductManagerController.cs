@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Transactions;
 namespace ClockUniverse.Controllers
 {
-    [Authorize]
+    
     public class ProductManagerController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();

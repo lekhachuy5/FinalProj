@@ -9,7 +9,7 @@ using System.Transactions;
 
 namespace ClockUniverse.Controllers
 {
-    [Authorize]
+    
     public class InformationManagerController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();
