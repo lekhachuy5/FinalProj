@@ -46,17 +46,30 @@ namespace ClockUniverse.Controllers
 
             if (sp == null)
             {
-
-                sp = new ShoppingCart(iMaSP);
-                sp.soLuong = txtSoLuong;
-                lstCart.Add(sp);
+                if (txtSoLuong > product.InStock)
+                {
+                    ModelState.AddModelError("InStock", Resource1.OverInStock);
+                }
+                else
+                {
+                    sp = new ShoppingCart(iMaSP);
+                    sp.soLuong = txtSoLuong;
+                    lstCart.Add(sp);
+                }
+               
                 return Redirect(strUrl);
             }
             else
             {
+                if (txtSoLuong > product.InStock)
+                {
+                    ModelState.AddModelError("InStock", Resource1.OverInStock);
+                }
+                else
+                {
 
-                sp.soLuong = sp.soLuong + txtSoLuong;
-
+                    sp.soLuong = sp.soLuong + txtSoLuong;
+                }
                 return Redirect(strUrl);
             }
 

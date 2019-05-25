@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Mvc;
-
+using Moq;
 using System.Transactions;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,6 +64,7 @@ namespace ClockUniverse.Tests.Controllers
         public void TestCreateG()
         {
             var db = new CsK23T3bEntities();
+            
             var Controller = new OrderManagerController();
             var rs = Controller.Create() as ViewResult;
             Assert.IsNotNull(rs);
@@ -71,13 +72,14 @@ namespace ClockUniverse.Tests.Controllers
         [TestMethod]
         public void TestCreateP()
         {
+            var res = new Mock<ShoppingCartController>();
             var model = new Order
             {
                 Customer_Email = "lekh39@gmail.com",
                 Customer_Name = "Lê Khắc Huy",
                 Customer_Phone = "099990000",
                 Deliver_Address = "53c/15",
-                Total_Price =0
+                
                 
             };
             var db = new CsK23T3bEntities();
@@ -85,6 +87,7 @@ namespace ClockUniverse.Tests.Controllers
             
             using (var scope = new TransactionScope())
             {
+               
                 var result = controller.Create(model);
                 var view = result as ViewResult;
                 Assert.IsNotNull(view);

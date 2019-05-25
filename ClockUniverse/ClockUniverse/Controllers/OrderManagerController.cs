@@ -25,7 +25,7 @@ namespace ClockUniverse.Controllers
         }
         public ActionResult Index()
         {
-            var model = db.Orders.ToList();
+            var model = db.Orders.OrderByDescending(x=>x.Order_ChangeDate).ToList();
             return View(model);
 
         }
@@ -72,7 +72,7 @@ namespace ClockUniverse.Controllers
                  new SelectListItem { Text = "Đang vận chuyển", Value = "3"},
                  new SelectListItem { Text = "Đã giao hàng", Value = "4"}
             }, "Value", "Text", od.Deliver_Status);
-
+            
             return View(od);
 
         }
@@ -165,6 +165,7 @@ namespace ClockUniverse.Controllers
                 else
                 {
                     order.Order_Date = DateTime.Now;
+                    order.Order_ChangeDate = DateTime.Now;
                     order.Delivery_Date = DateTime.Now.AddDays(3);
                     order.Deliver_Status = 1;
 

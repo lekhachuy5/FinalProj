@@ -160,7 +160,7 @@
                                 {
 
                                     @Html.TextBox("txtSoLuong", 1, new { type = "number" })
-                                    @Html.ValidationMessage("txtSoLuong")
+                                    @Html.ValidationMessageFor(m => m.InStock);
 
 
                                     if (Model.InStock <= 0)

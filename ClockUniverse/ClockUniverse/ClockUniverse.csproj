@@ -822,6 +822,7 @@
     <Content Include="Content\yellow.css" />
     <Content Include="Scripts\db\datatables.js" />
     <Content Include="Scripts\db\datatables.min.js" />
+    <Content Include="Scripts\db\sort.js" />
     <Content Include="Scripts\db\VNLanguage.js" />
     <Content Include="Scripts\jsM\common-scripts.js" />
     <Content Include="Scripts\jsM\DT_bootstrap.js" />
