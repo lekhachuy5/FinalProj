@@ -23,7 +23,7 @@ namespace ClockUniverse.Controllers
             if (!String.IsNullOrEmpty(id))
             {
                 var strI = Convert.ToInt32(id.Trim());
-                cont = db.Contacts.Where(o => o.Contact_ID ==strI);      
+                cont = db.Contacts.Where(o => o.Contact_ID == strI);
             }
             ViewBag.SearchTerm = id;
             return View(cont.ToList());
@@ -37,10 +37,14 @@ namespace ClockUniverse.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Contact contact = db.Contacts.Find(id);
+            ContactsDetail cdt = db.ContactsDetails.Find(id);
             if (contact == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.Tito = cdt.Title;
+            ViewBag.FBR = cdt.Feedback_Detail;
+            ViewBag.Date = cdt.Date;
             return View(contact);
         }
 
@@ -60,6 +64,7 @@ namespace ClockUniverse.Controllers
             if (ModelState.IsValid)
                 using (var scope = new TransactionScope())
                 {
+                    contact.Status = 1;
                     db.Contacts.Add(contact);
                     db.SaveChanges();
 
@@ -73,7 +78,7 @@ namespace ClockUniverse.Controllers
                     db.SaveChanges();
 
                     scope.Complete();
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("Index", "Home");
                 }
 
             return View(contact);
@@ -87,11 +92,23 @@ namespace ClockUniverse.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Contact contact = db.Contacts.Find(id);
+            ContactsDetail cdt = db.ContactsDetails.Find(id);
             if (contact == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.DS = new SelectList(
+          new List<SelectListItem>
+           {
+                 new SelectListItem { Text = "Chưa xử lý", Value = "1"},
+                 new SelectListItem { Text = "Đã xử lý", Value = "2"}
+                 
+          }, "Value", "Text");
+            ViewBag.Tito = cdt.Title;
+            ViewBag.FBR = cdt.Feedback_Detail;
+            ViewBag.Date = cdt.Date;
             return View(contact);
+            
         }
 
         // POST: /InformationManager/Edit/5
@@ -99,14 +116,28 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Contact_ID,Customer_Name,Phone,Email,Address,Status")] Contact contact)
+        public ActionResult Edit([Bind(Include = "Contact_ID,Customer_Name,Phone,Email,Address,Status")] Contact contact, int Status, string Feedback_Reply)
         {
             if (ModelState.IsValid)
             {
+                contact = db.Contacts.Find(contact.Contact_ID);
+                contact.Status = Status;
+                
                 db.Entry(contact).State = EntityState.Modified;
+                ContactsDetail contd = db.ContactsDetails.Find(contact.Contact_ID);
+                contd.Feedback_Reply = Feedback_Reply;
+                contd.Date = DateTime.Now;
+                db.Entry(contd).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DS = new SelectList(
+        new List<SelectListItem>
+         {
+                 new SelectListItem { Text = "Chưa xử lý", Value = "1"},
+                 new SelectListItem { Text = "Đã xử lý", Value = "2"}
+
+        }, "Value", "Text");
             return View(contact);
         }
 
