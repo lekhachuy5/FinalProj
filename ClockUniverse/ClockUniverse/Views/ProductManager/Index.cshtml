@@ -25,6 +25,10 @@
     .sorting {
         width: 200px;
     }
+
+    #Large{
+        font-size:18px;
+    }
 </style>
 
 <h2>DANH SÁCH SẢN PHẨM</h2>
@@ -36,10 +40,10 @@
 <table class="display table table-bordered" id="mytable">
     <thead>
         <tr>
-            <th>
+            <th id="Large">
                 Id
             </th>
-            <th>
+            <th id="Large">
                 Tên Đồng Hồ
             </th>
             @*<th>
@@ -48,19 +52,19 @@
                 <th>
                     Thông Số Đồng Hồ
                 </th>*@
-            <th>
+            <th id="Large">
                 Giá Niêm Yết
             </th>
-            <th>
+            <th id="Large">
                 Giá Khuyến Mãi
             </th>
-            <th>
+            <th id="Large">
                 Số Lượng
             </th>
-            <th>
+            <th id="Large">
                 Loại Đồng Hồ
             </th>
-            <th>
+            <th id="Large">
                 Hình Ảnh Đồng Hồ
             </th>
             <th></th>
@@ -70,10 +74,10 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td id="Large">
                     @item.Watch_ID
                 </td>
-                <td>
+                <td id="Large">
                     @item.Watch_Name
                 </td>
                 @*<td>
@@ -83,16 +87,16 @@
                         @HtmlDisplayFor(modelItem => item.)
                     </td>*@
 
-                <td>
+                <td id="Large">
                     @item.Original_Price.ToString("N0") VNĐ
                 </td>
-                <td>
+                <td id="Large">
                     @item.Selling_Price.ToString("N0") VNĐ
                 </td>
-                <td>
+                <td id="Large">
                     @Html.DisplayFor(modelItem => item.InStock)
                 </td>
-                <td>
+                <td id="Large">
                     @Html.DisplayFor(modelItem => item.ProductType.ProductType_Name)
                 </td>
                 <td>

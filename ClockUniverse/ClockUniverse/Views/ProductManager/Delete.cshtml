@@ -38,6 +38,10 @@
     textarea {
         width: 1600px;
         height: 100px;
+        font-size:18px;
+    }
+    #Large{
+        font-size:18px;
     }
 </style>
 
@@ -45,39 +49,39 @@
 
 <table class="table table-bordered success">
     <tr>
-        <th>Tên Đồng Hồ</th>
-        <td>@Html.DisplayFor(model => model.Watch_Name)</td>
+        <th id="Large">Tên Đồng Hồ</th>
+        <td id="Large">@Html.DisplayFor(model => model.Watch_Name)</td>
     </tr>
     <tr>
-        <th>Mô Tả Đồng Hồ</th>
+        <th id="Large">Mô Tả Đồng Hồ</th>
         <td>
             <textarea disabled>@Html.DisplayFor(model =>model.Watch_Description)</textarea>
         </td>
     </tr>
     <tr>
-        <th>Thông Số Đồng Hồ</th>
+        <th id="Large">Thông Số Đồng Hồ</th>
         <td>
             <textarea disabled>@Html.DisplayFor(model =>model.Watch_Static)</textarea>
         </td>
     </tr>
     <tr>
-        <th>Giá Niêm Yết</th>
-        <td>@Model.Original_Price.ToString("N0") VNĐ</td>
+        <th id="Large">Giá Niêm Yết</th>
+        <td id="Large">@Model.Original_Price.ToString("N0") VNĐ</td>
     </tr>
     <tr>
-        <th>Giá Khuyến Mãi</th>
-        <td>@Model.Selling_Price.ToString("N0") VNĐ</td>
+        <th id="Large">Giá Khuyến Mãi</th>
+        <td id="Large">@Model.Selling_Price.ToString("N0") VNĐ</td>
     </tr>
     <tr>
-        <th>Số Lượng</th>
-        <td>@Html.DisplayFor(model => model.InStock)</td>
+        <th id="Large">Số Lượng</th>
+        <td id="Large">@Html.DisplayFor(model => model.InStock)</td>
     </tr>
     <tr>
-        <th>Loại Đồng Hồ</th>
-        <td>@Html.DisplayFor(model => model.ProductType.ProductType_Name)</td>
+        <th id="Large">Loại Đồng Hồ</th>
+        <td id="Large">@Html.DisplayFor(model => model.ProductType.ProductType_Name)</td>
     </tr>
     <tr>
-        <th>Hình Ảnh Đồng Hồ</th>
+        <th id="Large">Hình Ảnh Đồng Hồ</th>
         <td>
             <img src="@Url.Action("Image", new { id = Model.Watch_ID }) " />
             <img src="@Url.Action("Image1", new { id = Model.Watch_ID }) " />
