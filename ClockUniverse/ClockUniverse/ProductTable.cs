@@ -24,25 +24,21 @@ namespace ClockUniverse
         [Required(ErrorMessage = "Bạn chưa nhập tên đồng hồ ")]
         public string Watch_Name { get; set; }
 
-        
-        public decimal Selling_Price { get; set; }
-
-
-        [Required(ErrorMessage = "Bạn chưa nhập mô tả đồng hồ ")]
+        [Required(ErrorMessage = "Bạn chưa nhập mô tả đồng hồ")]
         public string Watch_Description { get; set; }
-
-        [Required(ErrorMessage = "Bạn chưa nhập thông số đồng hồ ")]
-        public string Watch_Static { get; set; }
-
-        [Required(ErrorMessage = "Bạn chưa nhập giá niêm yết ")]
-        public decimal Original_Price { get; set; }
-
-        [Required(ErrorMessage = "Bạn chưa nhập số lượng đồng hồ ")]
-        public int InStock { get; set; }
-
-        
         public int WatchType_ID { get; set; }
 
+        [Required(ErrorMessage = "Bạn chưa nhập giá niêm yết")]
+        public decimal Original_Price { get; set; }
+
+        [Required(ErrorMessage ="Bạn chưa nhập giá khuyến mãi")]
+        public decimal Selling_Price { get; set; }
+
+        [Required(ErrorMessage = "Bạn chưa nhập số lượng")]
+        public int InStock { get; set; }
+
+        [Required(ErrorMessage = "Bạn chưa nhập thông số đồng hồ")]
+        public string Watch_Static { get; set; }
         public string Image { get; set; }
     
         public virtual ICollection<Order_Detail> Order_Detail { get; set; }

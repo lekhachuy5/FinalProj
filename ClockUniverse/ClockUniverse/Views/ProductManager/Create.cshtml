@@ -9,6 +9,7 @@
         text-align: center;
         margin-top: 4px;
     }
+
     span {
         color: red;
     }
@@ -48,7 +49,7 @@
 
         <div class="form-group">
             <div class="control-label col-md-2">
-                <strong>Tên Đồng Hồ</strong>
+                Tên Đồng Hồ
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Watch_Name)
@@ -70,12 +71,13 @@
             </div>
         </div>
 
+
         <div class="form-group">
             <div class="control-label col-md-2">
                 Thông Số Đồng Hồ
             </div>
             <div class="col-md-10">
-                @*@Html.TextArea("Watch_Static", String.Empty)
+                @*@Html.TextArea("Watch_Static")
                     @Html.ValidationMessageFor(model => model.Watch_Static)*@
                 <textarea cols="20" data-val="true" data-val-required="Bạn chưa nhập thông số đồng hồ" id="Watch_Static" name="Watch_Static" rows="2"></textarea>
                 <span class="field-validation-valid" data-valmsg-for="Watch_Static" data-valmsg-replace="true"></span>
@@ -105,7 +107,7 @@
 
         <div class="form-group">
             <div class="control-label col-md-2">
-               Số Lượng
+                Số Lượng
             </div>
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.InStock, null, new { @class = "numberinput" })
