@@ -16,7 +16,7 @@
     @Html.ValidationSummary(true)
     <div class="form-horizontal">
 
-        <hr />
+        @Html.ValidationMessageFor(m => m.Order_ID);
 
         <div class="form-group1" style="width: 80%">
             <div class="form-group">

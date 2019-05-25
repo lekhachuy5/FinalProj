@@ -27,13 +27,13 @@
     }
 
     .sorting {
-        width: 300px;
+        width: 200px;
     }
 </style>
 
 <h2>DANH SÁCH SẢN PHẨM</h2>
 <p>
-    @Html.ActionLink("Thêm Sản Phẩm", "Create")
+    @Html.ActionLink("Thêm Sản Phẩm", "Create", null, new { @class = "btn btn-default " })
 </p>
 
 
@@ -46,12 +46,7 @@
             <th>
                 Tên Đồng Hồ
             </th>
-            <th>
-                Mô Tả Đồng Hồ
-            </th>
-            <th>
-                Thông Số Đồng Hồ
-            </th>
+            
             <th>
                 Giá Niêm Yết
             </th>
@@ -80,12 +75,7 @@
                 <td>
                     @item.Watch_Name
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Watch_Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Watch_Static)
-                </td>
+              
 
                 <td>
                     @item.Original_Price.ToString("N0") VNĐ
@@ -105,9 +95,9 @@
                     <img class="img2" src="@Url.Action("Image2", new { id = item.Watch_ID }) " />
                 </td>
                 <td>
-                    @Html.ActionLink("Chi Tiết", "Details", new { id = item.Watch_ID }) |
-                    @Html.ActionLink("Sửa", "Edit", new { id = item.Watch_ID }) |
-                    @Html.ActionLink("Xóa", "Delete", new { id = item.Watch_ID })
+                    <div class="btn btn-default">@Html.ActionLink("Chi Tiết", "Details", new { id = item.Watch_ID })</div>
+                    <div class="btn btn-default">@Html.ActionLink("Sửa", "Edit", new { id = item.Watch_ID })</div>
+                    <div class="btn btn-default">@Html.ActionLink("Xóa", "Delete", new { id = item.Watch_ID })</div>
                 </td>
             </tr>
         }

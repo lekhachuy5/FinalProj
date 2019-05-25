@@ -4,29 +4,21 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using ClockUniverse;
 using System.Transactions;
 
 namespace ClockUniverse.Controllers
 {
+    [Authorize]
     public class InformationManagerController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();
 
         // GET: /InformationManager/
-        public ActionResult Index(string id)
+        public ActionResult Index()
         {
             var model = db.Contacts.ToList();
-            var cont = from o in db.Contacts select o;
-            if (!String.IsNullOrEmpty(id))
-            {
-                var strI = Convert.ToInt32(id.Trim());
-                cont = db.Contacts.Where(o => o.Contact_ID == strI);
-            }
-            ViewBag.SearchTerm = id;
-            return View(cont.ToList());
+            return View(model);
         }
 
         // GET: /InformationManager/Details/5
@@ -64,24 +56,27 @@ namespace ClockUniverse.Controllers
             if (ModelState.IsValid)
                 using (var scope = new TransactionScope())
                 {
-                    contact.Status = 1;
-                    db.Contacts.Add(contact);
-                    db.SaveChanges();
+                    
+                        contact.Status = 1;
+                        db.Contacts.Add(contact);
+                        db.SaveChanges();
 
-                    var detail = new ContactsDetail();
-                    detail.Title = Title;
-                    detail.Feedback_Detail = Feedback_Detail;
-                    detail.Feedback_ID = contact.Contact_ID;
-                    detail.Date = DateTime.Now;
-                    detail.Contact_ID = contact.Contact_ID;
-                    db.ContactsDetails.Add(detail);
-                    db.SaveChanges();
+                        var detail = new ContactsDetail();
+                        detail.Title = Title;
+                        detail.Feedback_Detail = Feedback_Detail;
+                        detail.Feedback_ID = contact.Contact_ID;
+                        detail.Date = DateTime.Now;
+                        detail.Contact_ID = contact.Contact_ID;
+                        db.ContactsDetails.Add(detail);
+                        db.SaveChanges();
 
-                    scope.Complete();
-                    return RedirectToAction("Index", "Home");
+                        scope.Complete();
+                        return RedirectToAction("Index", "Home");
+                    
+                   
                 }
 
-            return View(contact);
+            return View("~/Views/Home/Contact.cshtml");
         }
 
         // GET: /InformationManager/Edit/5

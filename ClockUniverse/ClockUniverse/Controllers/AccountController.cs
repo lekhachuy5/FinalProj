@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using System.Data;
-using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
@@ -57,6 +52,7 @@ namespace ClockUniverse.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
+                    return RedirectToAction("Index", "Account");
                     return RedirectToLocal(returnUrl);
                 }
                 else

@@ -6,12 +6,12 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+
 namespace ClockUniverse
 {
-   
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     public partial class Order
     {
         public Order()
@@ -24,7 +24,7 @@ namespace ClockUniverse
         public System.DateTime Delivery_Date { get; set; }
         [Required(ErrorMessage = "Bạn chưa nhập Họ tên khách hàng")]
         public string Customer_Name { get; set; }
-        
+
         [StringLength(12, ErrorMessage = "Số điện thoại phải từ 9-12 số")]
         [Required(ErrorMessage = "Bạn chưa nhập Số điện thoại")]
         [Range(9, Int64.MaxValue, ErrorMessage = "Số điện thoại phải từ 9-12 số")]

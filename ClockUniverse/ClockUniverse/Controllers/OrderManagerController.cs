@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using System.Runtime.Caching;
-using ClockUniverse.Controllers;
 using ClockUniverse.Models;
-using System.Transactions;
 namespace ClockUniverse.Controllers
 {
+    [Authorize]
     public class OrderManagerController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();
@@ -35,12 +31,9 @@ namespace ClockUniverse.Controllers
         }
 
         // GET: /OrderManager/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             var order = db.Orders.Find(id);
 
             if (order == null)
@@ -116,12 +109,9 @@ namespace ClockUniverse.Controllers
         }
 
         // GET: /OrderManager/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+           
             Order od = db.Orders.Find(id);
 
             if (od == null)
@@ -149,6 +139,7 @@ namespace ClockUniverse.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        [AllowAnonymous]
         public ActionResult Create()
         {
             return View();
@@ -157,6 +148,7 @@ namespace ClockUniverse.Controllers
         // POST: /InformationManager/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Order order)
@@ -165,29 +157,39 @@ namespace ClockUniverse.Controllers
             if (ModelState.IsValid)
             {
                 List<ShoppingCart> cart = GetShoppingCart();
-                order.Order_Date = DateTime.Now;
-                order.Delivery_Date = DateTime.Now.AddDays(3);
-                order.Deliver_Status = 1;
-
-                db.Orders.Add(order);
-
-                foreach (var item in cart)
+                if (cart == null)
                 {
-                    Order_Detail order_Detail = new Order_Detail();
-                    order_Detail.Order_ID = order.Order_ID;
-                    order_Detail.Watch_ID = item.iMaSP;
-                    order_Detail.Amount = (int)item.soLuong;
-                    order_Detail.Price = Convert.ToDecimal(item.thanhTien);
-                    db.Order_Detail.Add(order_Detail);
-                    order.Total_Price += Convert.ToDecimal(item.thanhTien);
-                    db.Orders.Add(order);
-                    ProductTable product = db.ProductTables.Find(item.iMaSP);
-                    product.InStock = product.InStock - item.soLuong;
-                    db.Entry(product).State = EntityState.Modified;
+                    ModelState.AddModelError("Order_ID", Resource1.nullcart);
+                  
                 }
-                Session["GioHang"] = null;
-                db.SaveChanges();
-                return RedirectToAction("Index","Home");
+                else
+                {
+                    order.Order_Date = DateTime.Now;
+                    order.Delivery_Date = DateTime.Now.AddDays(3);
+                    order.Deliver_Status = 1;
+
+                    db.Orders.Add(order);
+
+                    foreach (var item in cart)
+                    {
+                        Order_Detail order_Detail = new Order_Detail();
+                        order_Detail.Order_ID = order.Order_ID;
+                        order_Detail.Watch_ID = item.iMaSP;
+                        order_Detail.Amount = (int)item.soLuong;
+                        order_Detail.Price = Convert.ToDecimal(item.thanhTien);
+                        db.Order_Detail.Add(order_Detail);
+                        order.Total_Price += Convert.ToDecimal(item.thanhTien);
+                        db.Orders.Add(order);
+                        ProductTable product = db.ProductTables.Find(item.iMaSP);
+                        product.InStock = product.InStock - item.soLuong;
+                        db.Entry(product).State = EntityState.Modified;
+                    }
+                    db.SaveChanges();
+                    Session["GioHang"] = null;
+
+                    return RedirectToAction("Index", "Home");
+                }
+               
             }
 
 

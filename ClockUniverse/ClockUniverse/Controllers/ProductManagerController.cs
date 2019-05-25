@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using ClockUniverse;
 using System.Transactions;
 namespace ClockUniverse.Controllers
 {
+    [Authorize]
     public class ProductManagerController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();
