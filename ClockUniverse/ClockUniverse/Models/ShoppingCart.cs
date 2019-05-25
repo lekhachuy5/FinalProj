@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using ClockUniverse.Models;
+﻿using System.Linq;
 namespace ClockUniverse.Models
 {
     public class ShoppingCart

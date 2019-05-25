@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using ClockUniverse;
 using System.Transactions;
 namespace ClockUniverse.Controllers
 {
+    
     public class ProductManagerController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();
@@ -99,7 +96,7 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Watch_ID,Watch_Name,Watch_Description,Watch_Static,WatchType_ID,Original_Price,Selling_Price,InStock")] ProductTable producttable)
+        public ActionResult Edit(ProductTable producttable)
         {
             ValidateClock(producttable);
             if (ModelState.IsValid)

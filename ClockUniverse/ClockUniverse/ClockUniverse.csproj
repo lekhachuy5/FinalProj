@@ -593,6 +593,10 @@
     <Content Include="Content\images\works\8.jpg" />
     <Content Include="Content\images\works\9.jpg" />
     <Content Include="Content\jqvmap.css" />
+    <Content Include="Content\orderstatus\Done.jpg" />
+    <Content Include="Content\orderstatus\Ondeliver.jpg" />
+    <Content Include="Content\orderstatus\Process.jpg" />
+    <Content Include="Content\orderstatus\Received.jpg" />
     <Content Include="Content\popuo-box.css" />
     <Content Include="Content\red.css" />
     <Content Include="Content\rs-plugin\assets\arrowleft.png" />
@@ -763,6 +767,14 @@
     <Content Include="Content\vendors\colorbox\example5\index.html" />
     <Content Include="Content\vendors\countdown\jquery.countdown.min.js" />
     <Content Include="Content\vendors\countdown\jquery.plugin.min.js" />
+    <Content Include="Content\vendors\css\demo.css" />
+    <Content Include="Content\vendors\css\elastislide.css" />
+    <Content Include="Content\vendors\css\reset.css" />
+    <Content Include="Content\vendors\css\style.css" />
+    <Content Include="Content\vendors\js\gallery.js" />
+    <Content Include="Content\vendors\js\jquery.easing.1.3.js" />
+    <Content Include="Content\vendors\js\jquery.elastislide.js" />
+    <Content Include="Content\vendors\js\jquery.tmpl.min.js" />
     <Content Include="Content\vendors\media\mediaelementplayer.min.css" />
     <Content Include="Content\vendors\revolution-slider\assets\arrowleft.png" />
     <Content Include="Content\vendors\revolution-slider\assets\arrowright.png" />
@@ -817,6 +829,8 @@
     <Content Include="Scripts\jsM\jquery.dataTables.js" />
     <Content Include="Scripts\jsM\jquery.dcjqaccordion.2.7.js" />
     <Content Include="Scripts\jsM\jquery.scrollTo.min.js" />
+    <Content Include="Scripts\nicescroll\jquery.nicescroll.js" />
+    <Content Include="Scripts\nicescroll\jquery.nicescroll.min.js" />
     <Content Include="Views\favicon.ico" />
     <Content Include="Content\fonts\digital-7-webfont.svg" />
     <Content Include="Content\fonts\digital-7_italic-webfont.svg" />
@@ -926,7 +940,6 @@
     <Content Include="Scripts\jsM\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jsM\jquery.flexisel.js" />
     <Content Include="Scripts\jsM\jquery.flot.min.js" />
-    <Content Include="Scripts\jsM\jquery.nicescroll.js" />
     <Content Include="Scripts\jsM\scripts.js" />
     <Content Include="Scripts\jsM\skycons.js" />
     <Content Include="Scripts\jsM\uisearch.js" />
@@ -1047,7 +1060,6 @@
     <Content Include="Views\ProductManager\Index.cshtml" />
     <Content Include="Views\InformationManager\Delete.cshtml" />
     <Content Include="Views\InformationManager\Index.cshtml" />
-    <Content Include="Views\InformationManager\Edit.cshtml" />
     <Content Include="Scripts\vendors\revolution-slider\assets\arrows.psd" />
     <Content Include="Scripts\vendors\revolution-slider\assets\bullets.psd" />
     <Content Include="Scripts\vendors\revolution-slider\assets\small_arrows.psd" />
@@ -1057,18 +1069,20 @@
     <Content Include="Views\product_types\ListType.cshtml" />
     <Content Include="Views\products\product_detail.cshtml" />
     <Content Include="Views\InformationManager\Create.cshtml" />
-    <Content Include="Views\InformationManager\Details.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\ShoppingCart\ShoppingCart.cshtml" />
     <Content Include="Views\ShoppingCart\CartPartial.cshtml" />
     <Content Include="Views\ShoppingCart\EditShoppingCart.cshtml" />
     <Content Include="Views\OrderManager\Delete.cshtml" />
-    <Content Include="Views\OrderManager\Create.cshtml" />
     <Content Include="Views\ShoppingCart\_TotalPartial.cshtml" />
     <Content Include="Views\OrderManager\Details.cshtml" />
     <Content Include="Views\OrderManager\Index.cshtml" />
     <Content Include="Views\OrderManager\Edit.cshtml" />
     <Content Include="Views\ProductManager\Details.cshtml" />
+    <Content Include="Views\InformationManager\Details.cshtml" />
+    <Content Include="Views\InformationManager\Edit.cshtml" />
+    <Content Include="Views\products\ListItem.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

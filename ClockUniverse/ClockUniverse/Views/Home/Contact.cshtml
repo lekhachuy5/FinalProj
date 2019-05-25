@@ -4,9 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <!doctype html>
-<html lang="en">
-
-<body>
 
      <!-- #header -->
     
@@ -93,14 +90,14 @@
                                 @Html.Label("Title", "Tiêu Đề", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.TextBox("Title")
-                                    @Html.ValidationMessage("Title")
+                                   @Html.ValidationMessage("Title")
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.Label("Message", "Nội Dung", new { @class = "control-label col-md-2" })
+                                @Html.Label("Feedback_Detail", "Nội Dung", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.TextArea("Message")
-                                    @Html.ValidationMessage("Message")
+                                  @Html.TextArea("Feedback_Detail")
+                                  @Html.ValidationMessage("Feedback_Detail")
                                 </div>
                             </div>
 
@@ -135,62 +132,4 @@
      <!-- #footer -->
      <!-- .copyright -->
     <!-- include js files -->
-    <script src="/Scripts/js/jquery.js"></script>
-    <script src="/Scripts/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="/Scripts/vendors/bxslider/jquery.bxslider.min.js"></script>
-    <script src="/Scripts/vendors/colorbox/jquery.colorbox-min.js"></script>
-    <script src="/Scripts/vendors/animo/Animo.js"></script>
-    <script src="/Scripts/vendors/dug/dug.js"></script>
-    <script src="/Scripts/vendors/utils/beta.utils.js"></script>
-    <script src="/Scripts/js/scripts.min.js"></script>
-    <!--customjs-->
-    <script type="text/javascript">
-        $(function () {
-            // this will get the full URL at the address bar
-            var url = window.location.href;
-
-            // passes on every "a" tag
-            $(".main-menu a").each(function () {
-                // checks if its the same on the address bar
-                if (url == (this.href)) {
-                    $(this).closest("li").addClass("active");
-                    $(this).parents('li').addClass('parent-active');
-                }
-            });
-        });
-
-
-    </script>
-    <script>
-        jQuery(document).ready(function ($) {
-            'use strict';
-
-            // color box
-
-            //color
-            jQuery('#style-selector').animate({
-                left: '-213px'
-            });
-
-            jQuery('#style-selector a.close').click(function (e) {
-                e.preventDefault();
-                var div = jQuery('#style-selector');
-                if (div.css('left') === '-213px') {
-                    jQuery('#style-selector').animate({
-                        left: '0'
-                    });
-                    jQuery(this).removeClass('icon-angle-left');
-                    jQuery(this).addClass('icon-angle-right');
-                } else {
-                    jQuery('#style-selector').animate({
-                        left: '-213px'
-                    });
-                    jQuery(this).removeClass('icon-angle-right');
-                    jQuery(this).addClass('icon-angle-left');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+   

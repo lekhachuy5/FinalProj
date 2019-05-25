@@ -70,6 +70,15 @@ namespace ClockUniverse {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phải có sản phẩm trong giỏ hàng.
+        /// </summary>
+        internal static string nullcart {
+            get {
+                return ResourceManager.GetString("nullcart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trường dữ liệu này không được để trống.
         /// </summary>
         internal static string nullname {

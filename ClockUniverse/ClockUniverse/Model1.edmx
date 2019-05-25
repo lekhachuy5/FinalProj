@@ -635,9 +635,9 @@
           <EntitySetMapping Name="Contacts">
             <EntityTypeMapping TypeName="CsK23T3bModel.Contact">
               <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Contact_ID" ColumnName="Contact_ID" />
                 <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Status" ColumnName="Status" />

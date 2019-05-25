@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity
+@{
     Layout = null;
 }
 
@@ -34,7 +35,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="/Scripts/jsM/Chart.js"></script>
     <!-- //chart -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
+
 
     <link href="~/Content/db/datatables.min.css" rel="stylesheet" />
 
@@ -66,10 +67,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <!--logo and iconic logo start-->
             <div class="logo">
-                <h1><a href="@Url.Action("Index","ProductManager")">Easy <span>Admin</span></a></h1>
+                <h1><a href="@Url.Action("Index","Account")"></a></h1>
             </div>
             <div class="logo-icon text-center">
-                <a href="@Url.Action("Index","ProductManager")"><i class="lnr lnr-home"></i> </a>
+                <a href="@Url.Action("Index","Account")"><i class="lnr lnr-home"></i> </a>
             </div>
 
             <!--logo and iconic logo end-->
@@ -79,7 +80,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <ul class="nav nav-pills nav-stacked custom-nav">
 
 
-                    <li><a href="@Url.Action("Index","ProductManager")"><span>Sản phẩm</span><i class="glyphicon glyphicon-th-large"></i></a></li>
+                    <li><a href="@Url.Action("Index","ProductManager")"><i class="glyphicon glyphicon-th-large"></i><span>PRODUCTS</span></a></li>
+
                     <li>
                         <a href="@Url.Action("Index","OrderManager")"><i class="glyphicon glyphicon-th-list"></i><span>Hóa đơn</span></a>
                     </li>
@@ -126,30 +128,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="clearfix"></div>
                             </ul>
                         </div>
-                        <div class="profile_details">
-                            <ul>
-                                <li class="dropdown profile_details_drop">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <div class="profile_img">
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="profile_details">
+                                <ul>
+                                    <li class="dropdown profile_details_drop">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <div class="profile_img">
 
-                                            <div class="user-name">
-                                                <p>Michael<span>Administrator</span></p>
+
+                                                <div class="user-name">
+                                                    <p>Hello<span>@User.Identity.GetUserName()</span></p>
+                                                </div>
+                                                <i class="lnr lnr-chevron-down"></i>
+                                                <i class="lnr lnr-chevron-up"></i>
+
                                             </div>
-                                            <i class="lnr lnr-chevron-down"></i>
-                                            <i class="lnr lnr-chevron-up"></i>
+                                        </a>
+                                        <ul class="dropdown-menu drp-mnu">
+                                            <li> <a href="#"><i class="fa fa-cog"></i> Cập nhật</a> </li>
+                                            <li> <a href="#"><i class="fa fa-user"></i>Thông tin cá nhân</a> </li>
+                                            <li> <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i> Đăng xuất</a> </li>
+                                        </ul>
+                                    </li>
 
-                                        </div>
-                                    </a>
-                                    <ul class="dropdown-menu drp-mnu">
-                                        <li> <a href="#"><i class="fa fa-cog"></i> Cập nhật</a> </li>
-                                        <li> <a href="#"><i class="fa fa-user"></i>Thông tin cá nhân</a> </li>
-                                        <li> <a href="sign-up.html"><i class="fa fa-sign-out"></i> Đăng xuất</a> </li>
-                                    </ul>
-                                </li>
-
-                            </ul>
-                        </div>
-
+                                </ul>
+                            </div>
+                        }
 
                     </div>
                 </div>
@@ -167,13 +173,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!--footer section end-->
     </section>
     <!-- Bootstrap Core JavaScript -->
-    <script src="http://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
+
+
+
+
+
+    <script src="/Scripts/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="/Scripts/nicescroll/jquery.nicescroll.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="~/Scripts/db/datatables.js"></script>
+    <script src="/Scripts/db/datatables.js"></script>
     <script src="/Scripts/db/VNLanguage.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/Scripts/jsM/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".numberinput").forceNumeric();

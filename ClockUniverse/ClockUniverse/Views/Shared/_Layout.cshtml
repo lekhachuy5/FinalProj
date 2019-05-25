@@ -23,6 +23,21 @@
             padding-right: 25px;
             width: 101%;
         }
+        span.slgh {
+            background-color: #fdd835;
+            color: #4a4a4a;
+            font-size: 18px;
+            width: 15px;
+            font-weight: 500;
+            height: 15px;
+            border-radius: 3px;
+            padding: 0px 7px;
+            margin-left: 5px;
+        }
+        a.sll {
+            margin-top: -2px;
+            display: block;
+        }
     </style>
 </head>
 
@@ -56,7 +71,7 @@
                     <div class="beta-comp">
                         <div class="cart">
 
-                            <div class=""> <a href="@Url.Action("ShoppingCart","ShoppingCart")"><i class="fa fa-shopping-cart"></i>@Html.Action("CartPartial", "ShoppingCart") Giỏ hàng</a> </div>
+                            <div class=""> <a href="@Url.Action("ShoppingCart","ShoppingCart")" class="sll"><i class="fa fa-shopping-cart"></i>Giỏ hàng <span class="slgh"> @Html.Action("CartPartial", "ShoppingCart") </span></a> </div>
 
                         </div> <!-- .cart -->
                     </div>
@@ -75,8 +90,8 @@
                         <li>
                             <a href="#">Sản phẩm</a>
                             <ul class="sub-menu">
-                                <li><a href="@Url.Action("ListItem", "ProductManager")?type=1">Nam</a></li>
-                                <li><a href="@Url.Action("ListItem", "ProductManager")?type=2">Nữ</a></li>
+                                <li><a href="@Url.Action("ListItem", "products")?type=1">Nam</a></li>
+                                <li><a href="@Url.Action("ListItem", "products")?type=2">Nữ</a></li>
                             </ul>
                         </li>
                         <li><a href="@Url.Action("About","Home")">Giới thiệu</a></li>
@@ -180,38 +195,7 @@
             }
             )
         })
-
-
-        $(document).ready(function () {
-            $(".numberinput").forceNumeric();
-        });
-        // forceNumeric() plug-in implementation
-        jQuery.fn.forceNumeric = function () {
-            return this.each(function () {
-                $(this).keydown(function (e) {
-                    var key = e.which || e.keyCode;
-
-                    if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
-                        // numbers
-                        key >= 48 && key <= 57 ||
-                        // Numeric keypad
-                        key >= 96 && key <= 105 ||
-                        // comma, period and minus, . on keypad
-                        key == 190 || key == 188 || key == 109 || key == 110 ||
-                        // Backspace and Tab and Enter
-                        key == 8 || key == 9 || key == 13 ||
-                        // Home and End
-                        key == 35 || key == 36 ||
-                        // left and right arrows
-                        key == 37 || key == 39 ||
-                        // Del and Ins
-                        key == 46 || key == 45)
-                        return true;
-
-                    return false;
-                });
-            });
-        }
     </script>
+   
 </body>
 </html>

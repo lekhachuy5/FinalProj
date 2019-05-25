@@ -19,10 +19,9 @@ namespace ClockUniverse
         {
             this.Order_Detail = new HashSet<Order_Detail>();
         }
-    
+        
         public int Watch_ID { get; set; }
-
-        [Required(ErrorMessage = "Bạn chưa nhập tên đồng hồ")]
+        [Required(ErrorMessage = "Bạn chưa nhập tên đồng hồ ")]
         public string Watch_Name { get; set; }
 
         [Required(ErrorMessage = "Bạn chưa nhập mô tả đồng hồ")]

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using ClockUniverse.Controllers;
 using System.Web.Mvc;
 using ClockUniverse.Models;
 
@@ -170,6 +168,7 @@ namespace ClockUniverse.Controllers
             if (SumAmount() == 0)
             {
                 ViewBag.SumAmount = 0;
+                ViewBag.TongSoLuong =0;
                 ViewBag.SumPrice = 0;
                 return PartialView();
             }

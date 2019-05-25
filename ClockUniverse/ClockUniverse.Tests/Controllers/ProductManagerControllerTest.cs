@@ -1,11 +1,11 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ClockUniverse.Controllers;
-using ClockUniverse.Models;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-
+using ClockUniverse.Controllers;
+using ClockUniverse;
+using System.Text;
+using System;
 namespace ClockUniverse.Tests.Controllers
 {
     [TestClass]
