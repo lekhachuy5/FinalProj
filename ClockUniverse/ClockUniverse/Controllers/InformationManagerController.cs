@@ -9,7 +9,7 @@ using System.Transactions;
 
 namespace ClockUniverse.Controllers
 {
-    
+
     public class InformationManagerController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();
@@ -56,7 +56,27 @@ namespace ClockUniverse.Controllers
             if (ModelState.IsValid)
                 using (var scope = new TransactionScope())
                 {
-                    
+
+                    if (Title.Trim().Equals("") || Feedback_Detail.Trim().Equals(""))
+                    {
+                        if (Title.Trim().Equals(""))
+                        {
+                            ModelState.AddModelError("Title", Resource1.nullname);
+                        }
+
+                        if (Feedback_Detail.Trim().Equals(""))
+                        { ModelState.AddModelError("Feedback_Detail", Resource1.nullname); }
+
+
+                    }
+                    else if (Title.Trim().Equals("") && Feedback_Detail.Trim().Equals(""))
+                    {
+                        ModelState.AddModelError("Feedback_Detail", Resource1.nullname);
+                        ModelState.AddModelError("Title", Resource1.nullname);
+                    }
+
+                    else
+                    {
                         contact.Status = 1;
                         db.Contacts.Add(contact);
                         db.SaveChanges();
@@ -72,8 +92,10 @@ namespace ClockUniverse.Controllers
 
                         scope.Complete();
                         return RedirectToAction("Index", "Home");
-                    
-                   
+                    }
+
+
+
                 }
 
             return View("~/Views/Home/Contact.cshtml");
@@ -97,13 +119,13 @@ namespace ClockUniverse.Controllers
            {
                  new SelectListItem { Text = "Chưa xử lý", Value = "1"},
                  new SelectListItem { Text = "Đã xử lý", Value = "2"}
-                 
+
           }, "Value", "Text");
             ViewBag.Tito = cdt.Title;
             ViewBag.FBR = cdt.Feedback_Detail;
             ViewBag.Date = cdt.Date;
             return View(contact);
-            
+
         }
 
         // POST: /InformationManager/Edit/5
@@ -117,7 +139,7 @@ namespace ClockUniverse.Controllers
             {
                 contact = db.Contacts.Find(contact.Contact_ID);
                 contact.Status = Status;
-                
+
                 db.Entry(contact).State = EntityState.Modified;
                 ContactsDetail contd = db.ContactsDetails.Find(contact.Contact_ID);
                 contd.Feedback_Reply = Feedback_Reply;

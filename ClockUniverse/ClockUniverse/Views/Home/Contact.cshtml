@@ -58,7 +58,7 @@
                                 @Html.LabelFor(model => model.Customer_Name,"Tên Khách Hàng", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.Customer_Name)
-                                    @Html.ValidationMessageFor(model => model.Customer_Name)
+                                    <span style="color:red"><em> @Html.ValidationMessageFor(model => model.Customer_Name)</em></span>
                                 </div>
                             </div>
 
@@ -66,7 +66,7 @@
                                 @Html.LabelFor(model => model.Phone,"Số Điện Thoại", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.Phone)
-                                    @Html.ValidationMessageFor(model => model.Phone)
+                                    <span style="color:red"><em>@Html.ValidationMessageFor(model => model.Phone)</em></span>
                                 </div>
                             </div>
 
@@ -74,7 +74,7 @@
                                 @Html.LabelFor(model => model.Email,"Email", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.Email)
-                                    @Html.ValidationMessageFor(model => model.Email)
+                                    <span style="color:red"><em>@Html.ValidationMessageFor(model => model.Email)</em></span>
                                 </div>
                             </div>
 
@@ -82,7 +82,7 @@
                                 @Html.LabelFor(model => model.Address,"Địa Chỉ", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.Address)
-                                    @Html.ValidationMessageFor(model => model.Address)
+                                    <span style="color:red"><em> @Html.ValidationMessageFor(model => model.Address)</em></span>
                                 </div>
                             </div>
 
@@ -90,14 +90,15 @@
                                 @Html.Label("Title", "Tiêu Đề", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.TextBox("Title")
-                                   @Html.ValidationMessage("Title")
+                                        <span style="color:red"><em> @Html.ValidationMessage("Title")</em></span>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 @Html.Label("Feedback_Detail", "Nội Dung", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                  @Html.TextArea("Feedback_Detail")
-                                  @Html.ValidationMessage("Feedback_Detail")
+                                    @Html.TextArea("Feedback_Detail")
+                                    <span style="color:red"><em> @Html.ValidationMessage("Feedback_Detail")</em></span>
                                 </div>
                             </div>
 

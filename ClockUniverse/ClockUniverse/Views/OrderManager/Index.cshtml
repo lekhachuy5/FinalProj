@@ -30,60 +30,60 @@
                 <th>
                     Tình trạng
                 </th>
-                
+
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @item.Order_ChangeDate
-                </td>
-                <td>
-                    HD@(item.Order_ID)
-                </td>
-                <td>
-                    @item.Customer_Name
-                </td>
-                <td>
-                    @item.Deliver_Address
-                </td>
-                <td>
-                    @item.Total_Price.ToString("N0")
-                </td>
-                <td>
-                    @switch (@item.Deliver_Status)
-                    {
-                        case 1:
-                            <div>Đang xử lý</div>
-                            break;
-                        case 2:
-                            <div>Đã tiếp nhận</div>
-                            break;
-                        case 3:
-                            <div>Đang giao hàng</div>
-                            break;
-                        case 4:
-                            <div>Đã giao hàng</div>
-                            break;
-                    }
-                </td>
+                <tr>
+                    <td>
+                        @item.Order_ChangeDate
+                    </td>
+                    <td>
+                        HD@(item.Order_ID)
+                    </td>
+                    <td>
+                        @item.Customer_Name
+                    </td>
+                    <td>
+                        @item.Deliver_Address
+                    </td>
+                    <td>
+                        @item.Total_Price.ToString("N0")
+                    </td>
+                    <td>
+                        @switch (@item.Deliver_Status)
+                        {
+                            case 1:
+                                <div>Đang xử lý</div>
+                                break;
+                            case 2:
+                                <div>Đã tiếp nhận</div>
+                                break;
+                            case 3:
+                                <div>Đang giao hàng</div>
+                                break;
+                            case 4:
+                                <div>Đã giao hàng</div>
+                                break;
+                        }
+                    </td>
 
-                <td>
-                    @Html.ActionLink("Cập nhật", "Edit", new { id = item.Order_ID }, new { @class = " btn btn-primary" }) |
-                    @Html.ActionLink("Chi tiết", "Details", new { id = item.Order_ID }, new { @class = "btn btn-info" }) |
-                    @if (item.Deliver_Status != 1)
-                    {
-                        @Html.ActionLink("Hủy", "Delete", new { id = item.Order_ID }, new { @class = "btn btn-default disabled" })
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Hủy", "Delete", new { id = item.Order_ID }, new { @class = "btn btn-warning" })
-                    }
-                </td>
-            </tr>
+                    <td>
+                        @Html.ActionLink("Cập nhật", "Edit", new { id = item.Order_ID }, new { @class = " btn btn-primary" }) |
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.Order_ID }, new { @class = "btn btn-info" }) |
+                        @if (item.Deliver_Status != 1)
+                        {
+                            @Html.ActionLink("Hủy", "Delete", new { id = item.Order_ID }, new { @class = "btn btn-default disabled" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Hủy", "Delete", new { id = item.Order_ID }, new { @class = "btn btn-warning" })
+                        }
+                    </td>
+                </tr>
 
             }
         </tbody>

@@ -48,5 +48,14 @@ namespace ClockUniverse.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
+        [TestMethod]
+        public void CheckOut()
+        {
+            CheckOutController controller = new CheckOutController();
+            ViewResult result = controller.Index() as ViewResult;
+            Assert.IsNotNull(result);
+        }
+       
+        
     }
 }

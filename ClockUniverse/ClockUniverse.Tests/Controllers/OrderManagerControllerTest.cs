@@ -5,8 +5,12 @@ using Moq;
 using System.Transactions;
 using System.Collections.Generic;
 using System.Linq;
+using DotNetNuke;
+using DotNetNuke.Modules;
 using ClockUniverse.Controllers;
-using ClockUniverse;
+using ClockUniverse.Models;
+using System.Web.SessionState;
+using System.Web.Routing;
 namespace ClockUniverse.Tests.Controllers
 {
     [TestClass]
@@ -69,46 +73,16 @@ namespace ClockUniverse.Tests.Controllers
             var rs = Controller.Create() as ViewResult;
             Assert.IsNotNull(rs);
         }
-        [TestMethod]
-        public void TestCreateP()
-        {
-            var res = new Mock<ShoppingCartController>();
-            var model = new Order
-            {
-                Customer_Email = "lekh39@gmail.com",
-                Customer_Name = "Lê Khắc Huy",
-                Customer_Phone = "099990000",
-                Deliver_Address = "53c/15",
-                
-                
-            };
-            var db = new CsK23T3bEntities();
-            var controller = new OrderManagerController();
-            
-            using (var scope = new TransactionScope())
-            {
-               
-                var result = controller.Create(model);
-                var view = result as ViewResult;
-                Assert.IsNotNull(view);
-                Assert.IsInstanceOfType(view.Model, typeof(Order));
-                var redirect = result as RedirectToRouteResult;
-                Assert.IsNotNull(redirect);
-                Assert.AreEqual("Index", redirect.RouteValues["action"]);
-                var item = db.Orders.Find(model.Order_ID);
-                Assert.IsNotNull(item);
-              
-
-            }
-            
-        }
+        
+       
         [TestMethod]
         public void TestDetails()
         {
-
+            var ls = new Mock<Order_Detail>();
             var db = new CsK23T3bEntities();
             var controller = new OrderManagerController();
             var result0 = controller.Details(0);
+            
             Assert.IsInstanceOfType(result0, typeof(HttpStatusCodeResult));
             var item = db.Orders.First();
             var result1 = controller.Details(item.Order_ID) as ViewResult;
@@ -117,27 +91,7 @@ namespace ClockUniverse.Tests.Controllers
             Assert.AreEqual(item.Order_ID, model.Order_ID);
            
         }
-        [TestMethod]
-        public void TestDelete()
-        {
-            var db = new CsK23T3bEntities();
-            var controller = new OrderManagerController();
-            
-            var rs = controller.Delete(0);
-            Assert.IsInstanceOfType(rs, typeof(HttpNotFoundResult));
-
-            using (var scope = new TransactionScope())
-            {
-                controller = new OrderManagerController();
-                var model = db.Orders.AsNoTracking().First();
-                rs = controller.Delete(model.Order_ID);
-
-                var redirect = rs as RedirectToRouteResult;
-                Assert.IsNotNull(redirect);
-                Assert.AreEqual("Index", redirect.RouteValues["action"]);
-                var item = db.Orders.Find(model.Order_ID);
-                Assert.IsNull(item);
-            }
-        }
+        
     }
+   
 }
