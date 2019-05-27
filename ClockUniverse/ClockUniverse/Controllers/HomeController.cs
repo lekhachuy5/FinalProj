@@ -27,14 +27,18 @@ namespace ClockUniverse.Controllers
         public ActionResult Search(string text)
         {
             var itemsz = db.ProductTables.Where(x => x.Watch_Name.ToLower().Contains(text.ToLower())).ToList();
+            if (text.Trim().Equals(""))
+            {
+                return RedirectToAction("Index");
+            }
 
-            if (itemsz.Count() > 0)
+            else if(itemsz.Count() > 0)
             {
                 //ViewBag.Message = "";
             }
             else
             {
-                ViewBag.Message = "No Item found";
+                ViewBag.Message = "Không tìm thấy được sản phẩm tương ứng";
 
             }
             ViewData["Item"] = itemsz;
