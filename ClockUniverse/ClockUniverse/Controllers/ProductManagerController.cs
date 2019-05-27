@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using System.Transactions;
+using System;
+
 namespace ClockUniverse.Controllers
 {
     
@@ -109,9 +111,18 @@ namespace ClockUniverse.Controllers
                     // save file to app_data
                     var path = Server.MapPath("~/App_Data");
                     path = System.IO.Path.Combine(path, producttable.Watch_ID.ToString());
-                    Request.Files["Image"].SaveAs(path + "_0");
-                    Request.Files["Image1"].SaveAs(path + "_1");
-                    Request.Files["Image2"].SaveAs(path + "_2");
+                    if(Request.Files["Image"].ContentLength != 0)
+                    {
+                        Request.Files["Image"].SaveAs(path + "_0");
+                    }
+                    if(Request.Files["Image1"].ContentLength != 0)
+                    {
+                        Request.Files["Image1"].SaveAs(path + "_1");
+                    }
+                    if(Request.Files["Image2"].ContentLength != 0)
+                    {
+                        Request.Files["Image2"].SaveAs(path + "_2");
+                    }
                     // all done successfully
                     scope.Complete();
                     return RedirectToAction("Index");

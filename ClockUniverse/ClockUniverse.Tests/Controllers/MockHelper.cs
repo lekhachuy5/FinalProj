@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Moq;
 using System.Web;
 
-namespace SEP_Demo.Tests
+namespace ClockUniverse.Tests
 {
     public class MockHelper
     {

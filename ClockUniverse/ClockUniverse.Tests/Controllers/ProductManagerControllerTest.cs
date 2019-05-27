@@ -32,5 +32,47 @@ namespace ClockUniverse.Tests.Controllers
             var result = controller.Create() as ViewResult;
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void TestCreateP() {
+        }
+
+        [TestMethod]
+        public void TestDetail()
+        {
+            {
+                var db = new CsK23T3bEntities();
+                var item = db.ProductTables.First();
+                var controller = new ProductManagerController();
+
+                var result = controller.Details(item.Watch_ID);
+                var view = result as ViewResult;
+                Assert.IsNotNull(view);
+
+                var model = view.Model as ProductTable;
+                Assert.IsNotNull(model);
+                Assert.AreEqual(item.Watch_ID, model.Watch_ID);
+
+                result = controller.Details(0);
+                Assert.IsInstanceOfType(result, typeof(HttpNotFoundResult));
+            }
+        }
+
+        [TestMethod]
+        public void TestEditG()
+        {
+            var controller = new ProductManagerController();
+            var result0 = controller.Edit(0);
+            Assert.IsInstanceOfType(result0, typeof(HttpNotFoundResult));
+
+            var db = new CsK23T3bEntities();
+            var item = db.ProductTables.First();
+            var result1 = controller.Edit(item.Watch_ID) as ViewResult;
+            Assert.IsNotNull(result1);
+            var model = result1.Model as ProductTable;
+            Assert.AreEqual(item.Watch_ID, model.Watch_ID);
+        }
+
+      
     }
 }

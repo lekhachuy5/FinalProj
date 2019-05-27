@@ -36,6 +36,7 @@
         width: 140px;
         height: 140px;
     }
+
 </style>
 
 <h2>CẬP NHẬT THÔNG TIN SẢN PHẨM</h2>
@@ -108,13 +109,14 @@
         <div class="form-group">
             <label for="1339" class="control-label col-md-2">Hình Ảnh</label>
             <div class="col-md-10">
-                <input type="file" style="color:red" name="Image" id="1339" onchange="readIMG(this)" required  />
+                <input type="file" style="color:red" name="Image" id="1339" onchange="readIMG(this)" />
                 <img src="@Url.Content("/ProductManager/Image/"+Model.Watch_ID)" id="Demo" />
+                
 
-                <input type="file" style="color:red"  name="Image1" id="1339" onchange="readIMG(this)" required />
-                <img src="@Url.Content("/ProductManager/Image1/"+Model.Watch_ID)"  id="Demo" />
+                <input type="file" style="color:red" name="Image1" id="1339" onchange="readIMG(this)" />
+                <img src="@Url.Content("/ProductManager/Image1/"+Model.Watch_ID)" id="Demo" />
 
-                <input type="file" style="color:red" name="Image2" id="1339" onchange="readIMG(this)" required />
+                <input type="file" style="color:red" name="Image2" id="1339" onchange="readIMG(this)" />
                 <img src="@Url.Content("/ProductManager/Image2/"+Model.Watch_ID)" id="Demo" />
 
             </div>
