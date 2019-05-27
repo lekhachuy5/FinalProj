@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Transactions;
 using System;
 
+
 namespace ClockUniverse.Controllers
 {
     
@@ -111,7 +112,9 @@ namespace ClockUniverse.Controllers
                     // save file to app_data
                     var path = Server.MapPath("~/App_Data");
                     path = System.IO.Path.Combine(path, producttable.Watch_ID.ToString());
-                    if(Request.Files["Image"].ContentLength != 0)
+
+                    if (Request.Files["Image"].ContentLength != 0)
+
                     {
                         Request.Files["Image"].SaveAs(path + "_0");
                     }
@@ -163,7 +166,7 @@ namespace ClockUniverse.Controllers
             
         }
 
-        // GET: /ProductManager/Delete/5
+        // GET: /ProductManager/Delete/5 //
         public ActionResult Delete(int? id)
         {
             if (id == null)
