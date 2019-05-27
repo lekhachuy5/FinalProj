@@ -48,7 +48,8 @@ namespace ClockUniverse.Controllers
             {
                 if (txtSoLuong > product.InStock)
                 {
-                    ModelState.AddModelError("InStock", Resource1.OverInStock);
+                    ModelState.AddModelError("InStock", "Vượt quá tồn kho");
+                    return Redirect(strUrl);
                 }
                 else
                 {
@@ -63,7 +64,8 @@ namespace ClockUniverse.Controllers
             {
                 if (txtSoLuong > product.InStock)
                 {
-                    ModelState.AddModelError("InStock", Resource1.OverInStock);
+                    ModelState.AddModelError("InStock", "Vượt quá tồn kho");
+                     return Redirect(strUrl);
                 }
                 else
                 {
@@ -95,6 +97,7 @@ namespace ClockUniverse.Controllers
             // Neu ton tai thi cho sua so luong
             if (sp != null)
             {
+
                 sp.soLuong = int.Parse(f["txtSoLuong"].ToString());
 
             }

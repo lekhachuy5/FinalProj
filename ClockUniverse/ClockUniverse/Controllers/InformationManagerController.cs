@@ -18,6 +18,9 @@ namespace ClockUniverse.Controllers
         public ActionResult Index()
         {
             var model = db.Contacts.ToList();
+          
+
+
             return View(model);
         }
 
