@@ -21,12 +21,31 @@ namespace ClockUniverse
     
         public int Watch_ID { get; set; }
         public string Watch_Name { get; set; }
+<<<<<<< HEAD
         public string Watch_Description { get; set; }
         public int WatchType_ID { get; set; }
+=======
+
+        [Required(ErrorMessage ="Bạn chưa nhập mô tả đồng hồ ")]
+        public string Watch_Description { get; set; }
+
+        [Required(ErrorMessage = "Bạn chưa nhập thông số đồng hồ ")]
+        public string Watch_Static { get; set; }    
+        
+        [Required(ErrorMessage ="Bạn chưa nhập giá niêm yết ")]
+>>>>>>> 54c0f5e36ceb4ee5b152586988c9ed773a1fcfea
         public decimal Original_Price { get; set; }
         public decimal Selling_Price { get; set; }
         public int InStock { get; set; }
+<<<<<<< HEAD
         public string Watch_Static { get; set; }
+=======
+
+        public int WatchType_ID { get; set; }
+
+       
+
+>>>>>>> 54c0f5e36ceb4ee5b152586988c9ed773a1fcfea
         public string Image { get; set; }
     
         public virtual ICollection<Order_Detail> Order_Detail { get; set; }

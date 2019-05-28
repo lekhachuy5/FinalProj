@@ -17,11 +17,20 @@ namespace ClockUniverse.Tests.Controllers
             var db = new CsK23T3bEntities();
             var controller = new ProductManagerController();
             var result = controller.Index();
+
             var view = result as ViewResult;
             Assert.IsNotNull(view);
+
             var model = view.Model as List<ProductTable>;
             Assert.AreEqual(db.ProductTables.Count(), model.Count);
             
+        }
+
+        [TestMethod]
+        public void TestCreateG() {
+            var controller = new ProductManagerController();
+            var result = controller.Create() as ViewResult;
+            Assert.IsNotNull(result);
         }
     }
 }
