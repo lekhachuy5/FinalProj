@@ -175,7 +175,7 @@ namespace ClockUniverse.Tests.Controllers
             ProductManagerController controller = new ProductManagerController();
             // Act
             // var redirectToRouteResult = controller.Delete(1083) as RedirectToRouteResult;
-            var redirectToRouteResult = controller.DeleteConfirmed(64) as RedirectToRouteResult;
+            var redirectToRouteResult = controller.DeleteConfirmed(89) as RedirectToRouteResult;
             // Assert
             Assert.AreEqual("Index", redirectToRouteResult.RouteValues["Action"]);
            // Assert.AreEqual("Account", redirectToRouteResult.RouteValues["controller"]);

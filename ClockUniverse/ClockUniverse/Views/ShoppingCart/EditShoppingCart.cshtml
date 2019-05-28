@@ -81,6 +81,7 @@
                                 {
                                     <p>
                                         @Html.TextBox("txtSoLuong", item.soLuong)
+                                        @Html.ValidationMessage("txtSoLuong")
                                     </p>
                                     <input type="submit" value="Cập nhật" />
                                 }

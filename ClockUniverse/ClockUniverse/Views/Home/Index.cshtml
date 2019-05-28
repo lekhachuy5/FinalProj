@@ -1,5 +1,8 @@
 ﻿@using ClockUniverse.Models;
-@model List<ProductTable>
+@using PagedList.Mvc;
+@model PagedList.PagedList<ProductTable>
+
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,6 +15,7 @@
     .single-item-caption {
         margin-top: 14px;
     }
+
     li#dot {
         width: 17px;
         height: 0px;
@@ -21,6 +25,7 @@
         --border-radius: 25px;
         border-radius: 50%;
     }
+
     .container-fluid {
         width: 100%;
         padding-right: 0px;
@@ -28,6 +33,7 @@
         margin-right: auto;
         margin-left: auto;
     }
+
     .carousel-indicators {
         position: absolute;
         right: 0;
@@ -134,7 +140,7 @@
 
 
                                         </div>
-                                        @if (item.Original_Price <=  item.Selling_Price)
+                                        @if (item.Original_Price <= item.Selling_Price)
                                         {
                                             <div class="single-item-body">
                                                 <p class="single-item-title">@item.Watch_Name</p>
@@ -180,4 +186,8 @@
         </div> <!-- .main-content -->
     </div> <!-- #content -->
 </div>
+@*Tao lien ket trang*@
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber )/ @Model.PageCount
+
+@Html.PagedListPager(Model,page=>Url.Action("Index",new { page = page}))
 

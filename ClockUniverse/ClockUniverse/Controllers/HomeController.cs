@@ -1,14 +1,19 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-
+using PagedList;
+using PagedList.Mvc; 
 namespace ClockUniverse.Controllers
 {
     public class HomeController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.ProductTables.ToList());
+            // Tao  bien so san pham tren trang
+            int pageSize = 12;
+            // Tao bien so trang
+            int pageNumber = (page ?? 1);
+            return View(db.ProductTables.ToList().OrderBy(n=>n.Original_Price).ToPagedList(pageNumber,pageSize));
         }
 
         public ActionResult About()
