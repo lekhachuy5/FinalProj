@@ -1,0 +1,89 @@
+﻿@model ClockUniverse.Contact
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutManage.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Họ Tên Khách Hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Name)
+        </dd>
+
+        <dt>
+            Số Điện Thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            Địa Chỉ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+
+        </dd>
+        <dt>
+            Ngày Cập Nhật
+        </dt>
+        <dd>
+            @Html.Display("Date")
+        </dd>
+        <dt>
+            Chủ đề
+        </dt>
+        <dd>
+            @Html.Display("Tito")
+        </dd>
+        <dt>
+            Nội dung
+        </dt>
+        <dd>
+            @Html.Display("FBR")
+        </dd>
+        <dt>
+            Tình Trạng Xử Lý
+        </dt>
+
+
+        <dd>
+            @switch (Model.Status)
+            {
+                case 1:
+                    <div>Chưa xử lý</div>
+                    break;
+                case 2:
+                    <div>Đã xử lý</div>
+                    break;
+
+
+            }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Reply", "Edit", new { id = Model.Contact_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

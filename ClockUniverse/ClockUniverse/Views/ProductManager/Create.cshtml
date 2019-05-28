@@ -32,6 +32,7 @@
         width: 823px;
         height: 82px;
     }
+
 </style>
 
 <h2>THÊM MỚI SẢN PHẨM</h2>
@@ -77,7 +78,7 @@
                 Thông Số Đồng Hồ
             </div>
             <div class="col-md-10">
-                @*@Html.TextArea("Watch_Static", String.Empty)
+                @*@Html.TextArea("Watch_Static")
                     @Html.ValidationMessageFor(model => model.Watch_Static)*@
                 <textarea cols="20" data-val="true" data-val-required="Bạn chưa nhập thông số đồng hồ" id="Watch_Static" name="Watch_Static" rows="2"></textarea>
                 <span class="field-validation-valid" data-valmsg-for="Watch_Static" data-valmsg-replace="true"></span>
@@ -137,7 +138,6 @@
 
                 <input type="file" style="color:red" name="Image2" id="1339" onchange="readIMG(this)" required />
                 <img id="Demo" />
-
             </div>
         </div>
 

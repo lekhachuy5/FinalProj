@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using ClockUniverse.Controllers;
 using System.Web.Mvc;
 using ClockUniverse.Models;
 
@@ -45,20 +43,35 @@ namespace ClockUniverse.Controllers
             List<ShoppingCart> lstCart = GetShoppingCart();
             // Kiểm tra sản phẩm này đã tồn tại trong session[giohang] chưa
             ShoppingCart sp = lstCart.Find(n => n.iMaSP == iMaSP);
-
+            ViewBag.TX = txtSoLuong;
             if (sp == null)
             {
-
-                sp = new ShoppingCart(iMaSP);
-                sp.soLuong = txtSoLuong;
-                lstCart.Add(sp);
+                if (txtSoLuong > product.InStock)
+                {
+                    ModelState.AddModelError("InStock", "Vượt quá tồn kho");
+                    return Redirect(strUrl);
+                }
+                else
+                {
+                    sp = new ShoppingCart(iMaSP);
+                    sp.soLuong = txtSoLuong;
+                    lstCart.Add(sp);
+                }
+               
                 return Redirect(strUrl);
             }
             else
             {
+                if (product.InStock - (txtSoLuong + sp.soLuong) < 0)
+                {
+                    ModelState.AddModelError("InStock", "Vượt quá tồn kho");
+                     return Redirect(strUrl);
+                }
+                else
+                {
 
-                sp.soLuong = sp.soLuong + txtSoLuong;
-
+                    sp.soLuong = sp.soLuong + txtSoLuong;
+                }
                 return Redirect(strUrl);
             }
 
@@ -67,7 +80,7 @@ namespace ClockUniverse.Controllers
 
         
         // Cap nhat gio hang
-        public ActionResult UpdateShoppingCart(int iMaSP, FormCollection f)
+        public ActionResult UpdateShoppingCart(int iMaSP, FormCollection f, int txtSoLuong)
         {
             // Kiem tra ma san pham
             ProductTable product = db.ProductTables.SingleOrDefault(n => n.Watch_ID == iMaSP);
@@ -84,7 +97,15 @@ namespace ClockUniverse.Controllers
             // Neu ton tai thi cho sua so luong
             if (sp != null)
             {
-                sp.soLuong = int.Parse(f["txtSoLuong"].ToString());
+                if (product.InStock - txtSoLuong + sp.soLuong <= 0)
+                {
+                    ModelState.AddModelError("InStock", Resource1.OverInStock);
+                }
+                else
+                {
+                    sp.soLuong = txtSoLuong;
+                }
+                
 
             }
             return RedirectToAction("ShoppingCart");

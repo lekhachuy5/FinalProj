@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-using ClockUniverse.Models;
 
 namespace ClockUniverse.Controllers
 {
@@ -28,6 +24,12 @@ namespace ClockUniverse.Controllers
             }
             return View(product);
         }
-
+        public ActionResult ListItem(int type)
+        {
+            var itemlist = db.ProductTables.Where(x => x.WatchType_ID == type).Select(x => new { x.Watch_Name, x.Watch_Description, x.Selling_Price }).ToList();
+            ViewBag.itemList = itemlist;
+            ViewBag.type = type;
+            return View();
+        }
     }
 }

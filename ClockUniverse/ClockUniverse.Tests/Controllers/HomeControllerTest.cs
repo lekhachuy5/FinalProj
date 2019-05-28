@@ -1,12 +1,10 @@
-﻿using System;
+﻿using System.Web.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ClockUniverse;
 using ClockUniverse.Controllers;
-
+using ClockUniverse;
 namespace ClockUniverse.Tests.Controllers
 {
     [TestClass]
@@ -19,7 +17,7 @@ namespace ClockUniverse.Tests.Controllers
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            ViewResult result = controller.Index(1) as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
@@ -50,5 +48,14 @@ namespace ClockUniverse.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
+        [TestMethod]
+        public void CheckOut()
+        {
+            CheckOutController controller = new CheckOutController();
+            ViewResult result = controller.Index() as ViewResult;
+            Assert.IsNotNull(result);
+        }
+       
+        
     }
 }

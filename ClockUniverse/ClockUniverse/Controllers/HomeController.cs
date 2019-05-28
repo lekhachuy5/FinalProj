@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-
+using PagedList;
+using PagedList.Mvc; 
 namespace ClockUniverse.Controllers
 {
     public class HomeController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.ProductTables.ToList());
+            // Tao  bien so san pham tren trang
+            int pageSize = 12;
+            // Tao bien so trang
+            int pageNumber = (page ?? 1);
+            return View(db.ProductTables.ToList().OrderBy(n=>n.Original_Price).ToPagedList(pageNumber,pageSize));
         }
 
         public ActionResult About()
@@ -30,14 +32,18 @@ namespace ClockUniverse.Controllers
         public ActionResult Search(string text)
         {
             var itemsz = db.ProductTables.Where(x => x.Watch_Name.ToLower().Contains(text.ToLower())).ToList();
+            if (text.Trim().Equals(""))
+            {
+                return RedirectToAction("Index");
+            }
 
-            if (itemsz.Count() > 0)
+            else if(itemsz.Count() > 0)
             {
                 //ViewBag.Message = "";
             }
             else
             {
-                ViewBag.Message = "No Item found";
+                ViewBag.Message = "Không tìm thấy được sản phẩm tương ứng";
 
             }
             ViewData["Item"] = itemsz;

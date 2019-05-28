@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using ClockUniverse;
 using System.Transactions;
+using System;
+
+
 namespace ClockUniverse.Controllers
 {
+    
     public class ProductManagerController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();
@@ -99,7 +99,7 @@ namespace ClockUniverse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Watch_ID,Watch_Name,Watch_Description,Watch_Static,WatchType_ID,Original_Price,Selling_Price,InStock")] ProductTable producttable)
+        public ActionResult Edit(ProductTable producttable)
         {
             ValidateClock(producttable);
             if (ModelState.IsValid)
@@ -112,9 +112,20 @@ namespace ClockUniverse.Controllers
                     // save file to app_data
                     var path = Server.MapPath("~/App_Data");
                     path = System.IO.Path.Combine(path, producttable.Watch_ID.ToString());
-                    Request.Files["Image"].SaveAs(path + "_0");
-                    Request.Files["Image1"].SaveAs(path + "_1");
-                    Request.Files["Image2"].SaveAs(path + "_2");
+
+                    if (Request.Files["Image"].ContentLength != 0)
+
+                    {
+                        Request.Files["Image"].SaveAs(path + "_0");
+                    }
+                    if(Request.Files["Image1"].ContentLength != 0)
+                    {
+                        Request.Files["Image1"].SaveAs(path + "_1");
+                    }
+                    if(Request.Files["Image2"].ContentLength != 0)
+                    {
+                        Request.Files["Image2"].SaveAs(path + "_2");
+                    }
                     // all done successfully
                     scope.Complete();
                     return RedirectToAction("Index");
@@ -152,10 +163,10 @@ namespace ClockUniverse.Controllers
         {
             if (model.Original_Price == 0)
                 ModelState.AddModelError("Original_Price", Resource1.priceLess0);
-
+            
         }
 
-        // GET: /ProductManager/Delete/5
+        // GET: /ProductManager/Delete/5 //
         public ActionResult Delete(int? id)
         {
             if (id == null)

@@ -12,22 +12,22 @@ namespace ClockUniverse
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
     public partial class Order
     {
         public Order()
         {
             this.Order_Detail = new HashSet<Order_Detail>();
         }
-    
+
         public int Order_ID { get; set; }
         public System.DateTime Order_Date { get; set; }
         public System.DateTime Delivery_Date { get; set; }
-        [Required(ErrorMessage ="Bạn chưa nhập Họ tên khách hàng")]
+        [Required(ErrorMessage = "Bạn chưa nhập Họ tên khách hàng")]
         public string Customer_Name { get; set; }
-        [StringLength(12,ErrorMessage ="Số điện thoại phải từ 9-12 số")]
+
+        [StringLength(12, ErrorMessage = "Số điện thoại phải từ 9-12 số")]
         [Required(ErrorMessage = "Bạn chưa nhập Số điện thoại")]
-        [Range(9,Int64.MaxValue,ErrorMessage = "Số điện thoại phải từ 9-12 số")]
+        [Range(9, Int64.MaxValue, ErrorMessage = "Số điện thoại phải từ 9-12 số")]
         public string Customer_Phone { get; set; }
         [Required(ErrorMessage = "Bạn chưa nhập Email")]
         public string Customer_Email { get; set; }
@@ -36,7 +36,6 @@ namespace ClockUniverse
         public int Deliver_Status { get; set; }
         public Nullable<System.DateTime> Order_ChangeDate { get; set; }
         public decimal Total_Price { get; set; }
-    
         public virtual ICollection<Order_Detail> Order_Detail { get; set; }
     }
 }
