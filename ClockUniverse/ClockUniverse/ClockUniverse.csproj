@@ -942,6 +942,7 @@
     <Content Include="fonts\weathericons-regular-webfont.ttf" />
     <Content Include="fonts\weathericons-regular-webfont.woff" />
     <Content Include="ClassDiagram2.cd" />
+    <Content Include="libman.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -1,6 +1,6 @@
 ﻿@model ClockUniverse.Contact
 @{
-    ViewBag.Title = "Contact";
+    
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <!doctype html>
@@ -51,7 +51,7 @@
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
-                            <h4>Feedback Form</h4>
+                            
                             <hr />
                             @Html.ValidationSummary(true)                       
                             <div class="form-group">
@@ -104,7 +104,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Create" class="btn btn-default" />
+                                    <input type="submit" value="Gửi yêu cầu" class="btn btn-primary"  onclick="return alert('Bạn đã gửi yêu cầu thành công.');" />
                                 </div>
                             </div>
                         </div>
