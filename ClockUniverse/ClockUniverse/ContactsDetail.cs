@@ -11,16 +11,13 @@ namespace ClockUniverse
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class ContactsDetail
     {
         public int Feedback_ID { get; set; }
         public int Contact_ID { get; set; }
-        public int Employee_ID { get; set; }
-        [Required(ErrorMessage ="khong duoc de trong chu de")]
+        public string Employee_ID { get; set; }
         public string Title { get; set; }
-        [Required(ErrorMessage = "khong duoc de trong chu de")]
         public string Feedback_Detail { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public string Feedback_Reply { get; set; }
