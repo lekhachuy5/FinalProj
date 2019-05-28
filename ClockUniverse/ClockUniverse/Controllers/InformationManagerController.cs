@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using System.Transactions;
-
+using Microsoft.AspNet.Identity;
 namespace ClockUniverse.Controllers
 {
 
@@ -17,7 +17,7 @@ namespace ClockUniverse.Controllers
         // GET: /InformationManager/
         public ActionResult Index()
         {
-            var model = db.Contacts.ToList();
+            var model = db.ContactsDetails.ToList();
           
 
 
@@ -39,6 +39,7 @@ namespace ClockUniverse.Controllers
             }
             ViewBag.Tito = cdt.Title;
             ViewBag.FBR = cdt.Feedback_Detail;
+            ViewBag.FR = cdt.Feedback_Reply;
             ViewBag.Date = cdt.Date;
             return View(contact);
         }
@@ -126,6 +127,7 @@ namespace ClockUniverse.Controllers
           }, "Value", "Text");
             ViewBag.Tito = cdt.Title;
             ViewBag.FBR = cdt.Feedback_Detail;
+            
             ViewBag.Date = cdt.Date;
             return View(contact);
 
@@ -145,6 +147,7 @@ namespace ClockUniverse.Controllers
 
                 db.Entry(contact).State = EntityState.Modified;
                 ContactsDetail contd = db.ContactsDetails.Find(contact.Contact_ID);
+                contd.Employee_ID = User.Identity.GetUserName();
                 contd.Feedback_Reply = Feedback_Reply;
                 contd.Date = DateTime.Now;
                 db.Entry(contd).State = EntityState.Modified;

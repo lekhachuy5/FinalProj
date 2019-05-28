@@ -76,7 +76,7 @@
           </Key>
           <Property Name="Feedback_ID" Type="int" Nullable="false" />
           <Property Name="Contact_ID" Type="int" Nullable="false" />
-          <Property Name="Employee_ID" Type="int" Nullable="false" />
+          <Property Name="Employee_ID" Type="nvarchar" MaxLength="50" />
           <Property Name="Title" Type="nvarchar(max)" />
           <Property Name="Feedback_Detail" Type="nvarchar(max)" />
           <Property Name="Date" Type="datetime" />
@@ -342,7 +342,7 @@
           </Key>
           <Property Name="Feedback_ID" Type="Int32" Nullable="false" />
           <Property Name="Contact_ID" Type="Int32" Nullable="false" />
-          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+          <Property Name="Employee_ID" Type="String" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Feedback_Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Precision="3" />

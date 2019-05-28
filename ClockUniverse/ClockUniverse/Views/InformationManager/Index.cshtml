@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ClockUniverse.Contact>
+﻿@model IEnumerable<ClockUniverse.ContactsDetail>
 
 @{
     ViewBag.Title = "Index";
@@ -14,6 +14,9 @@
     <table class="table table-bordered display" id="mytable">
         <thead>
             <tr>
+                <th>
+                    Ngày cập nhật
+                </th>
                 <th>
                     ID
                 </th>
@@ -43,23 +46,26 @@
             {
                 <tr>
                     <td>
+                        @item.Date
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Contact_ID)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Customer_Name)
+                        @Html.DisplayFor(modelItem => item.Contact.Customer_Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Phone)
+                        @Html.DisplayFor(modelItem => item.Contact.Phone)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Email)
+                        @Html.DisplayFor(modelItem => item.Contact.Email)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Address)
+                        @Html.DisplayFor(modelItem => item.Contact.Address)
                     </td>
-                   
+                        
                     <td>
-                        @switch (@item.Status)
+                        @switch (@item.Contact.Status)
                         {
                             case 1:
                                 <div>Chưa xử lý</div>
