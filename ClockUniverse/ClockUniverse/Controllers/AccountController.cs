@@ -90,7 +90,7 @@ namespace ClockUniverse.Controllers
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Manage","Acount");
+                    return RedirectToAction("Manage","Account");
                 }
                 else
                 {

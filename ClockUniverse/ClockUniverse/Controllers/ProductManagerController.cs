@@ -63,7 +63,7 @@ namespace ClockUniverse.Controllers
                     db.ProductTables.Add(producttable);
                     db.SaveChanges();
                     // save file to app_data
-                    var path = Server.MapPath("~/App_Data");
+                    var path = Server.MapPath("~/Content/products/images");
                     path = System.IO.Path.Combine(path, producttable.Watch_ID.ToString());
                     Request.Files["Image"].SaveAs(path + "_0");
                     Request.Files["Image1"].SaveAs(path + "_1");
@@ -110,7 +110,7 @@ namespace ClockUniverse.Controllers
                     db.Entry(producttable).State = EntityState.Modified;
                     db.SaveChanges();
                     // save file to app_data
-                    var path = Server.MapPath("~/App_Data");
+                    var path = Server.MapPath("~/Content/products/images");
                     path = System.IO.Path.Combine(path, producttable.Watch_ID.ToString());
 
                     if (Request.Files["Image"].ContentLength != 0)
@@ -137,7 +137,7 @@ namespace ClockUniverse.Controllers
 
         public ActionResult Image(string id)
         {
-            var path = Server.MapPath("~/App_Data");
+            var path = Server.MapPath("~/Content/products/images");
             path = System.IO.Path.Combine(path, id);
             return File(path + "_0", "image/jpg/*");
 
@@ -145,7 +145,7 @@ namespace ClockUniverse.Controllers
 
         public ActionResult Image1(string id)
         {
-            var path = Server.MapPath("~/App_Data");
+            var path = Server.MapPath("~/Content/products/images");
             path = System.IO.Path.Combine(path, id);
             return File(path + "_1", "image/jpg/*");
 
@@ -153,7 +153,7 @@ namespace ClockUniverse.Controllers
 
         public ActionResult Image2(string id)
         {
-            var path = Server.MapPath("~/App_Data");
+            var path = Server.MapPath("~/Content/products/images");
             path = System.IO.Path.Combine(path, id);
             return File(path + "_2", "image/jpg/*");
 

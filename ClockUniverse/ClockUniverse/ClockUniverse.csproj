@@ -410,7 +410,12 @@
     <Content Include="Content\images\iphones.png" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\logo-cake.png" />
+    <Content Include="Content\images\logo.jpg" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logo_slide1.jpg" />
+    <Content Include="Content\images\logo_slide2.jpg" />
+    <Content Include="Content\images\logo_slide3.jpg" />
+    <Content Include="Content\images\logo_slide4.jpg" />
     <Content Include="Content\images\logo_white%281%29.png" />
     <Content Include="Content\images\logo_white.png" />
     <Content Include="Content\images\mobiles.png" />
@@ -946,6 +951,7 @@
     <Content Include="fonts\weathericons-regular-webfont.woff" />
     <Content Include="ClassDiagram2.cd" />
     <Content Include="libman.json" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1091,7 +1097,6 @@
     <Content Include="Scripts\vendors\revolution-slider\images\Thumbs.db" />
     <Content Include="Views\product_types\ListType.cshtml" />
     <Content Include="Views\products\product_detail.cshtml" />
-    <Content Include="Views\InformationManager\Create.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\ShoppingCart\ShoppingCart.cshtml" />
     <Content Include="Views\ShoppingCart\CartPartial.cshtml" />
@@ -1109,6 +1114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\products\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
