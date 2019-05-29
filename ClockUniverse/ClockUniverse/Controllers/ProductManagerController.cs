@@ -9,19 +9,20 @@ using System;
 
 namespace ClockUniverse.Controllers
 {
-    [Authorize]
+     
     public class ProductManagerController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();
 
         // GET: /ProductManager/
-
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.ProductTables.ToList());
         }
 
         // GET: /ProductManager/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +38,7 @@ namespace ClockUniverse.Controllers
         }
 
         // GET: /ProductManager/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name");
@@ -46,6 +48,7 @@ namespace ClockUniverse.Controllers
         // POST: /ProductManager/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Watch_ID,Watch_Name,Watch_Description,Watch_Static,WatchType_ID,Original_Price,Selling_Price,InStock")] ProductTable producttable)
@@ -63,7 +66,7 @@ namespace ClockUniverse.Controllers
                     db.ProductTables.Add(producttable);
                     db.SaveChanges();
                     // save file to app_data
-                    var path = Server.MapPath("~/Content/products/images");
+                    var path = Server.MapPath("~/App_Data");
                     path = System.IO.Path.Combine(path, producttable.Watch_ID.ToString());
                     Request.Files["Image"].SaveAs(path + "_0");
                     Request.Files["Image1"].SaveAs(path + "_1");
@@ -79,6 +82,7 @@ namespace ClockUniverse.Controllers
         }
 
         // GET: /ProductManager/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -97,6 +101,7 @@ namespace ClockUniverse.Controllers
         // POST: /ProductManager/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ProductTable producttable)
@@ -110,7 +115,7 @@ namespace ClockUniverse.Controllers
                     db.Entry(producttable).State = EntityState.Modified;
                     db.SaveChanges();
                     // save file to app_data
-                    var path = Server.MapPath("~/Content/products/images");
+                    var path = Server.MapPath("~/App_Data");
                     path = System.IO.Path.Combine(path, producttable.Watch_ID.ToString());
 
                     if (Request.Files["Image"].ContentLength != 0)
@@ -134,28 +139,28 @@ namespace ClockUniverse.Controllers
             ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", producttable.WatchType_ID);
             return View("Edit", producttable);
         }
-
+       
         public ActionResult Image(string id)
         {
-            var path = Server.MapPath("~/Content/products/images");
+            var path = Server.MapPath("~/App_Data");
             path = System.IO.Path.Combine(path, id);
-            return File(path + "_0", "image/jpg/*");
+            return File(path + "_0", "image/*");
 
         }
-
+        
         public ActionResult Image1(string id)
         {
-            var path = Server.MapPath("~/Content/products/images");
+            var path = Server.MapPath("~/App_Data");
             path = System.IO.Path.Combine(path, id);
-            return File(path + "_1", "image/jpg/*");
+            return File(path + "_1", "image/*");
 
         }
-
+      
         public ActionResult Image2(string id)
         {
-            var path = Server.MapPath("~/Content/products/images");
+            var path = Server.MapPath("~/App_Data");
             path = System.IO.Path.Combine(path, id);
-            return File(path + "_2", "image/jpg/*");
+            return File(path + "_2", "image/*");
 
         }
 
@@ -167,6 +172,7 @@ namespace ClockUniverse.Controllers
         }
 
         // GET: /ProductManager/Delete/5 //
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -182,6 +188,7 @@ namespace ClockUniverse.Controllers
         }
 
         // POST: /ProductManager/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -102,6 +102,6 @@
     <p>Ngày cập nhật :@Model.Order_ChangeDate</p>
 </div>
 <p>
-    @Html.ActionLink("Cập nhật", "Edit", null, new { @class = " btn btn-primary" })
+    @Html.ActionLink("Cập nhật", "Edit", new { id = Model.Order_ID }, new { @class = " btn btn-primary" })
     @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
 </p>

@@ -126,7 +126,7 @@
             <div class="col-sm-10">
                 <div class="row">
                     <div class="col-sm-7">
-                        <img src="@Url.Content("~/Content/products/images/"+Model.Watch_ID)" alt="" style="width: 363px;height: 400px;">
+                        <img src="@Url.Content("~/ProductManager/Image/"+Model.Watch_ID)" alt="" style="width: 363px;height: 400px;">
                     </div>
                     <div class="col-sm-5">
                         <div class="single-item-body">
@@ -134,15 +134,15 @@
                             @if (Model.Original_Price <= Model.Selling_Price)
                             {
                                 <p class="single-item-price" id="giaGoc">
-                                    <span>@String.Format("{0:0,0}", Model.Selling_Price) ₫</span>
+                                    <span>@Model.Selling_Price.ToString("N0") ₫</span>
                                 </p>
                             }
                             else
                             {
                                 <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
                                 <p class="single-item-price">
-                                    <span class="flash-sale">@String.Format("{0:0,0}", Model.Selling_Price) ₫</span> <br>
-                                    <b id="giaNiemYet">Giá niêm yết: </b> <span class="flash-del1">@String.Format("{0:0,0}", Model.Original_Price) ₫</span> <br />
+                                    <span class="flash-sale">@Model.Selling_Price.ToString("N0") ₫</span> <br>
+                                    <b id="giaNiemYet">Giá niêm yết: </b> <span class="flash-del1">@Model.Original_Price.ToString("N0") ₫</span> <br />
                                 </p>
                             }
 
@@ -174,7 +174,7 @@
                         <p id="sl">Số lượng:</p>
                         <div class="single-item-options">
 
-                            @using (Html.BeginForm("addShoppingCart", "ShoppingCart", new { @iMaSP = Model.Watch_ID, @strUrl = Request.Url.ToString() }))
+                            @using (Html.BeginForm("addShoppingCart", "ShoppingCart", new { @iMaSP = Model.Watch_ID}))
                             {
                                 
                                

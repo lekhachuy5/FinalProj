@@ -24,7 +24,7 @@
                     <div class="col-sm-3">
                         <div class="single-item">
                             <div class="single-item-header">
-                                <a href="@Url.Action("product_detail","products", new { @Watch_ID = item.Watch_ID})"><img src="@Url.Content("~/Content/products/images/"+item.Watch_ID)" alt="" style="height:280px"></a>
+                                <a href="@Url.Action("product_detail","products", new { @Watch_ID = item.Watch_ID})"><img src="@Url.Content("~/ProductManager/Image/"+item.Watch_ID)" alt="" style="height:280px"></a>
 
                             </div>
                             @if (item.Original_Price < item.Selling_Price)

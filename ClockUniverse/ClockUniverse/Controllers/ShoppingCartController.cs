@@ -24,9 +24,8 @@ namespace ClockUniverse.Controllers
             return lstcart;
         }
         // Them gio hang
-        public ActionResult addShoppingCart(int iMaSP, string strUrl, int txtSoLuong)
+        public ActionResult addShoppingCart(int iMaSP, int txtSoLuong)
         {
-
             ProductTable product = db.ProductTables.SingleOrDefault(n => n.Watch_ID == iMaSP);
 
             if (txtSoLuong <= 0 || txtSoLuong.ToString().Trim().Equals(null))
@@ -49,7 +48,7 @@ namespace ClockUniverse.Controllers
                 if (txtSoLuong > product.InStock)
                 {
                     ModelState.AddModelError("InStock", "Vượt quá tồn kho");
-                    return Redirect(strUrl);
+                    return RedirectToAction("product_detail", "products", new { product.Watch_ID });
                 }
                 else
                 {
@@ -57,22 +56,22 @@ namespace ClockUniverse.Controllers
                     sp.soLuong = txtSoLuong;
                     lstCart.Add(sp);
                 }
-               
-                return Redirect(strUrl);
+
+                return RedirectToAction("product_detail", "products", new { product.Watch_ID });
             }
             else
             {
                 if (product.InStock - (txtSoLuong + sp.soLuong) < 0)
                 {
                     ModelState.AddModelError("InStock", "Vượt quá tồn kho");
-                     return Redirect(strUrl);
+                    return RedirectToAction("product_detail", "products", new { product.Watch_ID });
                 }
                 else
                 {
 
                     sp.soLuong = sp.soLuong + txtSoLuong;
                 }
-                return Redirect(strUrl);
+                return RedirectToAction("product_detail", "products", new {  product.Watch_ID });
             }
 
 
