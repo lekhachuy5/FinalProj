@@ -1103,9 +1103,9 @@
     <Content Include="Views\OrderManager\Edit.cshtml" />
     <Content Include="Views\ProductManager\Details.cshtml" />
     <Content Include="Views\InformationManager\Details.cshtml" />
-    <Content Include="Views\InformationManager\Edit.cshtml" />
     <Content Include="Views\products\ListItem.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\InformationManager\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

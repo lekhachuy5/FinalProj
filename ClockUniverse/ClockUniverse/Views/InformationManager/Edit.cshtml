@@ -110,20 +110,21 @@
 
 
                     <td>
-                       @Html.DropDownList("Status",(SelectList)ViewBag.DS)
+                        @Html.DropDownList("Status", (SelectList)ViewBag.DS)
                     </td>
                 </tr>
 
             </table>
 
-
+            <div class="form-group">
+                <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                @Html.ActionLink("Quay lại", "Index")
+            </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 
 @section Scripts {

@@ -9,7 +9,7 @@ using System.Transactions;
 using Microsoft.AspNet.Identity;
 namespace ClockUniverse.Controllers
 {
-
+    [Authorize]
     public class InformationManagerController : Controller
     {
         private CsK23T3bEntities db = new CsK23T3bEntities();
@@ -45,6 +45,7 @@ namespace ClockUniverse.Controllers
         }
 
         // GET: /InformationManager/Create
+        [AllowAnonymous]
         public ActionResult Create()
         {
             return View();
@@ -53,6 +54,7 @@ namespace ClockUniverse.Controllers
         // POST: /InformationManager/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Contact contact, string Title, string Feedback_Detail)
