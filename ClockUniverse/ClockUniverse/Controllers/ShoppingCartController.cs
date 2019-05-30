@@ -132,6 +132,7 @@ namespace ClockUniverse.Controllers
             }
             if (lstCart.Count == 0)
             {
+                Session["GioHang"] = null;
                 return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("ShoppingCart");

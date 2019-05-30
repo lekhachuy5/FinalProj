@@ -27,12 +27,12 @@ namespace ClockUniverse.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("index", "notfound");
             }
             ProductTable producttable = db.ProductTables.Find(id);
             if (producttable == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("index", "notfound");
             }
             return View(producttable);
         }
@@ -87,12 +87,12 @@ namespace ClockUniverse.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("index", "notfound");
             }
             ProductTable producttable = db.ProductTables.Find(id);
             if (producttable == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("index", "notfound");
             }
             ViewBag.WatchType_ID = new SelectList(db.ProductTypes, "ProductType_ID", "ProductType_Name", producttable.WatchType_ID);
             return View(producttable);
@@ -177,12 +177,12 @@ namespace ClockUniverse.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("index", "notfound");
             }
             ProductTable producttable = db.ProductTables.Find(id);
             if (producttable == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("index", "notfound");
             }
             return View(producttable);
         }

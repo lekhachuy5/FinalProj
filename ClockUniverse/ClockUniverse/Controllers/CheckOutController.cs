@@ -8,6 +8,7 @@ namespace ClockUniverse.Controllers
         // GET: /CheckOut/
         public ActionResult Index()
         {
+       
             return View();
         }
 	}

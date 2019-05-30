@@ -853,8 +853,8 @@
     <Content Include="Scripts\jsM\editable-table.js" />
     <Content Include="Scripts\jsM\jquery.dataTables.js" />
     <Content Include="Scripts\jsM\jquery.dcjqaccordion.2.7.js" />
+    <Content Include="Scripts\jsM\jquery.nicescroll.js" />
     <Content Include="Scripts\jsM\jquery.scrollTo.min.js" />
-    <Content Include="Scripts\nicescroll\jquery.nicescroll.js" />
     <Content Include="Scripts\nicescroll\jquery.nicescroll.min.js" />
     <Content Include="Views\favicon.ico" />
     <Content Include="Content\fonts\digital-7-webfont.svg" />

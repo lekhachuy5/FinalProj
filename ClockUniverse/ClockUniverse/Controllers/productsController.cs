@@ -19,8 +19,7 @@ namespace ClockUniverse.Controllers
             if (product == null)
             {
                 // Trả về trang báo lỗi
-                Response.StatusCode = 404;
-                return null;
+                return View("~/Views/notfound/Index.cshtml");
             }
             return View(product);
         }

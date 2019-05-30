@@ -16,10 +16,11 @@
     @Html.ValidationSummary(true)
     <div class="form-horizontal">
 
-        @Html.ValidationMessageFor(m => m.Order_ID);
+      
 
         <div class="form-group1" style="width: 80%">
             <div class="form-group">
+                @Html.ValidationMessageFor(m => m.Order_ID);
                 @Html.LabelFor(model => model.Customer_Name, "Họ tên khách hàng (*) ", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
                     @Html.EditorFor(model => model.Customer_Name)
@@ -53,6 +54,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     @Html.ActionLink("Trang chủ", "Index", null, new { @class = "btn btn-warning" })
+                    
                     <input type="submit" value="Xác nhận" class="btn btn-primary" />
                 </div>
             </div>

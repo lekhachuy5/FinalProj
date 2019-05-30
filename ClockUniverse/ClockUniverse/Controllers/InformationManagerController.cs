@@ -29,13 +29,13 @@ namespace ClockUniverse.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("index","notfound");
             }
             Contact contact = db.Contacts.Find(id);
             ContactsDetail cdt = db.ContactsDetails.Find(id);
             if (contact == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("index", "notfound");
             }
             ViewBag.Tito = cdt.Title;
             ViewBag.FBR = cdt.Feedback_Detail;
@@ -112,13 +112,13 @@ namespace ClockUniverse.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("index", "notfound");
             }
             Contact contact = db.Contacts.Find(id);
             ContactsDetail cdt = db.ContactsDetails.Find(id);
             if (contact == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("index", "notfound");
             }
             ViewBag.DS = new SelectList(
           new List<SelectListItem>

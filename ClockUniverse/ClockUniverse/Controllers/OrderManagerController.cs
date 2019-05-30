@@ -39,7 +39,7 @@ namespace ClockUniverse.Controllers
 
             if (order == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("index", "notfound");
 
             }
 
@@ -63,7 +63,7 @@ namespace ClockUniverse.Controllers
             Order od = db.Orders.Find(id);
             if (od == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("index", "notfound");
             }
             ViewBag.DS = new SelectList(
             new List<SelectListItem>
@@ -117,7 +117,7 @@ namespace ClockUniverse.Controllers
 
             if (od == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("index", "notfound");
             }
             return View(od);
         }
