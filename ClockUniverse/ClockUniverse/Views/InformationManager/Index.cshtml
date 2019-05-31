@@ -35,7 +35,9 @@
                 <th>
                     Tình trạng Xử Lý
                 </th>
-
+                <th>
+                    Nhân viên
+                </th>
                 <th>
 
                 </th>
@@ -77,7 +79,9 @@
 
                         }
                     </td>
-
+                    <td>
+                        @item.Employee_ID
+                    </td>
                     <td>
                         @Html.ActionLink("Chi tiết", "Details", new { id = item.Contact_ID })
 

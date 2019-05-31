@@ -25,6 +25,7 @@ namespace ClockUniverse.Models
             TenSP = clock.Watch_Name;
             donGia = double.Parse(clock.Selling_Price.ToString());
             soLuong = 1;
+            TonKho = clock.InStock;
         }
     }
 }

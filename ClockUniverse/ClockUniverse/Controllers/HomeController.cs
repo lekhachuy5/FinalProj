@@ -13,7 +13,7 @@ namespace ClockUniverse.Controllers
             int pageSize = 12;
             // Tao bien so trang
             int pageNumber = (page ?? 1);
-            return View(db.ProductTables.ToList().OrderBy(n=>n.Original_Price).ToPagedList(pageNumber,pageSize));
+            return View(db.ProductTables.ToList().OrderByDescending(n=>n.Watch_ID).ToPagedList(pageNumber,pageSize));
         }
 
         public ActionResult About()

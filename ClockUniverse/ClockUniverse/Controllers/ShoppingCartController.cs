@@ -96,7 +96,7 @@ namespace ClockUniverse.Controllers
             // Neu ton tai thi cho sua so luong
             if (sp != null)
             {
-                if (product.InStock - txtSoLuong + sp.soLuong <= 0)
+                if (product.InStock - txtSoLuong < 0)
                 {
                     ModelState.AddModelError("InStock", Resource1.OverInStock);
                 }

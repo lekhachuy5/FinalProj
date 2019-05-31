@@ -74,7 +74,8 @@
                                 </span>
                             </td>
                             <td class="product-status">
-                                In Stock
+                                In Stock :
+                                <span style="font-size:14px ;color: blue">@item.TonKho</span>
                             </td>
                             <td class="product-quantity">
                                 @using (Html.BeginForm("UpdateShoppingCart", "ShoppingCart", new { @iMaSP = item.iMaSP }))

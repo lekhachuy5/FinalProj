@@ -1,12 +1,20 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-
+using PagedList;
+using PagedList.Mvc;
 namespace ClockUniverse.Controllers
 {
     public class productsController : Controller
     {
         //
         CsK23T3bEntities db = new CsK23T3bEntities();
+        public ActionResult listItem( int type)
+        {
+            // Tao  bien so san pham tren trang
+            var model = db.ProductTables.Where(m => m.WatchType_ID == type);
+         
+            return View(model.OrderByDescending(n => n.Watch_ID));
+        }
         // GET: /products/
         public ActionResult Index()
         {
@@ -23,12 +31,6 @@ namespace ClockUniverse.Controllers
             }
             return View(product);
         }
-        public ActionResult ListItem(int type)
-        {
-            var itemlist = db.ProductTables.Where(x => x.WatchType_ID == type).Select(x => new { x.Watch_Name, x.Watch_Description, x.Selling_Price }).ToList();
-            ViewBag.itemList = itemlist;
-            ViewBag.type = type;
-            return View();
-        }
+
     }
 }

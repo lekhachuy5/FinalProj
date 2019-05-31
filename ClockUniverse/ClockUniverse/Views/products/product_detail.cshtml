@@ -23,12 +23,11 @@
         border-radius: 6px;
         font-size: 31px;
     }
-
     i.fas.fa-shopping-cart {
         position: relative;
-        top: 5px;
+        top: 7px;
         left: 43px;
-        font-size: 23px;
+        font-size: 21px;
         color: white;
         cursor: pointer;
     }
@@ -100,10 +99,10 @@
         font-size: 18px;
         height: 28px;
     }
-
     #sl {
         font-size: 13px;
         color: #737373;
+        font-weight: 500;
     }
 
     #giaGoc {
@@ -113,10 +112,25 @@
         margin-bottom: 8px;
         display: block;
     }
-
     input#btnGioHang {
-        width: 170px;
+        width: 162px;
         padding-left: 43px;
+        height: 44px;
+    }
+    #imagect {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 150px;
+        height:150px;
+    }
+
+    #imagect:hover {
+        box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    }
+    span#GT {
+        font-size: 14px;
+        font-weight: 500;
     }
 </style>
 
@@ -127,6 +141,10 @@
                 <div class="row">
                     <div class="col-sm-7">
                         <img src="@Url.Content("~/ProductManager/Image/"+Model.Watch_ID)" alt="" style="width: 363px;height: 400px;">
+                            <img src="@Url.Content("~/ProductManager/Image1/"+Model.Watch_ID)" alt="Forest" style="width:150px" class="imagect">
+                            <img src="@Url.Content("~/ProductManager/Image2/"+Model.Watch_ID)" alt="Forest" style="width:150px; height:150px; margin-left:0px" class="imagect1">
+
+
                     </div>
                     <div class="col-sm-5">
                         <div class="single-item-body">
@@ -147,7 +165,7 @@
                             }
 
                         </div>
-                        <div class="clearfix"></div>
+
 
                         <div class="single-item-desc">
                             @if (Model.InStock > 0)
@@ -167,19 +185,41 @@
                                 <span id="TinhTrang">
                                     Hết hàng
                                 </span>
-                                
+
                             }
                         </div>
+                        <div class="single-item-desc">
+                            @if (Model.WatchType_ID == 1)
+                            {
+                                <span id="nameTT">
+                                    Giới Tính:
+                                </span>
+                                <span id="GT">
+                                   Nam
+                                </span>
+                            }
+                            else
+                            {
+                                <span id="nameTT">
+                                    Giới Tính:
+                                </span>
+                                <span id="GT" >
+                                    Nữ
+                                </span>
+
+                            }
+                        </div>
+
                         <p id="sl">Tồn kho: <span style="font-size:14px ;color: blue">@Model.InStock</span></p>
                         <p id="sl">Số lượng:</p>
                         <div class="single-item-options">
 
-                            @using (Html.BeginForm("addShoppingCart", "ShoppingCart", new { @iMaSP = Model.Watch_ID}))
+                            @using (Html.BeginForm("addShoppingCart", "ShoppingCart", new { @iMaSP = Model.Watch_ID }))
                             {
-                                
-                               
-                               @Html.TextBox("txtSoLuong", 1, new { type = "number" })
-                               
+
+
+                                @Html.TextBox("txtSoLuong", 1, new { type = "number" })
+
 
 
                                 if (Model.InStock <= 0)
@@ -191,10 +231,10 @@
                                 {
                                     <a href="@Url.Action("ShoppingCart", "ShoppingCart")">
                                         <i class="fas fa-shopping-cart"></i><input type="submit" value="CHỌN MUA" id="btnGioHang" class="btn btn-primary btn-lg" />
-                                         <p style="text-align:right">@Html.ValidationMessageFor(m => m.InStock)</p>
+                                        <p style="text-align:right">@Html.ValidationMessageFor(m => m.InStock)</p>
                                     </a>
                                 }
-                                
+
 
 
                             }
@@ -215,7 +255,7 @@
                                     <textarea disabled>@Model.Watch_Static</textarea>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

@@ -751,6 +751,12 @@
     <Content Include="Content\rs-plugin\images\tiles\transition_slotzoomvertical.png" />
     <Content Include="Content\rs-plugin\images\tiles\transition_turnoff%281%29.png" />
     <Content Include="Content\rs-plugin\images\tiles\transition_turnoff.png" />
+    <Content Include="Content\src\simplegallery.demo1.css" />
+    <Content Include="Content\src\simplegallery.demo1.min.css" />
+    <Content Include="Content\src\simplegallery.demo2.css" />
+    <Content Include="Content\src\simplegallery.demo2.min.css" />
+    <Content Include="Content\src\simplegallery.js" />
+    <Content Include="Content\src\simplegallery.min.js" />
     <Content Include="Content\style.css" />
     <Content Include="Content\under-construction.min.css" />
     <Content Include="Content\vendors\bxslider\images\bx_loader.gif" />
